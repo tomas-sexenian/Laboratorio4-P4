@@ -1,0 +1,4 @@
+//COMIENZO CARGA DE DATOS DE PRUEBA
+void cargarDatosPrueba() {
+}
+//FIN CARGA DE DATOS DE PRUEBA
