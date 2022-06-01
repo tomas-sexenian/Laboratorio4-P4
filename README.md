@@ -9,26 +9,25 @@ _\  \\p__`o-o'__\  \\p__`o-o'__\  \\p__`o-o'__\  \\p__`o-o'_
 ------------------------------------------------------------
 
 Cosas para hacer:
-  1. Controladores
-    AltaDeHabitacionController: Paula
-    AltaDeHostalController: Paula
-    AltaDeUsuarioController: Paula
-    CalificacionController: Nico 
-    EmpleadoController: Paula 
-    EstadiaController: Matias 
-    HabitacionController: Nico
-    HostalController: Matias
-    HuespedController: Paula 
-    NotificacionesController:Nico
-    ReservaController: Matias
-    RespuestaEmpleadoController: Nacho
-    SistemaController: Nacho
-    UsuarioController: Nacho
-  2. Implementar destructores y funciones extra de cada clase : ?????
-  3. Implementar el tema del patron observer : ????
-  4. Implementar el tema del patron factory : ????
-  5. Implementar carga de datos : Paula
-  6. Menu : Tomás
+      1.AltaDeHabitacionController: Paula
+      2.AltaDeHostalController: Paula
+      3.AltaDeUsuarioController: Paula
+      4.CalificacionController: Nico 
+      5.EmpleadoController: Paula 
+      6.EstadiaController: Matias 
+      7.HabitacionController: Nico
+      8.HostalController: Matias
+      9.HuespedController: Paula 
+      10.NotificacionesController:Nico
+      11.ReservaController: Matias
+      12.RespuestaEmpleadoController: Nacho
+      13.SistemaController: Nacho
+      14.UsuarioController: Nacho
+      15.Implementar destructores y funciones extra de cada clase : ?????
+      16.Implementar el tema del patron observer : ????
+      17.Implementar el tema del patron factory : ????
+      18.Implementar carga de datos : Paula
+      19.Menu : Tomás
 
 Cosas importantes: 
   1. ¿Donde implemento la carga de datos? En menu.cpp hay un procedimiento llamado cargarDatosPrueba, se implementa ahi 
