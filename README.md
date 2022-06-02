@@ -16,7 +16,7 @@ COSAS PARA HACER:
   15. Implementar destructores y funciones extra de cada clase : ?????
   16. Implementar el tema del patron observer : ????
   17. Implementar el tema del patron factory : ????
-  18. Implementar el tema del patron factory : ????
+  18. Implementar carga de datos: Paula
   19. Menu : Tomás
 
 COSAS IMPORTANTES:
