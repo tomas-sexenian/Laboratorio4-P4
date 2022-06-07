@@ -13,3 +13,14 @@ RespuestaEmpleadoController * RespuestaEmpleadoController::getInstancia(){
     return RespuestaEmpleadoController::instancia;
 };
 
+map<string,RespuestaEmpleado*> RespuestaEmpleadoController::getRespuestas() {
+    return respuestas;
+}
+
+void RespuestaEmpleadoController::setRespuesta() {
+    this->respuestas.insert(pair<string,RespuestaEmpleado*>(this->emailEmpleado,new RespuestaEmpleado(
+        this->comentario,
+        this->fecha,
+        NULL
+    )));
+}

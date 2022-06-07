@@ -13,6 +13,20 @@ HostalController * HostalController::getInstancia(){
     return HostalController::instancia;
 };
 
+map<string,Hostal*> HostalController::getHostales() {
+    return Hostales;
+}
+
+void HostalController::setHostal() {
+    this->Hostales.insert(pair<string,Hostal*>(this->nombre,new Hostal(
+        this->nombre,
+        this->direccion,
+        this->telefono,
+        map<int, Habitacion*> {},
+        map<string, Empleado*> {}
+    )));
+}
+
 // DE ACA HACIA ABAJO IMPLEMENTAN LAS OPERACIONES
 
 list<DTHostal> HostalController::obtenerTodosHostales() {

@@ -19,9 +19,14 @@ class EstadiaController{
         static EstadiaController * instancia;
         EstadiaController();
         list<Estadia*> Estadias;
+
+        DTFecha entrada, salida;
+        string promo;
     public:
 		static EstadiaController* getInstancia();
 	    ~EstadiaController();
+        list<Estadia*> getEstadias();
+        void setEstadia();
 
         void seleccionarEstadia(int);
         DTInfoEstadia obtenerEstadia(int);

@@ -9,8 +9,11 @@
 //LAS OPERCIONES
 
 #include "../cabezales/Reserva.hh"
+#include "../cabezales/ReservaIndividual.hh"
+#include "../cabezales/ReservaGrupal.hh"
 #include "../cabezales/DTReserva.hh"
 #include "../cabezales/DTHuesped.hh"
+#include "../../include/TipoReserva.hh"
 
 using namespace std;
 
@@ -19,9 +22,16 @@ class ReservaController{
         static ReservaController * instancia;
         ReservaController();
         map<int,Reserva*> Reservas;
+
+        int codigo;
+        DTFecha checkIn, checkOut;
+        EstadoReserva estado;
+        TipoReserva tipo;
     public:
 		static ReservaController* getInstancia();
 	    ~ReservaController();
+        map<int,Reserva*> getReservas();
+        void setReserva();
 
         DTReserva obtenerReserva(int);
         void seleccionarReserva(int);

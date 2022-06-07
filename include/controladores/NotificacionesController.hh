@@ -17,10 +17,16 @@ class NotificacionesController{
     private:
         static NotificacionesController * instancia;
         NotificacionesController();
-        list<Notificacion *> Notificacion;
+        list<Notificacion *> Notificaciones;
+        
+        string autor;
+        int puntaje;
+        string comentario;
     public:
 		static NotificacionesController* getInstancia();
 	    ~NotificacionesController();
+        list<Notificacion *> getNotificaciones();
+        void setNotificacion();
 
         void subscribirEmpleado(string);
         void eliminarNotificaciones();

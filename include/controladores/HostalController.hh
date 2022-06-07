@@ -22,10 +22,15 @@ class HostalController{
     private:
         static HostalController * instancia;
         HostalController();
-        map<int,Hostal*> Hostales;
+        map<string,Hostal*> Hostales;
+
+        string nombre, direccion;
+        int telefono;
     public:
 		static HostalController* getInstancia();
 	    ~HostalController();
+        map<string,Hostal*> getHostales();
+        void setHostal();
         
         list<DTHostal> obtenerTodosHostales();
         list<DTHostal> obtenerTop3Hostales();

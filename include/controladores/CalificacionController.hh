@@ -17,10 +17,16 @@ class CalificacionController{
     private:
         static CalificacionController * instancia;
         CalificacionController();
-        map<int,Calificacion *> Calificacion;
+        map<int,Calificacion *> Calificaciones;
+
+        int puntaje,codigoReserva;
+        string comentario;
+        DTFecha fecha;
     public:
 		static CalificacionController* getInstancia();
 	    ~CalificacionController();
+        map<int,Calificacion *> getCalificaciones();
+        void setCalificacion();
 
         void ingresarComentario(string);
         void ingresarPuntaje(int);

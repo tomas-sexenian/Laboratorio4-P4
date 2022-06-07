@@ -18,7 +18,7 @@ class RespuestaEmpleado{
         DTFecha getFecha();
         void setFecha(DTFecha);
         Calificacion* getCalificacion();
-        void setCalificacion();
+        void setCalificacion(Calificacion*);
 
         RespuestaEmpleado();
         RespuestaEmpleado(string, DTFecha,Calificacion*);

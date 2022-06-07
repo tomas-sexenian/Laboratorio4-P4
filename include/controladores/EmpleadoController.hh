@@ -21,7 +21,7 @@ class EmpleadoController{
     private:
         static EmpleadoController * instancia;
         EmpleadoController();
-        map<string,Empleado *> Empleados;
+        
     public:
 		static EmpleadoController* getInstancia();
 	    ~EmpleadoController();

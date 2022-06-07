@@ -19,7 +19,7 @@ class HuespedController{
     private:
         static HuespedController * instancia;
         HuespedController();
-        map<string,Huesped *> Huesped;
+        
     public:
 		static HuespedController* getInstancia();
 	    ~HuespedController();

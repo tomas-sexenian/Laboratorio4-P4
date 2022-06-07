@@ -13,6 +13,18 @@ NotificacionesController * NotificacionesController::getInstancia(){
     return NotificacionesController::instancia;
 };
 
+list<Notificacion *> NotificacionesController::getNotificaciones() {
+    return Notificaciones;
+}
+
+void NotificacionesController::setNotificacion() {
+    Notificaciones.push_back(new Notificacion(
+        this->autor,
+        this->puntaje,
+        this->comentario
+      ));
+}
+
 // DE ACA HACIA ABAJO IMPLEMENTAN LAS OPERACIONES
 
 void NotificacionesController::subscribirEmpleado(string EmailEmpleado) {
