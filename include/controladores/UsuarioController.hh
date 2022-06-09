@@ -36,8 +36,6 @@ class UsuarioController{
 
         DTInfoUsuario seleccionarUsuario(string);
         void confirmarConsulta();
-        void ingresarFecha(DTFecha);
-        void actualizarFecha(DTFecha);
-        void ingresarEmpleado(Empleado);
+        //void ingresarEmpleado(Empleado);
 };
 #endif

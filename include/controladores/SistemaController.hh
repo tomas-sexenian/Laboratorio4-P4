@@ -17,7 +17,9 @@ class SistemaController{
     public:
 		static SistemaController* getInstancia();
 	    ~SistemaController();
-
+        
+        void ingresarFecha(DTFecha);
+        void actualizarFecha(DTFecha);
         void ModificarFecha(DTFecha);
 };
 #endif
