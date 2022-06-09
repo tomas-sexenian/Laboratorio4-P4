@@ -18,7 +18,7 @@
 
 using namespace std;
 
-class EmpleadoController{
+class EmpleadoController : public IControladorEmpleado {
     private:
         static EmpleadoController* instancia;
         EmpleadoController();
