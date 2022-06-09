@@ -8,13 +8,14 @@
 //YO SOLO INCLUI LO QUE ALMACENA CADA CONTROLADOR Y LAS NECESARIAS PARA DECLARAR
 //LAS OPERCIONES
 
+#include "../interfaces/IControladorReserva.hh"
 #include "../cabezales/Reserva.hh"
 #include "../cabezales/DTReserva.hh"
 #include "../cabezales/DTHuesped.hh"
 
 using namespace std;
 
-class ReservaController{
+class ReservaController : public IControladorReserva {
     private:
         static ReservaController * instancia;
         ReservaController();

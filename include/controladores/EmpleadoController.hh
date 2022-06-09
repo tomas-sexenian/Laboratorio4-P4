@@ -8,6 +8,7 @@
 //YO SOLO INCLUI LO QUE ALMACENA CADA CONTROLADOR Y LAS NECESARIAS PARA DECLARAR
 //LAS OPERCIONES
 
+#include "../interfaces/IControladorEmpleado.hh"
 #include "../cabezales/Empleado.hh"
 #include "../cabezales/DTEmpleado.hh"
 #include "../cabezales/DTInfoEmpleado.hh"
@@ -19,12 +20,18 @@ using namespace std;
 
 class EmpleadoController{
     private:
-        static EmpleadoController * instancia;
+        static EmpleadoController* instancia;
         EmpleadoController();
-        map<string,Empleado *> Empleados;
+        map<string, Empleado*> Empleados;
+        string Email;
     public:
 		static EmpleadoController* getInstancia();
 	    ~EmpleadoController();
+
+        /*
+        void setEmail(string Email);
+        string getEmail();
+        */
 
         void ingresarEmailEmpleado(string);
         void agregarComentario(string);
