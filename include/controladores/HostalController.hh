@@ -8,6 +8,7 @@
 //YO SOLO INCLUI LO QUE ALMACENA CADA CONTROLADOR Y LAS NECESARIAS PARA DECLARAR
 //LAS OPERCIONES
 
+#include "../interfaces/IControladorHostal.hh"
 #include "../cabezales/Hostal.hh"
 #include "../cabezales/DTHostal.hh"
 #include "../cabezales/DTInfoBasicaHostal.hh"
@@ -18,7 +19,7 @@
 
 using namespace std;
 
-class HostalController{
+class HostalController : public IControladorHostal {
     private:
         static HostalController * instancia;
         HostalController();

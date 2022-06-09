@@ -7,6 +7,7 @@
 //YO SOLO INCLUI LO QUE ALMACENA CADA CONTROLADOR Y LAS NECESARIAS PARA DECLARAR
 //LAS OPERCIONES
 
+#include "../interfaces/IControladorEstadia.hh"
 #include "../cabezales/Estadia.hh"
 #include "../cabezales/DTInfoEstadia.hh"
 #include "../cabezales/DTFecha.hh"
@@ -14,7 +15,7 @@
 
 using namespace std;
 
-class EstadiaController{
+class EstadiaController : public IControladorEstadia {
     private:
         static EstadiaController * instancia;
         EstadiaController();
