@@ -67,3 +67,13 @@ map<string, Empleado*> Hostal::getEmpleados() {
 void Hostal::setEmpleado(Empleado* e) {
 	empleados.insert(pair<string,Empleado*>(e->getEmail(),e));
 }
+
+map<string, Estadia*> Hostal::getEstadias() {
+	return estadias;
+}
+
+void Hostal::setEstadia(Estadia* e) {
+	estadias.insert(pair<string,Estadia*>(e->getPromo(),e));
+}
+
+
