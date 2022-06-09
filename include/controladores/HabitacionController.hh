@@ -18,10 +18,14 @@ class HabitacionController{
     private:
         static HabitacionController * instancia;
         HabitacionController();
-        map<int,Habitacion *> Habitacion;
+        map<int,Habitacion *> Habitaciones;
+
+        int numero,precio,capacidad;
     public:
 		static HabitacionController* getInstancia();
 	    ~HabitacionController();
+        map<int,Habitacion *> getHabitaciones();
+        void setHabitacion();
 
         list<DTHabitacion> obtenerHabitacionesDisponiblesHostal(string,DTFecha,DTFecha);
         void seleccionarHabitacion(int);

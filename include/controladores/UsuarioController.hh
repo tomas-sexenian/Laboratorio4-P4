@@ -13,6 +13,8 @@
 #include "../cabezales/DTUsuario.hh"
 #include "../cabezales/DTInfoUsuario.hh"
 #include "../cabezales/DTFecha.hh"
+#include "../../include/TipoUsuario.hh"
+#include "../../include/TipoCargo.hh"
 
 using namespace std;
 
@@ -20,15 +22,20 @@ class UsuarioController{
     private:
         static UsuarioController * instancia;
         UsuarioController();
-        map<int,Usuario *> Usuario;
+        map<string,Usuario *> Usuarios;
+
+        string nombre,email,contrasenia;
+        bool esFinger;
+        TipoCargo cargo;
+        TipoUsuario tipo;
     public:
 		static UsuarioController* getInstancia();
 	    ~UsuarioController();
+        map<string,Usuario *> getUsuarios();
+        void setUsuario();
 
         DTInfoUsuario seleccionarUsuario(string);
         void confirmarConsulta();
-        void ingresarFecha(DTFecha);
-        void actualizarFecha(DTFecha);
-        void ingresarEmpleado(Empleado);
+        //void ingresarEmpleado(Empleado);
 };
 #endif

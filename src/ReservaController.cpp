@@ -13,6 +13,32 @@ ReservaController * ReservaController::getInstancia(){
     return ReservaController::instancia;
 };
 
+map<int,Reserva*> ReservaController::getReservas() {
+    return Reservas;
+}
+
+void ReservaController::setReserva() {
+        switch(tipo){
+        case individual:
+            Reservas.insert(pair<int,Reserva*>(this->codigo,new ReservaIndividual(
+            this->codigo,
+            this->checkIn,
+            this->checkOut,
+            this->estado
+      )));
+            break;
+        case grupal:
+            Reservas.insert(pair<int,Reserva*>(this->codigo,new ReservaGrupal(
+            this->codigo,
+            this->checkIn,
+            this->checkOut,
+            this->estado,
+            list<int> {}
+      )));
+            break;
+    }
+}
+
 // DE ACA HACIA ABAJO IMPLEMENTAN LAS OPERACIONES
 
 DTReserva ReservaController::obtenerReserva(int UnCodigo) {

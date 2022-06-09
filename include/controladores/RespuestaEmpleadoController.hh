@@ -17,10 +17,15 @@ class RespuestaEmpleadoController{
     private:
         static RespuestaEmpleadoController * instancia;
         RespuestaEmpleadoController();
-        list<RespuestaEmpleado *> RespuestaEmpleado;
+        map<string,RespuestaEmpleado*> respuestas;
+
+        string comentario, emailEmpleado;
+        DTFecha fecha;
     public:
 		static RespuestaEmpleadoController* getInstancia();
 	    ~RespuestaEmpleadoController();
+        map<string,RespuestaEmpleado*> getRespuestas();
+        void setRespuesta();
 
 };
 #endif

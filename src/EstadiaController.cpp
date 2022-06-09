@@ -13,6 +13,14 @@ EstadiaController * EstadiaController::getInstancia(){
     return EstadiaController::instancia;
 };
 
+list<Estadia*> EstadiaController::getEstadias() {
+    return Estadias;
+}
+
+void EstadiaController::setEstadia() {
+    this->Estadias.push_back(new Estadia(this->entrada,this->salida,this->promo,list<Observer*>,NULL,NULL,NULL));
+}
+
 // DE ACA HACIA ABAJO IMPLEMENTAN LAS OPERACIONES
 
 void EstadiaController::seleccionarEstadia(int UnCodigo) {

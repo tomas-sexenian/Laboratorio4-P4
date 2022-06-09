@@ -14,7 +14,7 @@ class Calificacion{
         int puntaje;
         string comentario;
         DTFecha fecha;
-		Estadia* estadia;
+	Estadia* estadia;
         list<RespuestaEmpleado*> respuestas;
 	public:
         int getPuntaje();

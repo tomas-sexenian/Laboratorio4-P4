@@ -52,6 +52,13 @@ void Estadia::setCalificacion(Calificacion* c) {
 	calificacion = c;
 }
 
+string Estadia :: getPromo() {
+	return promo;
+        
+void Estadia :: setPromo(string promo) {
+	this->promo= promo;
+
+
 Estadia::Estadia() {
 	entrada = DTFecha();
 	salida = DTFecha();

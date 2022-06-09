@@ -32,6 +32,9 @@ class Estadia{
         void setHostal(Hostal*);
         Calificacion* getCalificacion();
         void setCalificacion(Calificacion*);
+        string getPromo();
+        void setPromo(string);
+
 
         Estadia();
         ~Estadia();
