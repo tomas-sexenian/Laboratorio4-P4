@@ -18,7 +18,7 @@
 
 using namespace std;
 
-class UsuarioController{
+class UsuarioController: public IControladorUsuario {
     private:
         static UsuarioController * instancia;
         UsuarioController();
