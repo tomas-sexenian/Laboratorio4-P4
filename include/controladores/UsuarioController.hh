@@ -8,6 +8,7 @@
 //YO SOLO INCLUI LO QUE ALMACENA CADA CONTROLADOR Y LAS NECESARIAS PARA DECLARAR
 //LAS OPERCIONES
 
+#include "../interfaces/IControladorUsuario.hh"
 #include "../cabezales/Usuario.hh"
 #include "../cabezales/Empleado.hh"
 #include "../cabezales/DTUsuario.hh"
@@ -36,8 +37,8 @@ class UsuarioController: public IControladorUsuario {
         Habitacion * habitacionIniciar; 
 	
     public:
-		static UsuarioController* getInstancia();
-	    ~UsuarioController();
+        static UsuarioController* getInstancia();
+        ~UsuarioController();
         map<string,Usuario *> getUsuarios();
         void setUsuario();
 
@@ -45,17 +46,16 @@ class UsuarioController: public IControladorUsuario {
         void confirmarConsulta();
         //void ingresarEmpleado(Empleado);
 	
-	
 	Usuario * getUsuarioIniciar();
 
-        void ingresarDatosUsuario(datos : *Usuario);
-        void ingresarCargo(cargo : TipoCargo);
-        void ingresarEsFinger(esFinger : boolean);
-        void ingresarNuevoEmail(email : string);
+        void ingresarDatosUsuario(Usuario*);
+        void ingresarCargo(TipoCargo);
+        void ingresarEsFinger(bool);
+        void ingresarNuevoEmail(string);
         void confirmarAltaUsuario();
         void cancelarAltaUsuario();   
 
-        void ingresarDatosHostal(datosHostal : * Hostal);
+        void ingresarDatosHostal(Hostal*);
         void confirmarAltaHostal();
 
         Hostal * getHostalIniciar();
@@ -63,7 +63,7 @@ class UsuarioController: public IControladorUsuario {
         map<string,Hostal*> getHostales();
         map<string,Habitacion*> getHabitaciones();
 
-        void ingresarDatosHabitacion(datosHabitacion : * Habitacion);
+        void ingresarDatosHabitacion(Habitacion*);
         void confirmarAltaHabitacion();
         void cancelarAltaHabitacion();
 
