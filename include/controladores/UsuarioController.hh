@@ -28,6 +28,13 @@ class UsuarioController{
         bool esFinger;
         TipoCargo cargo;
         TipoUsuario tipo;
+	Usuario * usuarioIniciar;
+        map<string,Usuario*> usuarios;
+        map<string,Hostal*> hostales;
+        map<string,Habitacion*> habitaciones;
+        Hostal * hostalIniciar;
+        Habitacion * habitacionIniciar; 
+	
     public:
 		static UsuarioController* getInstancia();
 	    ~UsuarioController();
@@ -37,5 +44,29 @@ class UsuarioController{
         DTInfoUsuario seleccionarUsuario(string);
         void confirmarConsulta();
         //void ingresarEmpleado(Empleado);
+	
+	
+	Usuario * getUsuarioIniciar();
+
+        void ingresarDatosUsuario(datos : *Usuario);
+        void ingresarCargo(cargo : TipoCargo);
+        void ingresarEsFinger(esFinger : boolean);
+        void ingresarNuevoEmail(email : string);
+        void confirmarAltaUsuario();
+        void cancelarAltaUsuario();   
+
+        void ingresarDatosHostal(datosHostal : * Hostal);
+        void confirmarAltaHostal();
+
+        Hostal * getHostalIniciar();
+        Habitacion * getHabitacionIniciar();
+        map<string,Hostal*> getHostales();
+        map<string,Habitacion*> getHabitaciones();
+
+        void ingresarDatosHabitacion(datosHabitacion : * Habitacion);
+        void confirmarAltaHabitacion();
+        void cancelarAltaHabitacion();
+
+        ~UsuarioController();
 };
 #endif
