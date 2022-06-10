@@ -1,6 +1,7 @@
-#ifndef USUARIO
-#define USUARIO
+#ifndef DTUSUARIO
+#define DTUSUARIO
 
+#include "./Usuario.hh"
 #include "./DTFecha.hh"
 
 #include <string>
