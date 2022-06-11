@@ -22,5 +22,5 @@ SistemaController * SistemaController::getInstancia(){
 // DE ACA HACIA ABAJO IMPLEMENTAN LAS OPERACIONES
 
 void SistemaController::modificarFecha(DTFecha UnaFecha) {
-    fechaActual->setFecha(UnaFecha);
+    this->fechaActual->setFecha(UnaFecha);
 }
