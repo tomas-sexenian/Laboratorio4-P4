@@ -1,6 +1,12 @@
 #include "../include/controladores/SistemaController.hh"
 
 SistemaController::SistemaController() {
+    DTFecha date;
+    this->fechaActual->setFecha(date);
+}
+
+SistemaController::SistemaController(DTFecha UnaFecha) {
+    fechaActual->setFecha(UnaFecha);
 }
 
 SistemaController::~SistemaController() {
@@ -15,11 +21,6 @@ SistemaController * SistemaController::getInstancia(){
 
 // DE ACA HACIA ABAJO IMPLEMENTAN LAS OPERACIONES
 
-void SistemaController::ingresarFecha(DTFecha UnaFecha) {
-}
-
-void SistemaController::actualizarFecha(DTFecha UnaFecha) {
-}
-
-void SistemaController::ModificarFecha(DTFecha UnaFecha) {
+void SistemaController::modificarFecha(DTFecha UnaFecha) {
+    fechaActual->setFecha(UnaFecha);
 }

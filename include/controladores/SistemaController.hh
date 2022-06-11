@@ -14,12 +14,13 @@ class SistemaController{
     private:
         static SistemaController * instancia;
         SistemaController();
+        SistemaController(DTFecha);
+
+        FechaSistema *fechaActual;
     public:
 		static SistemaController* getInstancia();
 	    ~SistemaController();
         
-        void ingresarFecha(DTFecha);
-        void actualizarFecha(DTFecha);
-        void ModificarFecha(DTFecha);
+        void modificarFecha(DTFecha);
 };
 #endif
