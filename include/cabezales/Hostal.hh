@@ -18,6 +18,8 @@ class Hostal{
         int telefono;
         map<int, Habitacion*> habitaciones;
         map<string, Empleado*> empleados;
+        map<string, Estadia*> estadias;
+        
 
     public:
         Hostal();
@@ -33,6 +35,8 @@ class Hostal{
         void setHabitacion(Habitacion*);
         map<string, Empleado*> getEmpleados();
         void setEmpleado(Empleado*);
+        map<string, Estadia*> getEstadias();
+        void setEstadia(Estadia*);
 
         float obtenerPromedioCalificaciones();
 };
