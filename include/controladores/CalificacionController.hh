@@ -31,7 +31,6 @@ class CalificacionController{
         void ingresarComentario(string);
         void ingresarPuntaje(int);
         void confirmarAltaCalificacion();
-        void elegirComentario();
-        void altaComentarios();
+       
 };
 #endif
