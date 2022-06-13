@@ -20,7 +20,7 @@ class EstadiaController : public IControladorEstadia {
         static EstadiaController * instancia;
         EstadiaController();
         list<Estadia*> Estadias;
-
+        Estadia* estadiaSeleccionada;
         DTFecha entrada, salida;
         string promo;
     public:
@@ -28,7 +28,7 @@ class EstadiaController : public IControladorEstadia {
 	    ~EstadiaController();
         list<Estadia*> getEstadias();
         void setEstadia();
-
+        Estadia* getEstadiaSeleccionada();
         void seleccionarEstadia(int);
         DTInfoEstadia obtenerEstadia(int);
         void finalizarEstadia(int);
