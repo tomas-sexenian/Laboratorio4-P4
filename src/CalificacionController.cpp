@@ -1,4 +1,7 @@
 #include "../include/controladores/CalificacionController.hh"
+#include "../include/controladores/EstadiaController.hh"
+#include "../include/cabezales/Calificacion.hh"
+
 
 CalificacionController::CalificacionController() {
 }
@@ -30,16 +33,17 @@ void CalificacionController::setCalificacion() {
 // DE ACA HACIA ABAJO IMPLEMENTAN LAS OPERACIONES
 
 void CalificacionController::ingresarComentario(string UnComentario) {
+    this->comentario= UnComentario;
 }
 
 void CalificacionController::ingresarPuntaje(int UnPuntaje) {
+    this->puntaje= UnPuntaje;
 }
 
 void CalificacionController::confirmarAltaCalificacion() {
+     EstadiaController* c = EstadiaController :: getInstancia();
+     Estadia* estadia = c->getEstadiaSeleccionada();
+     Calificacion* calificacion = new Calificacion(puntaje,comentario, fecha, estadia, NULL);
+     estadia->setCalificacion(calificacion);
 }
 
-void CalificacionController::elegirComentario() {
-}
-
-void CalificacionController::altaComentarios() {
-}
