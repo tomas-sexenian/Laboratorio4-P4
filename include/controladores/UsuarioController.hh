@@ -55,18 +55,6 @@ class UsuarioController: public IControladorUsuario {
         void confirmarAltaUsuario();
         void cancelarAltaUsuario();   
 
-        void ingresarDatosHostal(Hostal*);
-        void confirmarAltaHostal();
-
-        Hostal * getHostalIniciar();
-        Habitacion * getHabitacionIniciar();
-        map<string,Hostal*> getHostales();
-        map<string,Habitacion*> getHabitaciones();
-
-        void ingresarDatosHabitacion(Habitacion*);
-        void confirmarAltaHabitacion();
-        void cancelarAltaHabitacion();
-
         ~UsuarioController();
 };
 #endif
