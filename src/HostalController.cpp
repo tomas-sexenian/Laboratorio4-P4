@@ -29,6 +29,24 @@ void HostalController::setHostal() {
 
 // DE ACA HACIA ABAJO IMPLEMENTAN LAS OPERACIONES
 
+Hostal * UsuarioController :: getHostalIniciar() {
+    return this->hostalIniciar;
+}
+       
+
+void UsuarioController :: ingresarDatosHostal(Hostal* datosHostal ) { 
+    this->hostalIniciar = datosHostal;
+}
+
+void UsuarioController :: confirmarAltaHostal() {
+       this->hostales.insert(pair<string,Hostal*>(this->hostalIniciar->getNombre(),new Hostal(this->hostalIniciar->getNombre(),this->hostalIniciar->getDireccion(),
+        this->hostalIniciar->getTelefono(), this->hostalIniciar->getHabitaciones(), this->hostalIniciar->getEmpleados())));
+    
+       this->hostalIniciar = NULL;
+}
+
+
+
 list<DTHostal> HostalController::obtenerTodosHostales() {
 }
 
