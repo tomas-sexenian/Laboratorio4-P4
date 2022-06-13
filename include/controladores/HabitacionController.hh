@@ -1,63 +1,41 @@
-#include "../include/controladores/HabitacionController.hh"
+#ifndef HABITACIONCONTROLLER
+#define HABITACIONCONTROLLER
 
-HabitacionController::HabitacionController() {
-}
+#include <list>
+#include <map>
 
-HabitacionController::~HabitacionController() {
-}
+//VAN A TENER QUE HACER INCLUDE DE TODAS LAS DEPENDENCIAS DEL CONTROLADOR
+//YO SOLO INCLUI LO QUE ALMACENA CADA CONTROLADOR Y LAS NECESARIAS PARA DECLARAR
+//LAS OPERCIONES
 
-HabitacionController* HabitacionController::instancia;
-HabitacionController * HabitacionController::getInstancia(){
-    if (HabitacionController::instancia == NULL)
-        HabitacionController::instancia = new HabitacionController();
-    return HabitacionController::instancia;
+#include "../cabezales/Habitacion.hh"
+#include "../cabezales/DTHabitacion.hh"
+#include "../cabezales/DTFecha.hh"
+
+using namespace std;
+
+class HabitacionController{
+    private:
+        static HabitacionController * instancia;
+        HabitacionController();
+        Habitacion* habitacionIniciar;
+        map<int,Habitacion *> Habitaciones;
+
+        int numero,precio,capacidad;
+    public:
+		static HabitacionController* getInstancia();
+	    ~HabitacionController();
+        map<int,Habitacion *> getHabitaciones();
+        void setHabitacion();
+
+        list<DTHabitacion> obtenerHabitacionesDisponiblesHostal(string,DTFecha,DTFecha);
+        void seleccionarHabitacion(int);
+
+        map<int,Habitacion*> getHabitaciones();
+
+        void ingresarDatosHabitacion(Habitacion*);
+        void confirmarAltaHabitacion();
+        void cancelarAltaHabitacion();
+        Habitacion * getHabitacionIniciar();
 };
-
-map<int,Habitacion *> HabitacionController::getHabitaciones() {
-    return Habitaciones;
-}
-
-void HabitacionController::setHabitacion() {
-    this->Habitaciones.insert(pair<int,Habitacion*>(this->numero,new Habitacion(
-        this->numero,
-        this->precio,
-        this->capacidad,
-        NULL,
-        map<int, Reserva*> {}
-    )));
-}
-
-// DE ACA HACIA ABAJO IMPLEMENTAN LAS OPERACIONES
-
-void HabitacionController :: ingresarDatosHabitacion(Habitacion* datosHabitacion) {
-    this->habitacionIniciar = datosHabitacion;
-}
-
-void HabitacionController :: confirmarAltaHabitacion() {
-    this->Habitaciones.insert(pair<int,Habitacion*>(habitacionIniciar->getNumero(),new Habitacion(
-        habitacionIniciar->getNumero(), habitacionIniciar->getPrecio(), habitacionIniciar->getCapacidad(), 
-        habitacionIniciar->getHostal(), habitacionIniciar->getReservas())));
-    this->habitacionIniciar = NULL;
-}
-
-void HabitacionController :: cancelarAltaHabitacion() {
-     this->habitacionIniciar = NULL;
-};
-
-map<int,Habitacion*> HabitacionController :: getHabitaciones() {
-    return this->Habitaciones;
-};
-
-
-Habitacion * HabitacionController :: getHabitacionIniciar() {
-    return this->habitacionIniciar; 
-};
-
-
-
-list<DTHabitacion> HabitacionController::obtenerHabitacionesDisponiblesHostal(string NombreHostal, DTFecha checkInt, DTFecha checkOut) {
-}
-
-void HabitacionController::seleccionarHabitacion(int NumeroHabitacion) {
-}
-
+#endif
