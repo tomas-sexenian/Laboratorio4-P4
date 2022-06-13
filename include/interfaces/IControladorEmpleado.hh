@@ -32,6 +32,9 @@ class IControladorEmpleado {
         virtual void confirmarAsignacionEmpleado() = 0;
         virtual void seleccionarCargo(TipoCargo) = 0;
         virtual list<DTEmpleado> obtenerEmpleadosNoAsignadosHostal(string) = 0;
+        virtual void elegirComentario(string) = 0;
+        virtual void altaComentarios() = 0; 
 };
+
 
 #endif
