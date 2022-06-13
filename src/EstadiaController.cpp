@@ -23,6 +23,9 @@ void EstadiaController::setEstadia() {
 
 // DE ACA HACIA ABAJO IMPLEMENTAN LAS OPERACIONES
 
+Estadia* EstadiaController :: getEstadiaSeleccionada() {
+}
+
 void EstadiaController::seleccionarEstadia(int UnCodigo) {
 }
 
@@ -37,4 +40,3 @@ void EstadiaController::registrarCheckOut(int UnCodigo, DTFecha UnaFecha) {
 
 void EstadiaController::confirmarFinEstadia() {
 }
-
