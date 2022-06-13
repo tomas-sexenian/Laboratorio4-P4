@@ -1,4 +1,6 @@
 #include "../include/controladores/UsuarioController.hh"
+#include "../include/cabezales/Empleado.hh"
+#include "../include/cabezales/DTHuesped.hh"
 
 UsuarioController::UsuarioController() {
      this->usuarioIniciar = NULL;
@@ -62,11 +64,12 @@ void UsuarioController::confirmarConsulta() {
 
 Usuario * UsuarioController::getUsuarioIniciar() {
     return this->usuarioIniciar;
-    
-    void UsuarioController :: ingresarDatosUsuario(Usuario* datos) {
-        this->usuarioIniciar= datos; 
-    }
 }
+    
+void UsuarioController :: ingresarDatosUsuario(Usuario* datos) {
+    this->usuarioIniciar= datos; 
+};
+
 
 void UsuarioController :: ingresarCargo(TipoCargo cargo) { 
     this->cargo= cargo;
@@ -80,18 +83,18 @@ void UsuarioController :: ingresarNuevoEmail(string email) {
     this->usuarioIniciar->setEmail(email);
 }
 
-void UsuarioController :: confimarAltaUsuario() {
-    DTEmpleado* empleado= dynamic_cast<DTEmpleado*>(usuarioIniciar);
+void UsuarioController :: confirmarAltaUsuario() {
+    Empleado* empleado= dynamic_cast<Empleado*>(this->usuarioIniciar);
     if (empleado) {
-        this->usuarios.insert(pair<string,Usuario*>(empleado.getEmail(),new Empleado(usuarioIniciar.getNombre(),
-        usuarioIniciar.getEmail(), usuarioIniciar.getConstrasenia(), cargo, usuarioIniciar.getNotificaciones(),
-         usuarioIniciar.getHostal(), usuarioIniciar.getRespuestas())));
+        this->usuarios.insert(pair<string,Usuario*>(empleado->getEmail(),new Empleado(this->usuarioIniciar->getNombre(),
+        this->usuarioIniciar->getEmail(), this->usuarioIniciar->getContrasenia(), cargo, empleado->getNotificaciones(),
+         empleado->getHostal(), empleado->getRespuestas())));
     }
     else {
-        DTHuesped* huesped= dynamic_cast<DTHuesped*>(usuarioIniciar);
+        Huesped* huesped= dynamic_cast<Huesped*>(usuarioIniciar);
         if (huesped) {
-            this->usuarios.insert(pair<string,Usuario*>(huesped.getNombre(),new Huesped(usuarioIniciar.getNombre(),
-        usuarioIniciar.getEmail(), usuarioIniciar.getConstrasenia(), esFinger,  usuarioIniciar.getReservas(), usuarioIniciar.getEstadias())));
+            this->usuarios.insert(pair<string,Usuario*>(huesped->getNombre(),new Huesped(this->usuarioIniciar->getNombre(),
+        this->usuarioIniciar->getEmail(), this->usuarioIniciar->getContrasenia(), esFinger,  huesped->getReservas(), huesped->getEstadias())));
     }
         }
       
@@ -104,45 +107,3 @@ void UsuarioController :: cancelarAltaUsuario() {
 
 UsuarioController :: ~UsuarioController() {   
 }
-
-Hostal * UsuarioController :: getHostalIniciar() {
-    return this->hostalIniciar;
-}
-
-Habitacion * UsuarioController :: getHabitacionIniciar() {
-    return this->habitacionIniciar; 
-}
-        
-map<string,Hostal*> UsuarioController :: getHostales() {
-    return this->hostales;
-}
-        
-map<string,Habitacion*> UsuarioController :: getHabitaciones() {
-    return this->habitaciones;
-}
-
-void UsuarioController :: ingresarDatosHostal(Hostal* datosHostal ) { 
-    this->hostalIniciar = datosHostal;
-}
-
-void UsuarioController :: confirmarAltaHostal() {
-       this->hostales.insert(pair<string,Hostal*>(hostalIniciar.getNombre(),new Hostal(hostalIniciar.getNombre(),hostalIniciar.getDireccion(
-           , hostalIniciar.getTelefono(), hostalIniciar.getHabitaciones(), hostalIniciar.getEmpleados()));
-    
-       this->hostalIniciar = NULL;
-}
-
-void UsuarioController :: ingresarDatosHabitacion(Habitacion* datosHabitacion) {
-    this->habitacionIniciar = datosHabitacion;
-}
-
-void UsuarioController :: confirmarAltaHabitacion() {
-    this->habitaciones.insert(pair<string,Habitacion*>(habitacionIniciar.getNombre(),new Habitacion(
-        habitacionIniciar.getNombre(), habitacionIniciar.getPrecio(), habitacionIniciar.getCapacidad(), 
-        habitacionIniciar.getHostal(), habitacionIniciar.getReservas())));
-    this->habitacionIniciar = NULL;
-}
-
-void UsuarioController :: cancelarAltaHabitacion() {
-     this->habitacionIniciar = NULL;
-};
