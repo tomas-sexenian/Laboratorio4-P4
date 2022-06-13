@@ -24,6 +24,9 @@ class EmpleadoController : public IControladorEmpleado {
         EmpleadoController();
         map<string, Empleado*> Empleados;
         string Email;
+        list<string> comentariosSeleccionados;
+        Empleado* EmpleadoIniciar;
+        TipoCargo cargo;
     public:
 		static EmpleadoController* getInstancia();
 	    ~EmpleadoController();
@@ -32,7 +35,8 @@ class EmpleadoController : public IControladorEmpleado {
         void setEmail(string Email);
         string getEmail();
         */
-
+        Empleado* getEmpleadoIniciar();
+        void setEmpleadoIniciar(Empleado*);
         void ingresarEmailEmpleado(string);
         void agregarComentario(string);
         list<DTEmpleado> obtenerTodosEmpleados();
@@ -45,5 +49,8 @@ class EmpleadoController : public IControladorEmpleado {
         void confirmarAsignacionEmpleado();
         void seleccionarCargo(TipoCargo);
         list<DTEmpleado> obtenerEmpleadosNoAsignadosHostal(string);
+        void elegirComentario(string); 
+        void altaComentarios();
+        list<string> getComentariosSeleccionados();
 };
 #endif
