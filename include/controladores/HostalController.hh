@@ -42,6 +42,11 @@ class HostalController : public IControladorHostal {
         DTInfoHostal verDetalles(string);
         void confirmarConsulta();
         list<DTInfoHostalYCalificacion> obtenerTodosHostalesYPromCalificacion();
+	void ingresarDatosHostal(Hostal*);
+        void confirmarAltaHostal();
+        Hostal * getHostalIniciar();
+        map<string,Hostal*> getHostales();
+        
 };
 
 #endif
