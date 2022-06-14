@@ -30,7 +30,13 @@ Empleado::Empleado(string UnNombre, string UnEmail, string UnaContrasenia, TipoC
     notificaciones = UnasNotificaciones;
     hostal = UnHostal;
     respuestas = UnasRespuestas;
-}
+};
+
+Empleado::Empleado(string UnNombre, string UnEmail, string UnaContrasenia) {
+    nombre = UnNombre;
+    email = UnEmail;
+    contrasenia = UnaContrasenia;
+};
 
 Empleado::~Empleado(){
     //HAY QUE IMPLEMENTAR EL DESTRUCTOR DE EMPLEADO
