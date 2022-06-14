@@ -1,10 +1,10 @@
 #include "../include/controladores/HostalController.hh"
 
 HostalController::HostalController() {
-}
+};
 
 HostalController::~HostalController() {
-}
+};
 
 HostalController* HostalController::instancia;
 HostalController * HostalController::getInstancia(){
@@ -15,7 +15,7 @@ HostalController * HostalController::getInstancia(){
 
 map<string,Hostal*> HostalController::getHostales() {
     return Hostales;
-}
+};
 
 void HostalController::setHostal() {
     this->Hostales.insert(pair<string,Hostal*>(this->nombre,new Hostal(
@@ -25,25 +25,25 @@ void HostalController::setHostal() {
         map<int, Habitacion*> {},
         map<string, Empleado*> {}
     )));
-}
+};
 
 // DE ACA HACIA ABAJO IMPLEMENTAN LAS OPERACIONES
 
-Hostal * UsuarioController :: getHostalIniciar() {
+Hostal * HostalController :: getHostalIniciar() {
     return this->hostalIniciar;
-}
+};
        
 
-void UsuarioController :: ingresarDatosHostal(Hostal* datosHostal ) { 
+void HostalController :: ingresarDatosHostal(Hostal* datosHostal ) { 
     this->hostalIniciar = datosHostal;
-}
+};
 
-void UsuarioController :: confirmarAltaHostal() {
-       this->hostales.insert(pair<string,Hostal*>(this->hostalIniciar->getNombre(),new Hostal(this->hostalIniciar->getNombre(),this->hostalIniciar->getDireccion(),
-        this->hostalIniciar->getTelefono(), this->hostalIniciar->getHabitaciones(), this->hostalIniciar->getEmpleados())));
+void HostalController :: confirmarAltaHostal() {
+       this->Hostales.insert(pair<string,Hostal*>(this->hostalIniciar->getNombre(),new Hostal(this->hostalIniciar->getNombre(),this->hostalIniciar->getDireccion(),
+        this->hostalIniciar->getTelefono())));
     
        this->hostalIniciar = NULL;
-}
+};
 
 
 
