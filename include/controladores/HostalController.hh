@@ -24,7 +24,7 @@ class HostalController : public IControladorHostal {
         static HostalController * instancia;
         HostalController();
         map<string,Hostal*> Hostales;
-
+        Hostal* hostalIniciar;
         string nombre, direccion;
         int telefono;
     public:
@@ -50,3 +50,4 @@ class HostalController : public IControladorHostal {
 };
 
 #endif
+
