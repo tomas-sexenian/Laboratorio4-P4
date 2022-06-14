@@ -28,7 +28,13 @@ Huesped::Huesped(string UnNombre, string UnEmail, string UnaContrasenia, bool fi
     esFinger = finger;
     reservas = UnasReservas;
     estadias = UnasEstadias;
-}
+};
+
+Huesped::Huesped(string UnNombre, string UnEmail, string UnaContrasenia) {
+    nombre = UnNombre;
+    email = UnEmail;
+    contrasenia = UnaContrasenia;
+};
 
 Huesped::~Huesped(){
     //HAY QUE IMPLEMENTAR EL DESTRUCTOR DE HUESPED
