@@ -30,11 +30,7 @@ class UsuarioController: public IControladorUsuario {
         TipoCargo cargo;
         TipoUsuario tipo;
 	Usuario * usuarioIniciar;
-        map<string,Usuario*> usuarios;
-        map<string,Hostal*> hostales;
-        map<string,Habitacion*> habitaciones;
-        Hostal * hostalIniciar;
-        Habitacion * habitacionIniciar; 
+        
 	
     public:
         static UsuarioController* getInstancia();
@@ -58,3 +54,4 @@ class UsuarioController: public IControladorUsuario {
         ~UsuarioController();
 };
 #endif
+
