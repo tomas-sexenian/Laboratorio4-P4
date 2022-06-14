@@ -86,17 +86,18 @@ void UsuarioController :: ingresarNuevoEmail(string email) {
 void UsuarioController :: confirmarAltaUsuario() {
     Empleado* empleado= dynamic_cast<Empleado*>(this->usuarioIniciar);
     if (empleado) {
-        this->usuarios.insert(pair<string,Usuario*>(empleado->getEmail(),new Empleado(this->usuarioIniciar->getNombre(),
-        this->usuarioIniciar->getEmail(), this->usuarioIniciar->getContrasenia(), cargo, empleado->getNotificaciones(),
-         empleado->getHostal(), empleado->getRespuestas())));
+        Empleado* emp = new Empleado(this->usuarioIniciar->getNombre(),this->usuarioIniciar->getEmail(), this->usuarioIniciar->getContrasenia());
+        emp->setCargo(cargo);
+        this->Usuarios.insert(pair<string,Usuario*>(empleado->getEmail(),emp));
     }
     else {
         Huesped* huesped= dynamic_cast<Huesped*>(usuarioIniciar);
         if (huesped) {
-            this->usuarios.insert(pair<string,Usuario*>(huesped->getNombre(),new Huesped(this->usuarioIniciar->getNombre(),
-        this->usuarioIniciar->getEmail(), this->usuarioIniciar->getContrasenia(), esFinger,  huesped->getReservas(), huesped->getEstadias())));
-    }
+            Huesped* hues = new Huesped(this->usuarioIniciar->getNombre(), this->usuarioIniciar->getEmail(), this->usuarioIniciar->getContrasenia());
+            hues->setEsFinger(esFinger);
+            this->Usuarios.insert(pair<string,Usuario*>(huesped->getNombre(),hues));
         }
+    }
       
     this->usuarioIniciar = NULL;
 }
