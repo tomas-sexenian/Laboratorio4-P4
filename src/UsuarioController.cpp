@@ -161,25 +161,85 @@ DTInfoEmpleado UsuarioController::obtenerHostalYCargoEmpleado() {
     return ret;
 }
 
-list<string> UsuarioController::obtenerComentariosSinRespuestaHostalEmpleado(string EmailEmpleado) {
-}
+/*list<string> UsuarioController::obtenerComentariosSinRespuestaHostalEmpleado(string EmailEmpleado) {
+    Empleado* empleado= this->Empleados[EmailEmpleado];
+    list<string> lista;
+    list<RespuestaEmpleado*> comentarios;
+    list<string> comentariosSeleccionados;
+    Hostal * hostal = empleado->getHostal();
+    map<string,Estadia*> estadias= hostal->getEstadias();
+    for (map<string,Estadia*>::iterator it = estadias.begin(); it != estadias.end(); ++it) {
+        if (it->second->getCalificacion()!=NULL) {
+            list<RespuestaEmpleado*> comentarios = it->second->getCalificacion()->getRespuestas();
+        } 
+        if (comentarios==NULL) {
+                lista.insert(it->second->getCalificacion()->getComentario());
+                comentariosSeleccionados.insert(it->second->getCalificacion()->getComentario());
+            }
+        it->second;   
+    }
+    
+    return lista;
+};*/
 
-list<DTInfoHostal> UsuarioController::obtenerCalificacionYURespuestasEmpleados(int numero) {
-}
 
-list<DTNotificacion> UsuarioController::obtenerNotificacionesDelEmpleado() {
-}
+/*list<DTInfoHostal> UsuarioController::obtenerCalificacionYURespuestasEmpleados(int numero) {
+    CalificacionController* c = CalificacionController :: getInstancia();
+    map<int,Calificacion *> calificaciones = c->getCalificaciones();
+    Calificacion* calificacion = calificaciones[numero];
+    list<RespuestaEmpleado*> comentarios = calificacion->getRespuestas();
+    if (comentarios!=NULL) {
+        for (list<RespuestaEmpleado*>::iterator it = comentarios.begin(); it != comentarios.end(); ++it) {
+            list<string> lista = lista.insert(it->second->getComentario());
+        }
+        list<DTInfoHostal> info = DTInfoHostal(lista, calificacion.getPuntaje());
+    }
+    else {
+         list<DTInfoHostal> info = DTInfoHostal(NULL, calificacion.getPuntaje());
+    }
+    return info;
+}*/
+
+/*list<DTNotificacion> UsuarioController::obtenerNotificacionesDelEmpleado() {
+    Empleado* e = empleadoSeleccionado;
+    list<DTNotificacion> lista;
+    list<Notificacion*> notificaciones =  e->getNotificaciones();
+    for (list<Notificacion*>::iterator it = notificaciones.begin(); it != notificaciones.end(); ++it) {
+        lista.push_back(DTNotificacion(DTNotificacion(e->getAutor(),getPuntaje(),getComentario())));
+    }
+
+    return lista;
+	   
+}*/
 
 void UsuarioController::cancelarAsignacionEmpleado() {
+    empleadoSeleccionado = NULL;
 }
 
 void UsuarioController::confirmarAsignacionEmpleado() {
+    empleadoSeleccionado->setCargo(cargo);
+    empleadoSeleccionado->setHostal(hostal);
+
 }
 
 void UsuarioController::seleccionarCargo(TipoCargo cargo) {
+    this->cargo= cargo;
 }
 
 list<DTEmpleado> UsuarioController::obtenerEmpleadosNoAsignadosHostal(string NombreHostal) {
+    list<DTEmpleado> lista;
+    for (map<string,Empleado*>::iterator it = Empleados.begin(); it != Empleados.end(); ++it) {
+        if (it->second->getHostal()->getNombre() == NombreHostal) {
+            DTEmpleado dt(
+                            it->second->getNombre(), 
+                            it->second->getEmail(), 
+                            it->second->getContrasenia(),
+                            it->second->getCargo()
+            );
+            lista.push_back(dt);
+        }
+    }
+    return lista;
 }
 
 void UsuarioController::ingresarHostal(string nombreHostal) {
