@@ -8,17 +8,17 @@ string DTHostal::getDireccion() {
     return direccion;
 }
 
-int DTHostal::getTelefono() {
+string DTHostal::getTelefono() {
     return telefono;
 }
 
 DTHostal::DTHostal() {
     nombre = "";
     direccion = "";
-    telefono = 0;
+    telefono = "";
 }
 
-DTHostal::DTHostal(string UnNombre, string UnaDireccion, int UnTelefono) {
+DTHostal::DTHostal(string UnNombre, string UnaDireccion, string UnTelefono) {
     nombre = UnNombre;
     direccion = UnaDireccion;
     telefono = UnTelefono;

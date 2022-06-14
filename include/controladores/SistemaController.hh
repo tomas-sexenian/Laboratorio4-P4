@@ -21,6 +21,7 @@ class SistemaController{
 		static SistemaController* getInstancia();
 	    ~SistemaController();
         
+        DTFecha obtenerFechaActual();
         void modificarFecha(DTFecha);
 };
 #endif

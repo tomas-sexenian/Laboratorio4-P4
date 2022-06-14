@@ -19,7 +19,6 @@ class Huesped: public Usuario {
         void setEsFinger(bool);
         Huesped();
         Huesped(string,string,string,bool,map<int, Reserva*>,list<Estadia*>);
-        Huesped(string, string, string);
         ~Huesped();
         map<int, Reserva*> getReservas();
         void setReserva(Reserva*);

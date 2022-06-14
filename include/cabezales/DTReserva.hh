@@ -17,6 +17,7 @@ class DTReserva {
         float costo;
         int habitacion;
     public:
+        DTReserva(int, string, DTFecha, DTFecha, EstadoReserva, float, int);
         virtual ~DTReserva();
 
         int getCodigo();

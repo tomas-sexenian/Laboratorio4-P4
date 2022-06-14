@@ -25,15 +25,12 @@ class IControladorHostal {
     public:
         virtual list<DTHostal> obtenerTodosHostales() = 0;
         virtual list<DTHostal> obtenerTop3Hostales() = 0;
-        virtual DTInfoBasicaHostal obtenerInfoBasicaHostal(string) = 0;
-        virtual list<DTHabitacion> obtenerHabitacionesHostal(string) = 0;
-        virtual list<DTReserva> obtenerReservasHostal(string) = 0;
+        virtual DTInfoBasicaHostal obtenerInfoBasicaHostal() = 0;
+        virtual list<DTHabitacion> obtenerHabitacionesHostal() = 0;
         virtual void seleccionarHostal(string) = 0;
-        virtual DTInfoHostal verDetalles(string) = 0;
+        virtual DTInfoHostal verDetalles() = 0;
         virtual void confirmarConsulta() = 0;
         virtual list<DTInfoHostalYCalificacion> obtenerTodosHostalesYPromCalificacion() = 0;
-        virtual void ingresarDatosHostal(Hostal*) = 0;
-        virtual void confirmarAltaHostal() = 0;
 };
 
 #endif

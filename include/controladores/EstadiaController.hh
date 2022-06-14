@@ -9,8 +9,10 @@
 
 #include "../interfaces/IControladorEstadia.hh"
 #include "../cabezales/Estadia.hh"
+#include "../cabezales/DTEstadia.hh"
 #include "../cabezales/DTInfoEstadia.hh"
 #include "../cabezales/DTFecha.hh"
+#include "../controladores/SistemaController.hh"
 
 
 using namespace std;
@@ -19,20 +21,23 @@ class EstadiaController : public IControladorEstadia {
     private:
         static EstadiaController * instancia;
         EstadiaController();
-        list<Estadia*> Estadias;
-        Estadia* estadiaSeleccionada;
+        map<int,Estadia*> Estadias;
+
+        int codigoReserva;
+        string emailHuesped;
         DTFecha entrada, salida;
         string promo;
+        Estadia* estadiaSeleccionada;
     public:
 		static EstadiaController* getInstancia();
 	    ~EstadiaController();
-        list<Estadia*> getEstadias();
+        map<int,Estadia*> getEstadias();
         void setEstadia();
-        Estadia* getEstadiaSeleccionada();
-        void seleccionarEstadia(int);
-        DTInfoEstadia obtenerEstadia(int);
-        void finalizarEstadia(int);
-        void registrarCheckOut(int,DTFecha);
+
+        void seleccionarEstadia(int,string);
+        DTInfoEstadia obtenerEstadia();
+        Estadia* finalizarEstadia();
         void confirmarFinEstadia();
+        list<DTEstadia> obtenerTodasEstadiasHostal(string);
 };
 #endif

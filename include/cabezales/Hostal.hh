@@ -9,36 +9,35 @@
 #include <string>
 #include <map>
 
+#include "Fabrica.hh"
+
 using namespace std;
 
 
 class Hostal{
     private:
         string nombre, direccion;
-        int telefono;
+        string telefono;
         map<int, Habitacion*> habitaciones;
         map<string, Empleado*> empleados;
-        map<string, Estadia*> estadias;
-        
 
     public:
         Hostal();
-        Hostal(string,string,int,map<int, Habitacion*>,map<string, Empleado*>);
-        Hostal(string, string, int);
+        Hostal(string,string,string,map<int, Habitacion*>,map<string, Empleado*>);
         ~Hostal();
         string getNombre();
         void setNombre(string);
         string getDireccion();
         void setDireccion(string);
-        int getTelefono();
-        void setTelefono(int);
+        string getTelefono();
+        void setTelefono(string);
         map<int, Habitacion*> getHabitaciones();
         void setHabitacion(Habitacion*);
         map<string, Empleado*> getEmpleados();
         void setEmpleado(Empleado*);
-        map<string, Estadia*> getEstadias();
-        void setEstadia(Estadia*);
 
+        list<DTCalificacion> obtenerCalificaciones();
+        list<string> obtenerComentarios();
         float obtenerPromedioCalificaciones();
 };
 

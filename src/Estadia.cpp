@@ -14,19 +14,7 @@ DTFecha Estadia::getSalida() {
 
 void Estadia::setSalida(DTFecha UnaSalida) {
 	salida = UnaSalida;
-} 
-
-void Estadia::agregar(Observer* o) {
-	observers.push_back(o);
-} 
-
-void Estadia::eliminar(Observer* o) {
-	observers.remove(o);
-} 
-
-void Estadia::notificar() {
-	//FALTA IMPLEMENTAR
-} 
+}
 
 Reserva* Estadia::getReserva() {
 	return reserva;
@@ -54,31 +42,41 @@ void Estadia::setCalificacion(Calificacion* c) {
 
 string Estadia :: getPromo() {
 	return promo;
-        
+}
+
 void Estadia :: setPromo(string promo) {
 	this->promo= promo;
+}
 
+Huesped* Estadia :: getHuesped() {
+	return huesped;
+}
+
+void Estadia :: setHuesped(Huesped* UnHuesped) {
+	huesped = UnHuesped;
+}
 
 Estadia::Estadia() {
 	entrada = DTFecha();
 	salida = DTFecha();
-	list<Observer*> lista;
-	observers = lista;
 	reserva = NULL;
 	hostal = NULL;
 	calificacion = NULL;
+	huesped = NULL;
 }
 
-Estadia::Estadia(DTFecha UnaEntrada, DTFecha UnaSalida, string UnaPromo, list<Observer*> UnosObservers,Reserva* UnaReserva, Hostal* UnHostal, Calificacion* UnaCalificacion) {
+Estadia::Estadia(DTFecha UnaEntrada, DTFecha UnaSalida, string UnaPromo,Reserva* UnaReserva, Hostal* UnHostal, Calificacion* UnaCalificacion, Huesped* UnHuesped) {
 	entrada = UnaEntrada;
 	salida = UnaSalida;
-	observers = UnosObservers;
 	reserva = UnaReserva;
 	hostal = UnHostal;
 	calificacion = UnaCalificacion;
+	huesped = UnHuesped;
 }
 
 Estadia::~Estadia() {
 	//FALTA IMPLEMENTAR EL DESTRCUTOR
 }
+
+
 

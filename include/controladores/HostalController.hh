@@ -24,30 +24,28 @@ class HostalController : public IControladorHostal {
         static HostalController * instancia;
         HostalController();
         map<string,Hostal*> Hostales;
-        Hostal* hostalIniciar;
+
+        //Memoria
         string nombre, direccion;
-        int telefono;
+        string telefono;
     public:
 		static HostalController* getInstancia();
 	    ~HostalController();
         map<string,Hostal*> getHostales();
-        void setHostal();
+        Hostal *hostalSeleccionado;
         
         list<DTHostal> obtenerTodosHostales();
         list<DTHostal> obtenerTop3Hostales();
-        DTInfoBasicaHostal obtenerInfoBasicaHostal(string);
-        list<DTHabitacion> obtenerHabitacionesHostal(string);
-        list<DTReserva> obtenerReservasHostal(string);
+        DTInfoBasicaHostal obtenerInfoBasicaHostal();
+        list<DTHabitacion> obtenerHabitacionesHostal();
         void seleccionarHostal(string);
-        DTInfoHostal verDetalles(string);
+        DTInfoHostal verDetalles();
         void confirmarConsulta();
         list<DTInfoHostalYCalificacion> obtenerTodosHostalesYPromCalificacion();
-	void ingresarDatosHostal(Hostal*);
+        //Lo que antes era AltaHostal
+        void ingresarDatosHostal(string,string,string);
         void confirmarAltaHostal();
-        Hostal * getHostalIniciar();
-        map<string,Hostal*> getHostales();
-        
+        void cancelarAltaHostal();
 };
 
 #endif
-

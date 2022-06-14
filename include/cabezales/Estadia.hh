@@ -16,11 +16,10 @@ class Estadia{
     private:
         DTFecha entrada, salida;
         string promo;
-        list<Observer*> observers;
         Reserva* reserva;
         Hostal* hostal;
         Calificacion* calificacion;
-
+        Huesped* huesped;
     public:
         DTFecha getEntrada();
         void setEntrada(DTFecha);
@@ -34,15 +33,13 @@ class Estadia{
         void setCalificacion(Calificacion*);
         string getPromo();
         void setPromo(string);
+        Huesped* getHuesped();
+        void setHuesped(Huesped*);
 
 
         Estadia();
         ~Estadia();
-        Estadia(DTFecha,DTFecha,string,list<Observer*>,Reserva*,Hostal*,Calificacion*);
-
-        void agregar(Observer*);
-        void eliminar(Observer*);
-        void notificar()
+        Estadia(DTFecha,DTFecha,string,Reserva*,Hostal*,Calificacion*,Huesped*);
 
 };
 

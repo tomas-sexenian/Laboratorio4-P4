@@ -27,6 +27,16 @@ public:
     virtual void confirmarAltaUsuario() = 0;
     virtual void cancelarAltaUsuario() = 0;
 
+
+    virtual void ingresarDatosHostal(Hostal*) = 0;
+    virtual void confirmarAltaHostal() = 0;
+
+
+    virtual void ingresarDatosHabitacion(Habitacion*) = 0;
+    virtual void confirmarAltaHabitacion() = 0;
+    virtual void cancelarAltaHabitacion() = 0;
+
+
     virtual ~IControladorUsuario() {};
  
 

@@ -1,9 +1,6 @@
 #include "../include/controladores/UsuarioController.hh"
-#include "../include/cabezales/Empleado.hh"
-#include "../include/cabezales/DTHuesped.hh"
 
 UsuarioController::UsuarioController() {
-     this->usuarioIniciar = NULL;
 }
 
 UsuarioController::~UsuarioController() {
@@ -16,14 +13,54 @@ UsuarioController * UsuarioController::getInstancia(){
     return UsuarioController::instancia;
 };
 
-map<string,Usuario *> UsuarioController::getUsuarios() {
-    return Usuarios;
+map<string,Huesped *> UsuarioController::getHuespedes() {
+    return Huespedes;
 }
 
-void UsuarioController::setUsuario() {
+map<string,Empleado *> UsuarioController::getEmpleados() {
+    return Empleados;
+}
+
+// DE ACA HACIA ABAJO IMPLEMENTAN LAS OPERACIONES
+
+void UsuarioController::seleccionarHuesped(string EmailHuesped) {
+    Huesped* h = Huespedes.find(EmailHuesped)->second;
+    huespedSeleccionado = h;
+}
+
+void UsuarioController::seleccionarEmpleado(string EmailEmpleado) {
+    Empleado* e = Empleados.find(EmailEmpleado)->second;
+    empleadoSeleccionado = e;
+}
+
+
+//Lo que antes era AltaUsuario
+void UsuarioController::ingresarDatosUsuario(string UnNombre, string UnEmail, string UnaContrasenia) {
+    this->nombre = UnNombre;
+    this->email = UnEmail;
+    this->contrasenia = UnaContrasenia;
+}
+
+void UsuarioController::ingresarTipo(TipoUsuario UnTipo) {
+    this->tipo = UnTipo;
+}
+
+void UsuarioController::ingresarNuevoEmail(string UnEmail) {
+    this->email = UnEmail;
+}
+
+void UsuarioController::ingresarCargo(TipoCargo cargo) {
+    this->cargo = cargo;
+}
+
+void UsuarioController::ingresarEsFinger(bool finger) {
+    this->esFinger = finger;
+}
+
+void UsuarioController::confirmarAltaUsuario() {
     switch(tipo){
         case empleado:
-            Usuarios.insert(pair<string,Usuario*>(this->email,
+            Empleados.insert(pair<string,Empleado*>(this->email,
             new Empleado(
                 this->nombre,
                 this->email,
@@ -35,7 +72,7 @@ void UsuarioController::setUsuario() {
             )));
         break;
         case huesped:
-            Usuarios.insert(pair<string,Usuario*>(this->email,
+            Huespedes.insert(pair<string,Huesped*>(this->email,
             new Huesped(
                 this->nombre,
                 this->email,
@@ -48,63 +85,104 @@ void UsuarioController::setUsuario() {
         }
 }
 
-// DE ACA HACIA ABAJO IMPLEMENTAN LAS OPERACIONES
-
-DTInfoUsuario UsuarioController::seleccionarUsuario(string EmailUsuario) {
-    Usuario* user = Usuarios.find(EmailUsuario)->second;
-    return DTInfoUsuario(user->getNombre(), user->getEmail());
+void UsuarioController::cancelarAltaUsuario() {
+    nombre = "";
+    email = "";
+    contrasenia = "";
+    esFinger = false;
 }
 
-void UsuarioController::confirmarConsulta() {
+//Lo que antes era HuespedController
+bool UsuarioController::obtenerEsFinger(){
+    return huespedSeleccionado->getEsFinger();
 }
 
-
-//void UsuarioController::ingresarEmpleado(Empleado e) {}
-
-
-Usuario * UsuarioController::getUsuarioIniciar() {
-    return this->usuarioIniciar;
-}
-    
-void UsuarioController :: ingresarDatosUsuario(Usuario* datos) {
-    this->usuarioIniciar= datos; 
-};
-
-
-void UsuarioController :: ingresarCargo(TipoCargo cargo) { 
-    this->cargo= cargo;
-}
-
-void UsuarioController :: ingresarEsFinger(bool esFinger) { 
-    this->esFinger= esFinger;
-}
-
-void UsuarioController :: ingresarNuevoEmail(string email) {
-    this->usuarioIniciar->setEmail(email);
-}
-
-void UsuarioController :: confirmarAltaUsuario() {
-    Empleado* empleado= dynamic_cast<Empleado*>(this->usuarioIniciar);
-    if (empleado) {
-        Empleado* emp = new Empleado(this->usuarioIniciar->getNombre(),this->usuarioIniciar->getEmail(), this->usuarioIniciar->getContrasenia());
-        emp->setCargo(cargo);
-        this->Usuarios.insert(pair<string,Usuario*>(empleado->getEmail(),emp));
+list<DTHuesped> UsuarioController::obtenerTodosHuespedes(){
+    list<DTHuesped> res;
+    auto itr = Huespedes.begin();
+    while(itr != Huespedes.end()){ //Iterar map
+        Huesped *h = itr->second;
+        DTHuesped dt(h->getNombre(), h->getEmail(), h->getContrasenia(), h->getEsFinger());
+        res.push_back(dt);
+        itr++;
     }
-    else {
-        Huesped* huesped= dynamic_cast<Huesped*>(usuarioIniciar);
-        if (huesped) {
-            Huesped* hues = new Huesped(this->usuarioIniciar->getNombre(), this->usuarioIniciar->getEmail(), this->usuarioIniciar->getContrasenia());
-            hues->setEsFinger(esFinger);
-            this->Usuarios.insert(pair<string,Usuario*>(huesped->getNombre(),hues));
+    return res;
+}
+
+list<DTEstadia> UsuarioController::obtenerEstadiasFinalizadasHuesped() {
+    SistemaController* sis = SistemaController::getInstancia();
+    DTFecha fechaSis = sis->obtenerFechaActual();
+
+    list<DTEstadia> res;
+    list<Estadia*> estadiasHuesped = huespedSeleccionado->getEstadias();
+
+    for (auto const& itr : estadiasHuesped) { //Iterar list
+        Estadia *e = itr;
+        if(e->getSalida() < fechaSis){
+            DTEstadia dt(huespedSeleccionado->getEmail(), 
+                        huespedSeleccionado->getNombre(), 
+                        e->getEntrada(), 
+                        e->getSalida(), 
+                        e->getReserva()->getHabitacion()->getNumero(),
+                        e->getPromo());
+            res.push_back(dt);
         }
     }
-      
-    this->usuarioIniciar = NULL;
+
+    return res;
 }
 
-void UsuarioController :: cancelarAltaUsuario() {
-    this->usuarioIniciar= NULL;
+
+//Lo que antes era EmpleadoController
+
+//Esta raro, tendria que estar en calificaciones
+void UsuarioController::agregarComentario(string UnComentario) {
+    RespuestaEmpleado* res = new RespuestaEmpleado();
+    res->setComentario(UnComentario);
+
+    this->Empleados[this->email]->setRespuesta(res);
 }
 
-UsuarioController :: ~UsuarioController() {   
+list<DTEmpleado> UsuarioController::obtenerTodosEmpleados() {
+    list<DTEmpleado> res;
+    auto itr = Empleados.begin();
+    while(itr != Empleados.end()){ //Iterar map
+        Empleado *e = itr->second;
+        DTEmpleado dt(e->getNombre(), e->getEmail(), e->getContrasenia(), e->getCargo());
+        res.push_back(dt);
+        itr++;
+    }
+    return res;
+}
+
+DTInfoEmpleado UsuarioController::obtenerHostalYCargoEmpleado() {
+    Empleado* e = this->Empleados[this->email];
+    DTInfoEmpleado ret = DTInfoEmpleado(e);
+    return ret;
+}
+
+list<string> UsuarioController::obtenerComentariosSinRespuestaHostalEmpleado(string EmailEmpleado) {
+}
+
+list<DTInfoHostal> UsuarioController::obtenerCalificacionYURespuestasEmpleados(int numero) {
+}
+
+list<DTNotificacion> UsuarioController::obtenerNotificacionesDelEmpleado() {
+}
+
+void UsuarioController::cancelarAsignacionEmpleado() {
+}
+
+void UsuarioController::confirmarAsignacionEmpleado() {
+}
+
+void UsuarioController::seleccionarCargo(TipoCargo cargo) {
+}
+
+list<DTEmpleado> UsuarioController::obtenerEmpleadosNoAsignadosHostal(string NombreHostal) {
+}
+
+void UsuarioController::ingresarHostal(string nombreHostal) {
+    HostalController* controladorHostales = HostalController::getInstancia();
+    hostal = controladorHostales->getHostales().find(nombreHostal)->second;
 }

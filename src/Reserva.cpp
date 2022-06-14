@@ -5,6 +5,14 @@ int Reserva::getCodigo() {
 	return codigo;
 } 
 
+string Reserva::getEmailTitular(){
+    return emailTitular;
+}
+
+void Reserva::setEmailTitular(string email){
+    emailTitular = email;
+}
+
 void Reserva::setCodigo(int val) {
 	codigo = val;
 }

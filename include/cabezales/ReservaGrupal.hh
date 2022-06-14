@@ -16,7 +16,7 @@ class ReservaGrupal: public Reserva {
         map<string, Huesped*> invitados;
     public:
         ReservaGrupal();
-        ReservaGrupal(int, DTFecha, DTFecha, EstadoReserva,list<int>);
+        ReservaGrupal(int, string, DTFecha, DTFecha, EstadoReserva, Habitacion*, list<int>, map<string, Huesped*>);
         ~ReservaGrupal();
         list<int> getCantHuespedes();
         void setCantHuespedes(int);

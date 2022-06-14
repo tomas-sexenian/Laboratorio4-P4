@@ -7,8 +7,8 @@ class ReservaIndividual: public Reserva {
     private:
     public:
         ReservaIndividual();
-        ReservaIndividual(int, DTFecha, DTFecha, EstadoReserva);
-        ~ReservaIndividual() = default;
+        ReservaIndividual(int, string, DTFecha, DTFecha, EstadoReserva, Habitacion*);
+        ~ReservaIndividual();
         float calcularCosto();
 };
 

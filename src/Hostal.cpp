@@ -5,25 +5,19 @@ using namespace std;
 Hostal::Hostal() {
 	nombre = "";
 	direccion = "";
-	telefono = 0;
+	telefono = "";
 	map<int, Habitacion*> lista1;
 	habitaciones = lista1;
 	map<string, Empleado*> lista2;
 	empleados = lista2;
 }
 
-Hostal::Hostal(string UnNombre ,string UnaDireccion ,int UnTelefono ,map<int, Habitacion*> UnasHabitaciones ,map<string, Empleado*> UnosEmpleados) {
+Hostal::Hostal(string UnNombre ,string UnaDireccion ,string UnTelefono ,map<int, Habitacion*> UnasHabitaciones ,map<string, Empleado*> UnosEmpleados) {
 	nombre = UnNombre;
 	direccion = UnaDireccion;
 	telefono = UnTelefono;
 	habitaciones = UnasHabitaciones;
 	empleados = UnosEmpleados;
-} 
-
-Hostal::Hostal(string UnNombre ,string UnaDireccion ,int UnTelefono) {
-	nombre = UnNombre;
-	direccion = UnaDireccion;
-	telefono = UnTelefono;
 } 
 
 Hostal::~Hostal() {
@@ -46,16 +40,73 @@ void Hostal::setDireccion(string UnaDireccion) {
 	direccion = UnaDireccion;
 }
 
-int Hostal::getTelefono() {
+string Hostal::getTelefono() {
 	return telefono;
 }
 
-void Hostal::setTelefono(int UnTelefono) {
+void Hostal::setTelefono(string UnTelefono) {
 	telefono = UnTelefono;
 }
 
+list<DTCalificacion> Hostal::obtenerCalificaciones() {
+	EstadiaController* controladorEstadia = EstadiaController::getInstancia();
+	list<DTCalificacion> res;
+
+	auto itr = controladorEstadia->getEstadias().begin();
+    while(itr != controladorEstadia->getEstadias().end()){ //Iterar map
+        Estadia *e = itr->second;
+		if(e->getHostal()->getNombre() == nombre){
+			if(e->getCalificacion() != NULL){
+				DTCalificacion dt(
+								e->getCalificacion()->getPuntaje(), 
+								e->getCalificacion()->getComentario(),
+								e->getCalificacion()->getFecha()
+				);
+				res.push_back(dt);
+			}
+		}
+        itr++;
+    }
+	
+	return res;
+}
+
+list<string> Hostal::obtenerComentarios() {
+	EstadiaController* controladorEstadia = EstadiaController::getInstancia();
+	list<string> res;
+
+	auto itr = controladorEstadia->getEstadias().begin();
+    while(itr != controladorEstadia->getEstadias().end()){ //Iterar map
+        Estadia *e = itr->second;
+		if(e->getHostal()->getNombre() == nombre){
+			if(e->getCalificacion() != NULL)
+				res.push_back(e->getCalificacion()->getComentario());
+		}
+        itr++;
+    }
+	
+	return res;
+}
+
 float Hostal::obtenerPromedioCalificaciones() {
-	//FALTA IMPLEMENTAR
+	EstadiaController* controladorEstadia = EstadiaController::getInstancia();
+	float res = 0;
+	int cantCalificaciones = 0;
+
+	auto itr = controladorEstadia->getEstadias().begin();
+    while(itr != controladorEstadia->getEstadias().end()){ //Iterar map
+        Estadia *e = itr->second;
+		if(e->getHostal()->getNombre() == nombre){
+			if(e->getCalificacion() != NULL){
+				res += e->getCalificacion()->getPuntaje();
+				cantCalificaciones++; 
+			}
+		}
+        itr++;
+    }
+	if(cantCalificaciones==0) return 0;
+	else
+		return res/cantCalificaciones;
 }
 
 map<int, Habitacion*> Hostal::getHabitaciones() {
@@ -73,13 +124,3 @@ map<string, Empleado*> Hostal::getEmpleados() {
 void Hostal::setEmpleado(Empleado* e) {
 	empleados.insert(pair<string,Empleado*>(e->getEmail(),e));
 }
-
-map<string, Estadia*> Hostal::getEstadias() {
-	return estadias;
-}
-
-void Hostal::setEstadia(Estadia* e) {
-	estadias.insert(pair<string,Estadia*>(e->getPromo(),e));
-}
-
-

@@ -11,6 +11,7 @@
 #include "../cabezales/Habitacion.hh"
 #include "../cabezales/DTHabitacion.hh"
 #include "../cabezales/DTFecha.hh"
+#include "../controladores/HostalController.hh"
 
 using namespace std;
 
@@ -18,24 +19,23 @@ class HabitacionController{
     private:
         static HabitacionController * instancia;
         HabitacionController();
-        Habitacion* habitacionIniciar;
         map<int,Habitacion *> Habitaciones;
+        Habitacion *habitacionSeleccionada;
 
+        //Memoria
         int numero,precio,capacidad;
+        Hostal* hostal;
     public:
 		static HabitacionController* getInstancia();
 	    ~HabitacionController();
         map<int,Habitacion *> getHabitaciones();
-        void setHabitacion();
 
-        list<DTHabitacion> obtenerHabitacionesDisponiblesHostal(string,DTFecha,DTFecha);
         void seleccionarHabitacion(int);
-
-        map<int,Habitacion*> getHabitaciones();
-
-        void ingresarDatosHabitacion(Habitacion*);
+        list<DTHabitacion> obtenerHabitacionesDisponiblesHostal(string,DTFecha,DTFecha);
+        //Lo que antes era AltaHabitacion
+        void ingresarDatosHabitacion(int,float,int);
         void confirmarAltaHabitacion();
         void cancelarAltaHabitacion();
-        Habitacion * getHabitacionIniciar();
+        void ingresarHostalHabitacion(string);
 };
 #endif

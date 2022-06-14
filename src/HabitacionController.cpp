@@ -1,5 +1,6 @@
 #include "../include/controladores/HabitacionController.hh"
 
+
 HabitacionController::HabitacionController() {
 }
 
@@ -17,7 +18,26 @@ map<int,Habitacion *> HabitacionController::getHabitaciones() {
     return Habitaciones;
 }
 
-void HabitacionController::setHabitacion() {
+
+// DE ACA HACIA ABAJO IMPLEMENTAN LAS OPERACIONES
+
+list<DTHabitacion> HabitacionController::obtenerHabitacionesDisponiblesHostal(string NombreHostal, DTFecha checkInt, DTFecha checkOut) {
+    //HACER
+}
+
+void HabitacionController::seleccionarHabitacion(int NumeroHabitacion) {
+    Habitacion *hab = Habitaciones.find(NumeroHabitacion)->second;
+    habitacionSeleccionada = hab;
+}
+
+//Lo que antes era altaHabitacion
+void HabitacionController::ingresarDatosHabitacion(int UnNumero, float UnPrecio, int UnaCapacidad) {
+    numero = UnNumero;
+    precio = UnPrecio;
+    capacidad = UnaCapacidad;
+}
+
+void HabitacionController::confirmarAltaHabitacion() {
     this->Habitaciones.insert(pair<int,Habitacion*>(this->numero,new Habitacion(
         this->numero,
         this->precio,
@@ -27,36 +47,20 @@ void HabitacionController::setHabitacion() {
     )));
 }
 
-// DE ACA HACIA ABAJO IMPLEMENTAN LAS OPERACIONES
-
-void HabitacionController :: ingresarDatosHabitacion(Habitacion* datosHabitacion) {
-    this->habitacionIniciar = datosHabitacion;
+void HabitacionController::cancelarAltaHabitacion() {
+    numero = 0;
+    precio = 0;
+    capacidad = 0;
 }
 
-void HabitacionController :: confirmarAltaHabitacion() {
-    this->Habitaciones.insert(pair<int,Habitacion*>(habitacionIniciar->getNumero(),new Habitacion(
-        habitacionIniciar->getNumero(), habitacionIniciar->getPrecio(), habitacionIniciar->getCapacidad(), 
-        habitacionIniciar->getHostal(), habitacionIniciar->getReservas())));
-    this->habitacionIniciar = NULL;
+void HabitacionController::ingresarDatosHabitacion(int UnNumero, float UnPrecio, int UnaCapacidad) {
+    numero = UnNumero;
+    precio = UnPrecio;
+    capacidad = UnaCapacidad;
 }
 
-void HabitacionController :: cancelarAltaHabitacion() {
-     this->habitacionIniciar = NULL;
-};
-
-map<int,Habitacion*> HabitacionController :: getHabitaciones() {
-    return this->Habitaciones;
-};
-
-
-Habitacion * HabitacionController :: getHabitacionIniciar() {
-    return this->habitacionIniciar; 
-};
-
-
-
-list<DTHabitacion> HabitacionController::obtenerHabitacionesDisponiblesHostal(string NombreHostal, DTFecha checkInt, DTFecha checkOut) {
+void HabitacionController::ingresarHostalHabitacion(string nombreHostal){
+    HostalController* controladorHostales = HostalController::getInstancia();
+    hostal = controladorHostales->getHostales().find(nombreHostal)->second;
 }
-
-void HabitacionController::seleccionarHabitacion(int NumeroHabitacion) {
-}
+    

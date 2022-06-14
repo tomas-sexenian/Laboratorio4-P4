@@ -6,10 +6,11 @@ SistemaController::SistemaController() {
 }
 
 SistemaController::SistemaController(DTFecha UnaFecha) {
-    fechaActual->setFecha(UnaFecha);
+    this->fechaActual->setFecha(UnaFecha);
 }
 
 SistemaController::~SistemaController() {
+    delete this->fechaActual;
 }
 
 SistemaController* SistemaController::instancia;
@@ -20,6 +21,10 @@ SistemaController * SistemaController::getInstancia(){
 };
 
 // DE ACA HACIA ABAJO IMPLEMENTAN LAS OPERACIONES
+
+DTFecha SistemaController::obtenerFechaActual(){
+    return this->fechaActual->getFecha();
+}
 
 void SistemaController::modificarFecha(DTFecha UnaFecha) {
     this->fechaActual->setFecha(UnaFecha);

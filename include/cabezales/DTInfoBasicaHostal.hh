@@ -12,16 +12,16 @@ class DTInfoBasicaHostal{
     private: 
         string nombre;
         string direccion;
-        int telefono;
+        string telefono;
         float promedioCalificaciones;
         list<DTCalificacion> calificaciones;
     public:
-        DTInfoBasicaHostal(string,string,int,float,list<DTCalificacion>);
+        DTInfoBasicaHostal(string,string,string,float,list<DTCalificacion>);
         DTInfoBasicaHostal();
         ~DTInfoBasicaHostal();
         string getNombre();
         string getDireccion();
-        int getTelefono();
+        string getTelefono();
         float getPromedioCalificaciones();
         list<DTCalificacion> getCalificaciones();
 };

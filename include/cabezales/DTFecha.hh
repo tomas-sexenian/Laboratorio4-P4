@@ -12,6 +12,7 @@ class DTFecha {
         int getAnio();
         int getHora();
         int getMinuto();
+        bool operator<(DTFecha);
 };
 
 #endif

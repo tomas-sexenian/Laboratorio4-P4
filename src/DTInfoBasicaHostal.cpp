@@ -6,13 +6,13 @@ DTInfoBasicaHostal::~DTInfoBasicaHostal() {
 DTInfoBasicaHostal::DTInfoBasicaHostal() {
     nombre = "";
     direccion = "";
-    telefono = 0;
+    telefono = "";
     promedioCalificaciones = 0;
     list<DTCalificacion> lista;
     calificaciones = lista;
 }
 
-DTInfoBasicaHostal::DTInfoBasicaHostal(string UnNombre, string UnaDireccion, int UnTelefono, float UnPromedio, list<DTCalificacion> UnasCalificaciones) {
+DTInfoBasicaHostal::DTInfoBasicaHostal(string UnNombre, string UnaDireccion, string UnTelefono, float UnPromedio, list<DTCalificacion> UnasCalificaciones) {
     nombre = UnNombre;
     direccion = UnaDireccion;
     telefono = UnTelefono;
@@ -28,7 +28,7 @@ string DTInfoBasicaHostal::getDireccion() {
     return direccion;
 }
 
-int DTInfoBasicaHostal::getTelefono() {
+string DTInfoBasicaHostal::getTelefono() {
     return telefono;
 }
 

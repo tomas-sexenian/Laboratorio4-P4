@@ -14,7 +14,7 @@ class Usuario{
         string getEmail();
         void setEmail(string);
         string getContrasenia();
-        virtual void setContrasenia(string);
+        void setContrasenia(string);
 };
 
 #endif

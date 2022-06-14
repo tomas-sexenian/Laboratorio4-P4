@@ -5,13 +5,16 @@ ReservaIndividual::ReservaIndividual() {
     checkIn = DTFecha();
     checkOut = DTFecha();
     estado = abierta;
+    habitacion = NULL;
 }
 
-ReservaIndividual::ReservaIndividual(int UnCodigo, DTFecha UnCheckin, DTFecha UnCheckout, EstadoReserva UnEstado){
+ReservaIndividual::ReservaIndividual(int UnCodigo, string UnEmail, DTFecha UnCheckin, DTFecha UnCheckout, EstadoReserva UnEstado, Habitacion* UnaHabitacion){
     codigo = UnCodigo;
+    emailTitular = UnEmail;
     checkIn = UnCheckin;
     checkOut = UnCheckout;
     estado = UnEstado;
+    habitacion = UnaHabitacion;
 }
 
 float ReservaIndividual::calcularCosto() {
@@ -20,4 +23,9 @@ float ReservaIndividual::calcularCosto() {
     int dif = (egreso.getDia() + (egreso.getMes()*31) + (egreso.getAnio()*31*12)) - (ingreso.getDia() + (ingreso.getMes()*31) + (ingreso.getAnio()*31*12));
     return 0; //(dif * habitacion->getPrecio());
 
+}
+
+ReservaIndividual::~ReservaIndividual(){
+    delete &this->getCheckIn();
+    delete &this->getCheckOut();
 }

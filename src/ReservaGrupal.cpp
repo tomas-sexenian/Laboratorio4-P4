@@ -9,16 +9,20 @@ ReservaGrupal::ReservaGrupal(){
     checkIn = DTFecha();
     checkOut = DTFecha();
     estado = abierta;
+    habitacion = NULL;
     std::list<int> lista({});
     cantHuespedes = lista;
 };   
 
-ReservaGrupal::ReservaGrupal(int UnCodigo, DTFecha UnCheckIn, DTFecha UnCheckOut, EstadoReserva UnEstado,list<int> cantHuespedesPorDia){
+ReservaGrupal::ReservaGrupal(int UnCodigo, string UnEmail, DTFecha UnCheckIn, DTFecha UnCheckOut, EstadoReserva UnEstado, Habitacion *UnaHabitacion, list<int> cantHuespedesPorDia, map<string, Huesped*> UnosInvitados){
     codigo = UnCodigo;
+    emailTitular = UnEmail;
     checkIn = UnCheckIn;
     checkOut = UnCheckOut;
     estado = UnEstado;
+    habitacion = UnaHabitacion;
     cantHuespedes = cantHuespedesPorDia;
+    invitados = UnosInvitados;
 };
 
 list<int> ReservaGrupal::getCantHuespedes(){
@@ -30,7 +34,8 @@ void ReservaGrupal::setCantHuespedes(int cantidad){
 }
 
 ReservaGrupal::~ReservaGrupal(){
-    //FALTA IMPLEMENTAR EL DESTRUCTOR DE RESERVA GRUPAL
+    delete &this->getCheckIn();
+    delete &this->getCheckOut();
 };
 
 float ReservaGrupal::calcularCosto(){

@@ -10,6 +10,8 @@
 
 #include "../cabezales/Calificacion.hh"
 #include "../cabezales/DTCalificacion.hh"
+#include "../cabezales/RespuestaEmpleado.hh"
+#include "../controladores/SistemaController.hh"
 
 using namespace std;
 
@@ -18,19 +20,27 @@ class CalificacionController{
         static CalificacionController * instancia;
         CalificacionController();
         map<int,Calificacion *> Calificaciones;
+        map<Calificacion *,RespuestaEmpleado *> RespuestasEmpleados;
 
         int puntaje,codigoReserva;
         string comentario;
         DTFecha fecha;
+        Calificacion* calificacionRecordada;
+        string respuesta;
     public:
 		static CalificacionController* getInstancia();
 	    ~CalificacionController();
         map<int,Calificacion *> getCalificaciones();
         void setCalificacion();
+        Calificacion * getCalificacionRecordada();
+        void setCalificacionRecordada(int,string);
 
         void ingresarComentario(string);
         void ingresarPuntaje(int);
-        void confirmarAltaCalificacion();
-       
+        void ingresarFecha(DTFecha);
+        void confirmarAltaCalificacion(int,string);
+
+        void ingresarRespuesta(string);
+        void responderCalificacion(int,string,DTFecha);
 };
 #endif
