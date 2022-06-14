@@ -20,6 +20,12 @@ Hostal::Hostal(string UnNombre ,string UnaDireccion ,int UnTelefono ,map<int, Ha
 	empleados = UnosEmpleados;
 } 
 
+Hostal::Hostal(string UnNombre ,string UnaDireccion ,int UnTelefono) {
+	nombre = UnNombre;
+	direccion = UnaDireccion;
+	telefono = UnTelefono;
+} 
+
 Hostal::~Hostal() {
 	//FALTA IMPLEMENTAR
 } 
