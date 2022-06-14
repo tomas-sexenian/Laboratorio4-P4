@@ -24,6 +24,7 @@ class Hostal{
     public:
         Hostal();
         Hostal(string,string,int,map<int, Habitacion*>,map<string, Empleado*>);
+        Hostal(string, string, int);
         ~Hostal();
         string getNombre();
         void setNombre(string);
