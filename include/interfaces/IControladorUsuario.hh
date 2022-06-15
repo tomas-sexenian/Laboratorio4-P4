@@ -8,6 +8,8 @@
 #include "../cabezales/DTInfoEmpleado.hh"
 #include "../cabezales/DTInfoHostal.hh"
 #include "../cabezales/DTNotificacion.hh"
+#include "../TipoCargo.hh"
+#include "../TipoUsuario.hh"
 
 #include <string>
 #include <list>
