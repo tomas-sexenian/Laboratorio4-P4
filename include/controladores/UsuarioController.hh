@@ -8,6 +8,8 @@
 //YO SOLO INCLUI LO QUE ALMACENA CADA CONTROLADOR Y LAS NECESARIAS PARA DECLARAR
 //LAS OPERCIONES
 
+
+#include "../interfaces/IControladorUsuario.hh"
 #include "../cabezales/Fabrica.hh"
 #include "../cabezales/Usuario.hh"
 #include "../cabezales/Empleado.hh"
@@ -24,7 +26,7 @@
 
 using namespace std;
 
-class UsuarioController{
+class UsuarioController: public IControladorUsuario {
     private:
         static UsuarioController *instancia;
         UsuarioController();
