@@ -8,6 +8,8 @@
 //YO SOLO INCLUI LO QUE ALMACENA CADA CONTROLADOR Y LAS NECESARIAS PARA DECLARAR
 //LAS OPERCIONES
 
+
+#include "../interfaces/IControladorCalificacion.hh"
 #include "../cabezales/Calificacion.hh"
 #include "../cabezales/DTCalificacion.hh"
 #include "../cabezales/RespuestaEmpleado.hh"
@@ -15,7 +17,7 @@
 
 using namespace std;
 
-class CalificacionController{
+class CalificacionController: public IControladorCalificacion {
     private:
         static CalificacionController * instancia;
         CalificacionController();
