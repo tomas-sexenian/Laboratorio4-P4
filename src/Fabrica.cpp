@@ -1,31 +1,37 @@
 #include "../include/cabezales/Fabrica.hh"
+#include "../include/controladores/CalificacionController.hh"
+#include "../include/controladores/EstadiaController.hh"
+#include "../include/controladores/HabitacionController.hh"
+#include "../include/controladores/HostalController.hh"
+#include "../include/controladores/NotificacionesController.hh"
+#include "../include/controladores/SistemaController.hh"
+#include "../include/controladores/UsuarioController.hh"
 
-
-CalificacionController * Fabrica :: getCalificacionController(){
+IControladorCalificacion * Fabrica :: getCalificacionController(){
     return CalificacionController::getInstancia();
 };
 
-EstadiaController * Fabrica :: getEstadiaController(){
+IControladorEstadia * Fabrica :: getEstadiaController(){
     return EstadiaController::getInstancia();
 };
 
-HabitacionController * Fabrica :: getHabitacionController(){
+IControladorHabitacion * Fabrica :: getHabitacionController(){
     return HabitacionController::getInstancia();
 };
 
-HostalController * Fabrica :: getHostalController(){
+IControladorHostal * Fabrica :: getHostalController(){
     return HostalController::getInstancia();
 };
 
 
-NotificacionesController * Fabrica :: getNotificacionesController(){
+IControladorNotificaciones * Fabrica :: getNotificacionesController(){
     return NotificacionesController::getInstancia();
 };
 
-SistemaController * Fabrica :: getSistemaController(){
+IControladorSistema * Fabrica :: getSistemaController(){
     return SistemaController::getInstancia();
 }; 
 
-UsuarioController * Fabrica :: getUsuarioController(){
+IControladorUsuario * Fabrica :: getUsuarioController(){
     return UsuarioController::getInstancia();
 };
