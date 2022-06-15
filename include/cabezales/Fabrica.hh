@@ -1,25 +1,25 @@
 #ifndef FABRICA
 #define FABRICA
 
-#include "../controladores/CalificacionController.hh"
-#include "../controladores/EstadiaController.hh"
-#include "../controladores/HabitacionController.hh"
-#include "../controladores/HostalController.hh"
-#include "../controladores/NotificacionesController.hh"
-#include "../controladores/ReservaController.hh"
-#include "../controladores/SistemaController.hh"
-#include "../controladores/UsuarioController.hh"
+#include "../interfaces/IControladorCalificacion.hh"
+#include "../interfaces/IControladorEstadia.hh"
+#include "../interfaces/IControladorHabitacion.hh"
+#include "../interfaces/IControladorHostal.hh"
+#include "../interfaces/IControladorNotificaciones.hh"
+#include "../interfaces/IControladorReserva.hh"
+#include "../interfaces/IControladorSistema.hh"
+#include "../interfaces/IControladorUsuario.hh"
 
 
 class Fabrica {
     public:
-        static CalificacionController * getCalificacionController();
-        static EstadiaController * getEstadiaController();
-        static HabitacionController * getHabitacionController();
-        static HostalController * getHostalController();
-        static NotificacionesController * getNotificacionesController();
-        static ReservaController * getReservaController();
-        static SistemaController * getSistemaController();
-        static UsuarioController * getUsuarioController();
+        static IControladorCalificacion * getCalificacionController();
+        static IControladorEstadia * getEstadiaController();
+        static IControladorHabitacion * getHabitacionController();
+        static IControladorHostal * getHostalController();
+        static IControladorNotificaciones * getNotificacionesController();
+        static IControladorReserva * getReservaController();
+        static IControladorSistema * getSistemaController();
+        static IControladorUsuario * getUsuarioController();
 };
 #endif
