@@ -8,6 +8,8 @@
 //YO SOLO INCLUI LO QUE ALMACENA CADA CONTROLADOR Y LAS NECESARIAS PARA DECLARAR
 //LAS OPERCIONES
 
+
+#include "../interfaces/IControladorHabitacion.hh"
 #include "../cabezales/Habitacion.hh"
 #include "../cabezales/DTHabitacion.hh"
 #include "../cabezales/DTFecha.hh"
@@ -15,7 +17,7 @@
 
 using namespace std;
 
-class HabitacionController{
+class HabitacionController: public IControladorHabitacion {
     private:
         static HabitacionController * instancia;
         HabitacionController();
