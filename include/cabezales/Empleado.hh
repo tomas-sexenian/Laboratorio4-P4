@@ -2,7 +2,7 @@
 #define EMPLEADO
 
 #include "./Usuario.hh"
-#include "./Notificacion.hh"
+#include "./notificacion.hh"
 #include "./Hostal.hh"
 #include "./RespuestaEmpleado.hh"
 #include "../../include/TipoCargo.hh"
