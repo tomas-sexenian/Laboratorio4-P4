@@ -8,12 +8,14 @@
 //YO SOLO INCLUI LO QUE ALMACENA CADA CONTROLADOR Y LAS NECESARIAS PARA DECLARAR
 //LAS OPERCIONES
 
+
+#include "../interfaces/IControladorNotificaciones.hh"
 #include "../cabezales/Notificacion.hh"
 #include "../cabezales/DTNotificacion.hh"
 
 using namespace std;
 
-class NotificacionesController{
+class NotificacionesController: IControladorNotificaciones {
     private:
         static NotificacionesController * instancia;
         NotificacionesController();
