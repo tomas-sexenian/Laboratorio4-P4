@@ -2,8 +2,15 @@
 #define ICONTROLADORRESERVA
 
 #include <list>
+#include <map>
 
 #include "../cabezales/DTReserva.hh"
+#include "../cabezales/Habitacion.hh"
+#include "../cabezales/DTFecha.hh"
+#include "../TipoReserva.hh"
+#include "../EstadoReserva.hh"
+
+
 
 using namespace std;
 
