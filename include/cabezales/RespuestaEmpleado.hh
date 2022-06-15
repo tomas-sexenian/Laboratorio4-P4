@@ -2,7 +2,7 @@
 #define RESPUESTAEMPLEADO
 
 #include "./DTFecha.hh"
-#include "./Calificacion.hh"
+#include "./calificacion.hh"
 #include <string>
 
 using namespace std;
