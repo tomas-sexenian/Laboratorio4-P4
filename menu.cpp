@@ -2,25 +2,27 @@
 #include <stdexcept>
 
 #include "include/cabezales/Fabrica.hh"
+#include "include/TipoUsuario.hh"
+#include "include/TipoReserva.hh"
 #include "include/cabezales/DTReservaIndividual.hh"
 #include "include/cabezales/DTReservaGrupal.hh"
-#include "include/controladores/CalificacionController.hh"
-#include "include/controladores/EstadiaController.hh"
-#include "include/controladores/HabitacionController.hh"
-#include "include/controladores/HostalController.hh"
-#include "include/controladores/NotificacionesController.hh"
-#include "include/controladores/ReservaController.hh"
-#include "include/controladores/SistemaController.hh"
-#include "include/controladores/UsuarioController.hh"
+#include "include/interfaces/IControladorCalificacion.hh"
+#include "include/interfaces/IControladorEstadia.hh"
+#include "include/interfaces/IControladorHabitacion.hh"
+#include "include/interfaces/IControladorHostal.hh"
+#include "include/interfaces/IControladorNotificaciones.hh"
+#include "include/interfaces/IControladorReserva.hh"
+#include "include/interfaces/IControladorSistema.hh"
+#include "include/interfaces/IControladorUsuario.hh"
 
-CalificacionController* controladorCalificaciones = Fabrica::getCalificacionController();
-EstadiaController* controladorEstadias = Fabrica::getEstadiaController();
-HabitacionController* controladorHabitaciones = Fabrica::getHabitacionController();
-HostalController* controladorHostales = Fabrica::getHostalController();
-NotificacionesController* controladorNotificaciones = Fabrica::getNotificacionesController();
-ReservaController* controladorReservas = Fabrica::getReservaController();
-SistemaController* controladorSistema = Fabrica::getSistemaController();
-UsuarioController* controladorUsuarios = Fabrica::getUsuarioController();
+IControladorCalificacion* controladorCalificaciones = Fabrica::getCalificacionController();
+IControladorEstadia* controladorEstadias = Fabrica::getEstadiaController();
+IControladorHabitacion* controladorHabitaciones = Fabrica::getHabitacionController();
+IControladorHostal* controladorHostales = Fabrica::getHostalController();
+IControladorNotificaciones* controladorNotificaciones = Fabrica::getNotificacionesController();
+IControladorReserva* controladorReservas = Fabrica::getReservaController();
+IControladorSistema* controladorSistema = Fabrica::getSistemaController();
+IControladorUsuario* controladorUsuarios = Fabrica::getUsuarioController();
 
 void cargarDatosPrueba() {
 
@@ -501,11 +503,11 @@ int main(){
         string eleccionEmailEmpleado_CUsuario;
         
         // PARA REGISTRAR ESTADIA
-        int eleccionTipoEstadia_CEmpleado,int eleccionCodigoReserva_CEmpleado;
+        int eleccionTipoEstadia_CEmpleado, eleccionCodigoReserva_CEmpleado;
         string eleccionEmailHuespedEstadia_CEmpleado;
 
         // PARA REGISTRAR ESTADIA
-        int eleccionTipoEstadia_CEmpleado,int eleccionCodigoReserva_CEmpleado;
+        int eleccionTipoEstadia_CEmpleado, eleccionCodigoReserva_CEmpleado;
         string eleccionEmailHuespedEstadia_CEmpleado;
 
         // PARA FINALIZAR ESTADIA
