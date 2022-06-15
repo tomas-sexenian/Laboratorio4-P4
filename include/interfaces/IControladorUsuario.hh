@@ -2,12 +2,12 @@
 #define ICONTROLADORUSUARIO
 
 
-#include "../include/cabezales/DTHuesped.hh"
-#include "../include/cabezales/DTEstadia.hh"
-#include "../include/cabezales/DTEmpleado.hh"
-#include "../include/cabezales/DTInfoEmpleado.hh"
-#include "../include/cabezales/DTInfoHostal.hh"
-#include "../include/cabezales/DTNotificacion.hh"
+#include "../cabezales/DTHuesped.hh"
+#include "../cabezales/DTEstadia.hh"
+#include "../cabezales/DTEmpleado.hh"
+#include "../cabezales/DTInfoEmpleado.hh"
+#include "../cabezales/DTInfoHostal.hh"
+#include "../cabezales/DTNotificacion.hh"
 
 #include <string>
 #include <list>
