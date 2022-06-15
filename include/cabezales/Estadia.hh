@@ -4,7 +4,7 @@
 #include "./DTFecha.hh"
 #include "./Hostal.hh"
 #include "./Reserva.hh"
-#include "./Calificacion.hh"
+#include "./calificacion.hh"
 
 #include <string>
 #include <list>
