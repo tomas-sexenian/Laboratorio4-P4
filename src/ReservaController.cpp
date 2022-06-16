@@ -135,40 +135,48 @@ void ReservaController::agregarHuespedesReservaGrupal(map<string, Huesped*> Unos
 }
 
 void ReservaController::confirmarReserva() {
-        switch(tipo){
+    if(habitacion->estaDisponible(this->checkIn, this->checkOut)){
+       switch(tipo){
         case individual:
             ReservasIndividuales.insert(pair<int,ReservaIndividual*>(this->codigo,new ReservaIndividual(
-            this->codigo,
-            this->email,
-            this->checkIn,
-            this->checkOut,
-            this->estado,
-            this->habitacion
-      )));
+                this->codigo,
+                this->email,
+                this->checkIn,
+                this->checkOut,
+                this->estado,
+                this->habitacion
+            )));
             break;
         case grupal:
-            ReservasGrupales.insert(pair<int,ReservaGrupal*>(this->codigo,new ReservaGrupal(
-            this->codigo,
-            this->email,
-            this->checkIn,
-            this->checkOut,
-            this->estado,
-            this->habitacion,
-            this->cantHuespedes,
-            this->invitados
-      )));
-            break;
+            if((this->cantHuespedes.size() +1) <= habitacion->getCapacidad()){
+                ReservasGrupales.insert(pair<int,ReservaGrupal*>(this->codigo,new ReservaGrupal(
+                    this->codigo,
+                    this->email,
+                    this->checkIn,
+                    this->checkOut,
+                    this->estado,
+                    this->habitacion,
+                    this->cantHuespedes,
+                    this->invitados
+                )));
+                break;
+            }
+            else
+                throw std::invalid_argument( "No se realizó la reserva, la capacidad de la habitación no es suficiente");
+        }
     }
+    else
+        throw std::invalid_argument( "No se realizó la reserva, la habitación se encuentra reservada en ese rango de fechas");
 }
+    
 
-void ReservaController::cancelarReserva() {
-    this->codigo = -1;
-    this->email = "";
-    this->checkIn = DTFecha();
-    this->checkOut = DTFecha();
-    this->habitacion = NULL;
-    this->cantHuespedes = list<int>{};
-    this->invitados = map<string, Huesped*>{};
+void ReservaController::cancelarReserva(int UnCodigoReserva) {
+    if(ReservasIndividuales.find(UnCodigoReserva) != ReservasIndividuales.end())
+        delete &ReservasIndividuales.find(UnCodigoReserva);
+    else if(ReservasGrupales.find(UnCodigoReserva) != ReservasGrupales.end())
+        delete &ReservasGrupales.find(UnCodigoReserva);
+    else
+        throw std::invalid_argument( "No se puede cancelar una reserva que no existe");
 }
 
 list<DTReserva> ReservaController::obtenerReservasHostal(string UnHostal) {
@@ -259,14 +267,6 @@ void ReservaController::ingresarInvitados(list<string> UnosInvitados) {
             if (it->c_str() == i->second->getEmail())
                 listaInvitados.push_back(i->second);
         }
-    }
-}
-
-void ReservaController::seleccionarReserva(int codigoReserva) {
-    if (tipo == individual){
-        resIndividual = ReservasIndividuales.find(codigoReserva)->second;
-    } else{
-        resGrupal = ReservasGrupales.find(codigoReserva)->second;
     }
 }
 

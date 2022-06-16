@@ -62,7 +62,15 @@ Habitacion::~Habitacion() {
 }
 
 bool Habitacion::estaDisponible(DTFecha checkIn, DTFecha checkOut) {
-    //HAY QUE IMPLEMENTAR ESTA FUNCION
+    auto itr = this->reservas.begin();
+    bool res = true;
+    while(res && (itr != this->reservas.end())){ //Iterar map
+        Reserva *r = itr->second;
+        if((r->getCheckIn() <= checkOut) && (checkIn <= r->getCheckOut()))
+            res = false;
+        itr++;
+    }
+    return res;
 }
 
 

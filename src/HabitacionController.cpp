@@ -21,8 +21,21 @@ map<int,Habitacion *> HabitacionController::getHabitaciones() {
 
 // DE ACA HACIA ABAJO IMPLEMENTAN LAS OPERACIONES
 
-list<DTHabitacion> HabitacionController::obtenerHabitacionesDisponiblesHostal(string NombreHostal, DTFecha checkInt, DTFecha checkOut) {
-    //HACER
+list<DTHabitacion> HabitacionController::obtenerHabitacionesDisponiblesHostal(string NombreHostal, DTFecha checkIn, DTFecha checkOut) {
+    list<DTHabitacion> res;
+    HostalController* controladorHostales = HostalController::getInstancia();
+    Hostal *hostal = controladorHostales->getHostales().find(NombreHostal)->second;
+
+    auto itrInd = hostal->getHabitaciones().begin();
+    while(itrInd != hostal->getHabitaciones().end()){ //Iterar map
+        Habitacion *h = itrInd->second;
+        if(h->estaDisponible(checkIn, checkOut)){
+            DTHabitacion dt(h->getNumero(), h->getPrecio(), h->getCapacidad());
+            res.push_back(dt);
+        }
+        itrInd++;
+    }
+    return res;
 }
 
 void HabitacionController::seleccionarHabitacion(int NumeroHabitacion) {
