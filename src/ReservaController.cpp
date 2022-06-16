@@ -158,38 +158,42 @@ void ReservaController::agregarHuespedesReservaGrupal(map<string, Huesped*> Unos
 }
 
 void ReservaController::confirmarReserva() {
-    if(habitacion->estaDisponible(this->checkIn, this->checkOut)){
-       switch(tipo){
-        case individual:
-        
-            ReservasIndividuales.insert(pair<int,ReservaIndividual*>(this->codigo,new ReservaIndividual(
-                this->codigo,
-                this->resIndividual->getTitular(),
-                this->checkIn,
-                this->checkOut,
-                this->estado,
-                this->habitacion
-            )));
-            break;
-        case grupal:
-            if((this->invitados.size() +1) <= habitacion->getCapacidad()){
-                ReservasGrupales.insert(pair<int,ReservaGrupal*>(this->codigo,new ReservaGrupal(
+    if(this->checkIn < this->checkOut){
+        if(habitacion->estaDisponible(this->checkIn, this->checkOut)){
+        switch(tipo){
+            case individual:
+            
+                ReservasIndividuales.insert(pair<int,ReservaIndividual*>(this->codigo,new ReservaIndividual(
                     this->codigo,
-                    this->resGrupal->getTitular(),
+                    this->resIndividual->getTitular(),
                     this->checkIn,
                     this->checkOut,
                     this->estado,
-                    this->habitacion,
-                    this->invitados
+                    this->habitacion
                 )));
                 break;
+            case grupal:
+                if((this->invitados.size() +1) <= habitacion->getCapacidad()){
+                    ReservasGrupales.insert(pair<int,ReservaGrupal*>(this->codigo,new ReservaGrupal(
+                        this->codigo,
+                        this->resGrupal->getTitular(),
+                        this->checkIn,
+                        this->checkOut,
+                        this->estado,
+                        this->habitacion,
+                        this->invitados
+                    )));
+                    break;
+                }
+                else
+                    throw std::invalid_argument( "No se realizó la reserva, la capacidad de la habitación no es suficiente");
             }
-            else
-                throw std::invalid_argument( "No se realizó la reserva, la capacidad de la habitación no es suficiente");
         }
+        else
+            throw std::invalid_argument( "No se realizó la reserva, la habitación se encuentra reservada en ese rango de fechas");
     }
     else
-        throw std::invalid_argument( "No se realizó la reserva, la habitación se encuentra reservada en ese rango de fechas");
+        throw std::invalid_argument("Las fechas de check-in y check-out no son válidas");
 }
     
 
