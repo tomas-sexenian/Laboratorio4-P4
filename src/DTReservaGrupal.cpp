@@ -1,20 +1,16 @@
 #include "./DTReservaGrupal.hh"
 
-DTReservaGrupal::DTReservaGrupal() {
-    codigo = 0;
+DTReservaGrupal::DTReservaGrupal(){
+    codigo = -1;
     nombreHostal = "";
-    checkin = DTFecha();
-    checkout = DTFecha();
+    checkin = checkout = DTFecha();
     estado = abierta;
-    costo = 0;
-    habitacion = 0;
-    list<DTHuesped> lista1;
-    invitados = lista1;
-    list<int> lista2;
-    cantHuespedes = lista2;
+    costo = -1;
+    habitacion = -1;
+    invitados = list<DTHuesped>{};
 }
 
-DTReservaGrupal::DTReservaGrupal(int UnCodigo,string UnNombre, DTFecha UnCheckIn, DTFecha UnCheckOut, EstadoReserva UnEstado, float UnCosto, int UnHabitacion,list<DTHuesped> UnosInvitados,list<int> UnasCantidades) {
+DTReservaGrupal::DTReservaGrupal(int UnCodigo,string UnNombre, DTFecha UnCheckIn, DTFecha UnCheckOut, EstadoReserva UnEstado, float UnCosto, int UnHabitacion,list<DTHuesped> UnosInvitados) {
     codigo = UnCodigo;
     nombreHostal = UnNombre;
     checkin = UnCheckIn;
@@ -23,15 +19,10 @@ DTReservaGrupal::DTReservaGrupal(int UnCodigo,string UnNombre, DTFecha UnCheckIn
     costo = UnCosto;
     habitacion = UnHabitacion;
     invitados = UnosInvitados;
-    cantHuespedes = UnasCantidades;
 }
 
 list<DTHuesped> DTReservaGrupal::getInvitados() {
     return invitados;
-}
-
-list<int> DTReservaGrupal::getCantHuespedes() {
-    return cantHuespedes;
 }
 
 DTReservaGrupal::~DTReservaGrupal(){

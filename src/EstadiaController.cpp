@@ -44,6 +44,19 @@ Estadia* EstadiaController::finalizarEstadia() {
         SistemaController* sist = SistemaController::getInstancia();
         estadiaSeleccionada->setSalida(sist->obtenerFechaActual());
     }
+    ReservaController* controladorReservas = ReservaController::getInstancia();
+    Reserva* r = controladorReservas->seleccionarReserva(codigoReserva);
+    if(dynamic_cast<ReservaIndividual*>(r)){
+         ReservaIndividual* r_individual = dynamic_cast<ReservaIndividual*>(r);
+         r_individual->setEstadoReserva(cerrada);
+    } else if (dynamic_cast<ReservaGrupal*>(r)){
+        ReservaGrupal* r_grupal = dynamic_cast<ReservaGrupal*>(r);
+        for(map<string,Huesped*>::iterator it = r_grupal->getInvitados().begin(); it != r_grupal->getInvitados().end(); it++){
+            if (it->second->getEmail() == this->emailHuesped)
+                r_grupal->getInvitados().erase(emailHuesped);
+
+        }
+    }
     return estadiaSeleccionada;
 }
 

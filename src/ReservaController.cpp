@@ -32,9 +32,16 @@ void ReservaController::seleccionarReservaGrupal(int UnCodigo) {
     reservaGrupalSeleccionada = ReservasGrupales.find(UnCodigo)->second;
 }
 
+Reserva* ReservaController::seleccionarReserva(int UnCodigo) {
+    if (ReservasGrupales.count(UnCodigo) != 0)
+        reservaGrupalSeleccionada = ReservasGrupales.find(UnCodigo)->second;
+    else
+        reservaIndividualSeleccionada = ReservasIndividuales.find(UnCodigo)->second;
+}
 
-DTReserva ReservaController::obtenerReservaIndividual() { //Obtiene un DTReserva de reservaIndividualSeleccionada
-    DTReserva res(
+
+DTReservaIndividual ReservaController::obtenerReservaIndividual() { //Obtiene un DTReserva de reservaIndividualSeleccionada
+    DTReservaIndividual res(
                     reservaIndividualSeleccionada->getCodigo(), 
                     reservaIndividualSeleccionada->getHabitacion()->getHostal()->getNombre(), 
                     reservaIndividualSeleccionada->getCheckIn(),
@@ -47,15 +54,24 @@ DTReserva ReservaController::obtenerReservaIndividual() { //Obtiene un DTReserva
     
 }
 
-DTReserva ReservaController::obtenerReservaGrupal() { //Obtiene un DTReserva de reservaGrupalSeleccionada
-    DTReserva res(
+//(int,string,DTFecha,DTFecha,EstadoReserva,float,int,list<DTHuesped>
+DTReservaGrupal ReservaController::obtenerReservaGrupal() { //Obtiene un DTReserva de reservaGrupalSeleccionada
+    map<std::string, Huesped *> invitados = reservaGrupalSeleccionada->getInvitados();
+    list<DTHuesped> lstInvitados = {};
+    for(map<string,Huesped*>::iterator it = invitados.begin(); it != invitados.end(); it++){
+        DTHuesped invitado_i = DTHuesped(it->second->getNombre(),it->second->getEmail(),it->second->getContrasenia(),it->second->getEsFinger());
+        lstInvitados.push_back(invitado_i);
+    }
+
+    DTReservaGrupal res = DTReservaGrupal(
                     reservaGrupalSeleccionada->getCodigo(), 
                     reservaGrupalSeleccionada->getHabitacion()->getHostal()->getNombre(), 
                     reservaGrupalSeleccionada->getCheckIn(),
                     reservaGrupalSeleccionada->getCheckOut(),
                     reservaGrupalSeleccionada->getEstadoReserva(),
                     reservaGrupalSeleccionada->calcularCosto(),
-                    reservaGrupalSeleccionada->getHabitacion()->getNumero()
+                    reservaGrupalSeleccionada->getHabitacion()->getNumero(),
+                    lstInvitados
                 );
     return res;
     
@@ -67,8 +83,9 @@ list<DTReserva> ReservaController::getListaReservasNoCanceladasHuesped(string Un
     auto itrInd = ReservasIndividuales.begin();
     while(itrInd != ReservasIndividuales.end()){ //Iterar map
         ReservaIndividual *r = itrInd->second;
-        if((r->getEmailTitular() == UnEmail) && (r->getEstadoReserva() != cancelada)){
-            DTReserva dt(
+        
+        if((r->getTitular()->getEmail() == UnEmail) && (r->getEstadoReserva() != cancelada)){
+            DTReservaIndividual dt(
                         r->getCodigo(), 
                         r->getHabitacion()->getHostal()->getNombre(), 
                         r->getCheckIn(),
@@ -85,15 +102,21 @@ list<DTReserva> ReservaController::getListaReservasNoCanceladasHuesped(string Un
     auto itrGrup = ReservasGrupales.begin();
     while(itrGrup != ReservasGrupales.end()){ //Iterar map
         ReservaGrupal *r = itrGrup->second;
-        if((r->getEmailTitular() == UnEmail) && (r->getEstadoReserva() != cancelada)){
-            DTReserva dt(
+        if((r->getTitular()->getEmail() == UnEmail) && (r->getEstadoReserva() != cancelada)){
+            list<DTHuesped> lstInvitados = {};
+            for(map<string,Huesped*>::iterator it = r->getInvitados().begin(); it != r->getInvitados().end(); it++){
+                DTHuesped invitado_i = DTHuesped(it->second->getNombre(),it->second->getEmail(),it->second->getContrasenia(),it->second->getEsFinger());
+                lstInvitados.push_back(invitado_i);
+            }
+            DTReservaGrupal dt(
                         r->getCodigo(), 
                         r->getHabitacion()->getHostal()->getNombre(), 
                         r->getCheckIn(),
                         r->getCheckOut(),
                         r->getEstadoReserva(),
                         r->calcularCosto(),
-                        r->getHabitacion()->getNumero()
+                        r->getHabitacion()->getNumero(),
+                        lstInvitados
                     );
             res.push_back(dt);
         }
@@ -138,9 +161,10 @@ void ReservaController::confirmarReserva() {
     if(habitacion->estaDisponible(this->checkIn, this->checkOut)){
        switch(tipo){
         case individual:
+        
             ReservasIndividuales.insert(pair<int,ReservaIndividual*>(this->codigo,new ReservaIndividual(
                 this->codigo,
-                this->email,
+                this->resIndividual->getTitular(),
                 this->checkIn,
                 this->checkOut,
                 this->estado,
@@ -151,12 +175,11 @@ void ReservaController::confirmarReserva() {
             if((this->invitados.size() +1) <= habitacion->getCapacidad()){
                 ReservasGrupales.insert(pair<int,ReservaGrupal*>(this->codigo,new ReservaGrupal(
                     this->codigo,
-                    this->email,
+                    this->resGrupal->getTitular(),
                     this->checkIn,
                     this->checkOut,
                     this->estado,
                     this->habitacion,
-                    this->cantHuespedes,
                     this->invitados
                 )));
                 break;
@@ -186,7 +209,7 @@ list<DTReserva> ReservaController::obtenerReservasHostal(string UnHostal) {
     while(itrInd != ReservasIndividuales.end()){ //Iterar map
         ReservaIndividual *r = itrInd->second;
         if(r->getHabitacion()->getHostal()->getNombre() == UnHostal){
-            DTReserva dt(
+            DTReservaIndividual dt(
                         r->getCodigo(), 
                         r->getHabitacion()->getHostal()->getNombre(), 
                         r->getCheckIn(),
@@ -204,14 +227,20 @@ list<DTReserva> ReservaController::obtenerReservasHostal(string UnHostal) {
     while(itrGrup != ReservasGrupales.end()){ //Iterar map
         ReservaGrupal *r = itrGrup->second;
         if(r->getHabitacion()->getHostal()->getNombre() == UnHostal){
-            DTReserva dt(
+            list<DTHuesped> lstInvitados = {};
+            for(map<string,Huesped*>::iterator it = r->getInvitados().begin(); it != r->getInvitados().end(); it++){
+                DTHuesped invitado_i = DTHuesped(it->second->getNombre(),it->second->getEmail(),it->second->getContrasenia(),it->second->getEsFinger());
+                lstInvitados.push_back(invitado_i);
+            }
+            DTReservaGrupal dt(
                         r->getCodigo(), 
                         r->getHabitacion()->getHostal()->getNombre(), 
                         r->getCheckIn(),
                         r->getCheckOut(),
                         r->getEstadoReserva(),
                         r->calcularCosto(),
-                        r->getHabitacion()->getNumero()
+                        r->getHabitacion()->getNumero(),
+                        lstInvitados
                     );
             res.push_back(dt);
         }

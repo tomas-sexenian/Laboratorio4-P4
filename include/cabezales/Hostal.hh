@@ -5,6 +5,7 @@
 #include "./Habitacion.hh"
 #include "./Empleado.hh"
 #include "./DTFecha.hh"
+#include "../controladores/EstadiaController.hh"
 
 #include <string>
 #include <map>

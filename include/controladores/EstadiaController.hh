@@ -13,6 +13,7 @@
 #include "../cabezales/DTInfoEstadia.hh"
 #include "../cabezales/DTFecha.hh"
 #include "../controladores/SistemaController.hh"
+#include "../controladores/ReservaController.hh"
 
 
 using namespace std;

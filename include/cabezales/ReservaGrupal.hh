@@ -11,15 +11,13 @@
 using namespace std;
 
 class ReservaGrupal: public Reserva {
-    private: 
-        list<int> cantHuespedes;
+    private:
         map<string, Huesped*> invitados;
     public:
         ReservaGrupal();
-        ReservaGrupal(int, string, DTFecha, DTFecha, EstadoReserva, Habitacion*, list<int>, map<string, Huesped*>);
+        ReservaGrupal(int, Huesped*, DTFecha, DTFecha, EstadoReserva, Habitacion*, map<string, Huesped*>);
         ~ReservaGrupal();
-        list<int> getCantHuespedes();
-        void setCantHuespedes(int);
+        int getCantHuespedes();
         float calcularCosto();
         map<string, Huesped*> getInvitados();
         void setInvitado(Huesped*);

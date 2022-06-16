@@ -429,6 +429,14 @@ void imprimirDetalleEstadia(string nombreHostal,string emailHuesped){
     }
 }
 
+void imprimirTop3Hostales(){
+    std::cout << "TOP 3 HOSTALES DEL SISTEMA SEGUN SUS CALIFICACIONES" << endl;
+    list<DTHostal> hostales = controladorHostales->obtenerTop3Hostales();
+    for (std::list<DTHostal>::iterator it = hostales.begin(); it != hostales.end(); ++it){
+        std::cout << it->getNombre() << " \n";
+    }
+}
+
 int main(){
     cargarDatosPrueba();
     int autoNumberCodigoReserva = 5;
@@ -540,6 +548,9 @@ int main(){
 
         // PARA BAJA DE RESERVA
         int eleccionCancelar_CHuesped;
+
+        // PARA TODOS LOS CASOS DE USO DEL EMPLEADO
+        string eleccionHostalEmpleado_CEmpleado;
         
         switch (opcionUsuario){
             case 1:
@@ -724,6 +735,11 @@ int main(){
                 //FIN CASOS DE USO ADMINISTRADOR
                 break;
             case 2:
+                imprimirTodosNombreHostal();
+                cout << "Indique el nombre del hostal en el cual trabaja\n";
+                cin >> eleccionHostalEmpleado_CEmpleado;
+                cout << "\n";
+
                 //COMIENZO CASOS DE USO EMPLEADO
 
                 bool elegirOpcionEmpleado = true;
@@ -755,6 +771,8 @@ int main(){
                                 cout << "Indique si la estadia corresponde a una reserva individual o grupal: 1 = Individual / 2 = Grupal\n";
                                 cin >> eleccionTipoEstadia_CEmpleado;
                                 cout << "\n";
+                                
+                                imprimirTodasReservas(eleccionHostalEmpleado_CEmpleado);
 
                                 cout << "Indique el codigo de la reserva asociada a la estadia\n";
                                 cin >> eleccionCodigoReserva_CEmpleado;
@@ -983,6 +1001,11 @@ int main(){
                                 break;
                             case 2:
                                 //Consultar top 3 hostales
+                                void imprimirTop3Hostales();
+                                cout << "Si desea ver detalles sobre algun hostal en particular, ingrese su nombre" << endl;
+                                cin >> eleccionHostal_CHuesped;
+                                cout << "\n";
+                                imprimirDetalleHostal(eleccionHostal_CHuesped);
                                 break;
                             case 3:
                                 //Calificar estadia
@@ -1034,6 +1057,7 @@ int main(){
                                 cin >> eleccionHostal_CHuesped;
                                 cout << "\n";
                                 imprimirDetalleHostal(eleccionHostal_CHuesped);
+                                controladorHostales->seleccionarHostal(eleccionHostal_CHuesped);
                                 infoBasicaHostal_CHuesped = controladorHostales->obtenerInfoBasicaHostal();
                                 cout << "Promedio de calificaciones del hostal: " << infoBasicaHostal_CHuesped.getPromedioCalificaciones() << endl;
                                 cantCalificaciones_CHuesped = 0;

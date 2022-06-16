@@ -8,9 +8,9 @@ ReservaIndividual::ReservaIndividual() {
     habitacion = NULL;
 }
 
-ReservaIndividual::ReservaIndividual(int UnCodigo, string UnEmail, DTFecha UnCheckin, DTFecha UnCheckout, EstadoReserva UnEstado, Habitacion* UnaHabitacion){
+ReservaIndividual::ReservaIndividual(int UnCodigo, Huesped* UnTitular, DTFecha UnCheckin, DTFecha UnCheckout, EstadoReserva UnEstado, Habitacion* UnaHabitacion){
     codigo = UnCodigo;
-    emailTitular = UnEmail;
+    titular = UnTitular;
     checkIn = UnCheckin;
     checkOut = UnCheckout;
     estado = UnEstado;

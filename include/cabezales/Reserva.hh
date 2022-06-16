@@ -13,7 +13,7 @@ using namespace std;
 class Reserva{
     protected:
         int codigo;
-        string emailTitular;
+        Huesped* titular;
         DTFecha checkIn;
         DTFecha checkOut;
         EstadoReserva estado;
@@ -22,8 +22,8 @@ class Reserva{
     public:
         int getCodigo();
         void setCodigo(int);
-        string getEmailTitular();
-        void setEmailTitular(string);
+        Huesped* getTitular();
+        void setTitular(Huesped*);
         DTFecha getCheckIn();
         void setCheckIn(DTFecha);
         DTFecha getCheckOut();

@@ -18,8 +18,6 @@ class DTUsuario {
         string getEmail();
         string getContrasenia();
 
-        DTUsuario();
-        DTUsuario(string,string,string);
         ~DTUsuario();
 };
 

@@ -5,6 +5,8 @@
 #include <map>
 
 #include "../cabezales/DTReserva.hh"
+#include "../cabezales/DTReservaIndividual.hh"
+#include "../cabezales/DTReservaGrupal.hh"
 #include "../cabezales/Habitacion.hh"
 #include "../cabezales/DTFecha.hh"
 #include "../TipoReserva.hh"
@@ -16,8 +18,8 @@ using namespace std;
 
 class IControladorReserva {
     public:
-        virtual DTReserva obtenerReservaIndividual() = 0;
-        virtual DTReserva obtenerReservaGrupal() = 0;
+        virtual DTReservaIndividual obtenerReservaIndividual() = 0;
+        virtual DTReservaGrupal obtenerReservaGrupal() = 0;
         virtual void seleccionarReservaIndividual(int) = 0;
         virtual void seleccionarReservaGrupal(int) = 0;
         virtual list<DTReserva> getListaReservasNoCanceladasHuesped(string) = 0;

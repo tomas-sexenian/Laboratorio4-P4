@@ -1,16 +1,5 @@
 #include "../include/cabezales/DTReserva.hh"
 
-DTReserva::DTReserva(int UnCodigo, string UnNombreHostal, DTFecha UnCheckin, DTFecha UnCheckout, EstadoReserva UnEstado, float UnCosto, int UnaHabitacion){
-    codigo = UnCodigo;
-    nombreHostal = UnNombreHostal;
-    checkin = UnCheckin;
-    checkout = UnCheckout;
-    estado = UnEstado;
-    costo = UnCosto;
-    habitacion = UnaHabitacion;
-}
-
-
 int DTReserva::getCodigo() { 
     return codigo;
 }

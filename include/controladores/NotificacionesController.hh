@@ -15,7 +15,7 @@
 
 using namespace std;
 
-class NotificacionesController: IControladorNotificaciones {
+class NotificacionesController: public IControladorNotificaciones {
     private:
         static NotificacionesController * instancia;
         NotificacionesController();

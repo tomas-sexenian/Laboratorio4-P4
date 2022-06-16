@@ -14,11 +14,14 @@
 #include "../cabezales/ReservaIndividual.hh"
 #include "../cabezales/ReservaGrupal.hh"
 #include "../cabezales/DTReserva.hh"
+#include "../cabezales/DTReservaIndividual.hh"
+#include "../cabezales/DTReservaGrupal.hh"
 #include "../cabezales/DTHuesped.hh"
 #include "../cabezales/Estadia.hh"
 #include "../../include/TipoReserva.hh"
 #include "../controladores/HostalController.hh"
 #include "../controladores/UsuarioController.hh"
+#include "../controladores/EstadiaController.hh"
 
 using namespace std;
 
@@ -52,8 +55,8 @@ class ReservaController : public IControladorReserva {
         map<int,ReservaIndividual*> getReservasIndividuales();
         map<int,ReservaGrupal*> getReservasGrupales();
 
-        DTReserva obtenerReservaIndividual();
-        DTReserva obtenerReservaGrupal();
+        DTReservaIndividual obtenerReservaIndividual();
+        DTReservaGrupal obtenerReservaGrupal();
         void seleccionarReservaIndividual(int);
         void seleccionarReservaGrupal(int);
         list<DTReserva> getListaReservasNoCanceladasHuesped(string);
@@ -64,6 +67,7 @@ class ReservaController : public IControladorReserva {
         void agregarHuespedesReservaGrupal(map<string, Huesped*>);
         void confirmarReserva();
         void cancelarReserva(int);
+        Reserva* seleccionarReserva(int);
         list<DTReserva> obtenerReservasHostal(string);
         void liberarReservaIndividualSeleccionada();
         void liberarReservaGrupalSeleccionada();

@@ -6,32 +6,30 @@ ReservaGrupal::~ReservaGrupal(){
 
 ReservaGrupal::ReservaGrupal(){
     codigo = 0;
+    titular = NULL;
     checkIn = DTFecha();
     checkOut = DTFecha();
     estado = abierta;
     habitacion = NULL;
-    std::list<int> lista({});
-    cantHuespedes = lista;
+    invitados =  map<string, Huesped*>{};
 };   
 
-ReservaGrupal::ReservaGrupal(int UnCodigo, string UnEmail, DTFecha UnCheckIn, DTFecha UnCheckOut, EstadoReserva UnEstado, Habitacion *UnaHabitacion, list<int> cantHuespedesPorDia, map<string, Huesped*> UnosInvitados){
+ReservaGrupal::ReservaGrupal(int UnCodigo, Huesped* UnTitular, DTFecha UnCheckIn, DTFecha UnCheckOut, EstadoReserva UnEstado, Habitacion *UnaHabitacion, map<string, Huesped*> UnosInvitados){
     codigo = UnCodigo;
-    emailTitular = UnEmail;
+    titular = UnTitular;
     checkIn = UnCheckIn;
     checkOut = UnCheckOut;
     estado = UnEstado;
     habitacion = UnaHabitacion;
-    cantHuespedes = cantHuespedesPorDia;
     invitados = UnosInvitados;
 };
 
-list<int> ReservaGrupal::getCantHuespedes(){
-    return cantHuespedes;
+int ReservaGrupal::getCantHuespedes(){
+    int res = 0;
+    for(map<string,Huesped*>::iterator it = this->invitados.begin(); it != this->invitados.end(); it++)
+        res++;
+    return res + 1;
 };
-
-void ReservaGrupal::setCantHuespedes(int cantidad){
-    cantHuespedes.push_back(cantidad);
-}
 
 ReservaGrupal::~ReservaGrupal(){
     delete &this->getCheckIn();
@@ -42,7 +40,13 @@ float ReservaGrupal::calcularCosto(){
     DTFecha ingreso = getCheckIn();
     DTFecha egreso = getCheckOut();
     int dif = (egreso.getDia() + (egreso.getMes()*31) + (egreso.getAnio()*31*12)) - (ingreso.getDia() + (ingreso.getMes()*31) + (ingreso.getAnio()*31*12));
-    return 0; //FALTA TERMINAR ESTA FUNCION
+    int cantFingers = 0;
+    for(map<string,Huesped*>::iterator it = this->invitados.begin(); it != this->invitados.end(); it++)
+        if (it->second->getEsFinger())
+            cantFingers++;
+    if ((cantFingers = 1 && this->getTitular()->getEsFinger()) || (cantFingers > 2))
+        return dif * this->calcularCosto() * 0.7;
+    return dif * this->calcularCosto();
 };
 
 map<string, Huesped*> ReservaGrupal::getInvitados(){
