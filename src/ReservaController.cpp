@@ -148,7 +148,7 @@ void ReservaController::confirmarReserva() {
             )));
             break;
         case grupal:
-            if((this->cantHuespedes.size() +1) <= habitacion->getCapacidad()){
+            if((this->invitados.size() +1) <= habitacion->getCapacidad()){
                 ReservasGrupales.insert(pair<int,ReservaGrupal*>(this->codigo,new ReservaGrupal(
                     this->codigo,
                     this->email,
