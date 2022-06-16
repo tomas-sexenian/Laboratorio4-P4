@@ -12,7 +12,6 @@ FechaSistema::FechaSistema() {
 }
 
 FechaSistema::~FechaSistema() {
-    delete &this->fecha;
 }
 
 FechaSistema* FechaSistema::instancia;

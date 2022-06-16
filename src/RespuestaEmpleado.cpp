@@ -31,7 +31,7 @@ RespuestaEmpleado::RespuestaEmpleado() {
 } 
 
 RespuestaEmpleado::~RespuestaEmpleado() {
-	delete &this->fecha;
+	//FALTA IMPLEMENTAR
 } 
 
 Calificacion* RespuestaEmpleado::getCalificacion() {

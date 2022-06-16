@@ -48,11 +48,7 @@ Calificacion:: Calificacion() {
 } 
 
 Calificacion::~Calificacion() {
-	delete &this->fecha;
-	for (auto const& itr : this->respuestas) { //Iterar list
-        RespuestaEmpleado *r = itr;
-        delete &r;
-    }
+	//FALTA IMPLEMENTAR
 } 
 
 Estadia* Calificacion::getEstadia() {

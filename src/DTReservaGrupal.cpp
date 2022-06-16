@@ -26,8 +26,5 @@ list<DTHuesped> DTReservaGrupal::getInvitados() {
 }
 
 DTReservaGrupal::~DTReservaGrupal(){
-	for (auto const& itr : this->invitados) { //Iterar list
-        DTHuesped h = itr;
-        delete &h;
-    }
+    //FALTA IMPLEMENTAR
 }

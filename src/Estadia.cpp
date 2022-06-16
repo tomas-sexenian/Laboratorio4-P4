@@ -75,9 +75,7 @@ Estadia::Estadia(DTFecha UnaEntrada, DTFecha UnaSalida, string UnaPromo,Reserva*
 }
 
 Estadia::~Estadia() {
-	delete &this->entrada;
-	delete &this->salida;
-	delete &this->calificacion;
+	//FALTA IMPLEMENTAR EL DESTRCUTOR
 }
 
 

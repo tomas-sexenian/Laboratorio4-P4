@@ -31,14 +31,7 @@ Huesped::Huesped(string UnNombre, string UnEmail, string UnaContrasenia, bool fi
 }
 
 Huesped::~Huesped(){
-    for (auto const& itr : this->reservas) { //Iterar
-        Reserva *r = itr.second;
-        delete &r;
-    }
-    for (auto const& itr : this->estadias) { //Iterar
-        Estadia *e = itr;
-        delete &e;
-    }
+    //HAY QUE IMPLEMENTAR EL DESTRUCTOR DE HUESPED
 };
 
 map<int, Reserva*> Huesped::getReservas(){
