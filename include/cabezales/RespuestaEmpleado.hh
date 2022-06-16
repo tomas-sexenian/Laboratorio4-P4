@@ -9,8 +9,8 @@ using namespace std;
 
 class RespuestaEmpleado{
 	private:
-        string comentario;
-        DTFecha fecha;
+                string comentario;
+                DTFecha fecha;
 		Calificacion* calificacion;
 	public:
         string getComentario();

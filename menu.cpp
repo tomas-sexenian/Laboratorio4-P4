@@ -890,18 +890,6 @@ int main(){
                             case 1:
                                 //Realizar reserva
 
-                                /*
-
-                                    NOTA (borrar)
-                                    checkeate que checkin < checkout, porque
-                                    si no falla el algoritmo de estaDisponible
-                                    también no tiene sentido de que el dia de
-                                    checkin sea igual a checkout
-                                    Para DTFecha operator< ya está implementado
-
-
-                                */
-
                                 cout << "Ingrese la fecha de check in\n";
 
                                 cout << "Anio:";

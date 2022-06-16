@@ -21,7 +21,10 @@ Hostal::Hostal(string UnNombre ,string UnaDireccion ,string UnTelefono ,map<int,
 } 
 
 Hostal::~Hostal() {
-	//FALTA IMPLEMENTAR
+	for (auto const& itr : this->habitaciones) { //Iterar
+        Habitacion *h = itr.second;
+        delete &h;
+    }
 } 
 
 string Hostal::getNombre() {
