@@ -29,6 +29,4 @@ int DTReserva::getHabitacion() {
 }
 
 DTReserva::~DTReserva(){
-    delete &this->checkin;
-    delete &this->checkout;
 };

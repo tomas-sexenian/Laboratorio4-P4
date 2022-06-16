@@ -25,5 +25,4 @@ DTRespuestaEmpleado::DTRespuestaEmpleado(string UnEmail, string UnComentario, DT
 }
 
 DTRespuestaEmpleado::~DTRespuestaEmpleado() {
-    delete &this->fecha;
 }

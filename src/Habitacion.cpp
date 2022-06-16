@@ -58,10 +58,7 @@ Habitacion::Habitacion(int UnNumero, float UnPrecio, int UnCapacidad,Hostal* UnH
 }  
 
 Habitacion::~Habitacion() {
-    for (auto const& itr : this->reservas) { //Iterar list
-        Reserva *r = itr.second;
-        delete &r;
-    }
+    //HAY QUE IMPLEMENTAR ESTA FUNCION
 }
 
 bool Habitacion::estaDisponible(DTFecha checkIn, DTFecha checkOut) {
