@@ -162,27 +162,33 @@ void ReservaController::confirmarReserva() {
         if(habitacion->estaDisponible(this->checkIn, this->checkOut)){
         switch(tipo){
             case individual:
-                ReservasIndividuales.insert(pair<int,ReservaIndividual*>(this->codigo,new ReservaIndividual(
+                ReservaIndividual *ins;
+                ins = new ReservaIndividual(
                     this->codigo,
-                    this->resIndividual->getTitular(),
+                    this->huesped,
                     this->checkIn,
                     this->checkOut,
                     this->estado,
                     this->habitacion
-                )));
+                );
+                ReservasIndividuales.insert(pair<int,ReservaIndividual*>(this->codigo, ins));
+                this->huesped->getReservas().insert(pair<int,ReservaIndividual*>(this->codigo, ins));
                 cout << "La reserva ha sido registrada con exito" << endl;
                 break;
             case grupal:
                 if((this->invitados.size() +1) <= habitacion->getCapacidad()){
-                    ReservasGrupales.insert(pair<int,ReservaGrupal*>(this->codigo,new ReservaGrupal(
+                    ReservaGrupal *ins;
+                    ins = new ReservaGrupal(
                         this->codigo,
-                        this->resGrupal->getTitular(),
+                        this->huesped,
                         this->checkIn,
                         this->checkOut,
                         this->estado,
                         this->habitacion,
                         this->invitados
-                    )));
+                    );
+                    ReservasGrupales.insert(pair<int,ReservaGrupal*>(this->codigo,ins));
+                    this->huesped->getReservas().insert(pair<int,ReservaGrupal*>(this->codigo,ins));
                     cout << "La reserva ha sido registrada con exito" << endl;
                     break;
                 }
@@ -200,11 +206,17 @@ void ReservaController::confirmarReserva() {
 
 void ReservaController::cancelarReserva(int UnCodigoReserva) {
     if(ReservasIndividuales.find(UnCodigoReserva) != ReservasIndividuales.end()){
-        delete &ReservasIndividuales.find(UnCodigoReserva);
+        delete &ReservasIndividuales.find(UnCodigoReserva)->second;
+        ReservasIndividuales.erase(UnCodigoReserva);
+        ReservasIndividuales.find(UnCodigoReserva)->second->getTitular()->getReservas().erase(UnCodigoReserva);
+
         cout << "La reserva ha sido cancelada con exito" << endl;
     }
     else if(ReservasGrupales.find(UnCodigoReserva) != ReservasGrupales.end()){
-        delete &ReservasGrupales.find(UnCodigoReserva);
+        delete &ReservasGrupales.find(UnCodigoReserva)->second;
+        ReservasGrupales.erase(UnCodigoReserva);
+        ReservasGrupales.find(UnCodigoReserva)->second->getTitular()->getReservas().erase(UnCodigoReserva);
+
         cout << "La reserva ha sido cancelada con exito" << endl;
     }
     else
@@ -257,18 +269,6 @@ list<DTReserva> ReservaController::obtenerReservasHostal(string UnHostal) {
     }
 
     return res;
-}
-
-void ReservaController::liberarReservaIndividualSeleccionada() { //Elimina la reserva individual seleccionada
-    ReservasIndividuales.erase(ReservasIndividuales.find(reservaIndividualSeleccionada->getCodigo()));
-    delete reservaIndividualSeleccionada;
-    reservaIndividualSeleccionada = NULL;
-}
-
-void ReservaController::liberarReservaGrupalSeleccionada() { //Elimina la reserva grupal seleccionada
-    ReservasGrupales.erase(ReservasGrupales.find(reservaIndividualSeleccionada->getCodigo()));
-    delete reservaGrupalSeleccionada;
-    reservaGrupalSeleccionada = NULL;
 }
 
 void ReservaController::ingresarDatosReserva(int UnCodigo, DTFecha UnCheckIn, DTFecha UnCheckOut, EstadoReserva UnEstado) {

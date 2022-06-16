@@ -31,8 +31,6 @@ class IControladorReserva {
         virtual void confirmarReserva() = 0;
         virtual void cancelarReserva(int) = 0;
         virtual list<DTReserva> obtenerReservasHostal(string) = 0;
-        virtual void liberarReservaIndividualSeleccionada() = 0;
-        virtual void liberarReservaGrupalSeleccionada() = 0;
         
         virtual void seleccionarHostal(string) = 0;
         virtual void seleccionarHabitacion(int) = 0;
