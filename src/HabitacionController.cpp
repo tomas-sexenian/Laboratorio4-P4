@@ -58,6 +58,7 @@ void HabitacionController::confirmarAltaHabitacion() {
         NULL,
         map<int, Reserva*> {}
     )));
+    cout << "La habitación ha sido registrada con exito" << endl;
 }
 
 void HabitacionController::cancelarAltaHabitacion() {
