@@ -86,7 +86,7 @@ void UsuarioController::confirmarAltaUsuario() {
                     )));
                 break;
         }
-        cout << "El usuario ha sido registrada con exito" << endl;
+        cout << "El usuario ha sido registrado con exito" << endl;
     }
     else
         throw std::invalid_argument( "Ya existe un usuario registrado con ese correo");
