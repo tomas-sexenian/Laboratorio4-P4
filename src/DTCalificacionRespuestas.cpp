@@ -20,4 +20,8 @@ DTCalificacionRespuestas::DTCalificacionRespuestas(DTCalificacion UnaCalificacio
 }
 
 DTCalificacionRespuestas::~DTCalificacionRespuestas() {
+	for (auto const& itr : this->respuestas) { //Iterar list
+        DTRespuestaEmpleado r = itr;
+        delete &r;
+    }
 }

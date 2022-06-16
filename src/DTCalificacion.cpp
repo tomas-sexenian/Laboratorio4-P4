@@ -25,4 +25,5 @@ DTCalificacion::DTCalificacion(int UnPuntaje, string UnComentario, DTFecha UnaFe
 }
 
 DTCalificacion::~DTCalificacion() {
+    delete &this->fecha;
 }

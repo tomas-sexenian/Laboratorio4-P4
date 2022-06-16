@@ -33,7 +33,14 @@ Empleado::Empleado(string UnNombre, string UnEmail, string UnaContrasenia, TipoC
 }
 
 Empleado::~Empleado(){
-    //HAY QUE IMPLEMENTAR EL DESTRUCTOR DE EMPLEADO
+    /*for (auto const& itr : this->notificaciones) { //Iterar list
+        Notificacion *n = itr;
+        delete &n;
+    }*/
+	for (auto const& itr : this->respuestas) { //Iterar list
+        RespuestaEmpleado *r = itr;
+        delete &r;
+    }
 };
 
 void Empleado::notificar(){
