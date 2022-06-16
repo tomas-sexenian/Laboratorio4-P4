@@ -54,3 +54,18 @@ bool DTFecha::operator<(DTFecha fecha){
     else
        return false; //Las fechas son iguales
 }
+
+bool DTFecha::operator<=(DTFecha fecha){
+    if (anio != fecha.getAnio())
+        return anio < fecha.getAnio();
+    else if (mes != fecha.getMes())
+        return mes < fecha.getMes();
+    else if (dia != fecha.getDia())
+        return dia < fecha.getDia();
+    else if (hora != fecha.getHora())
+        return hora < fecha.getHora();
+    else if (minuto != fecha.getMinuto())
+        return minuto < fecha.getMinuto();
+    else
+       return true; //Las fechas son iguales
+}

@@ -58,31 +58,37 @@ void UsuarioController::ingresarEsFinger(bool finger) {
 }
 
 void UsuarioController::confirmarAltaUsuario() {
-    switch(tipo){
-        case empleado:
-            Empleados.insert(pair<string,Empleado*>(this->email,
-            new Empleado(
-                this->nombre,
-                this->email,
-                this->contrasenia,
-                this->cargo,
-                list<Notificacion*> {},
-                NULL,
-                list<RespuestaEmpleado*> {}
-            )));
-        break;
-        case huesped:
-            Huespedes.insert(pair<string,Huesped*>(this->email,
-            new Huesped(
-                this->nombre,
-                this->email,
-                this->contrasenia,
-                this->esFinger,
-                map<int, Reserva*> {},
-                list<Estadia*> {}
-            )));
-        break;
-        }
+    if((Empleados.find(this->email) == Empleados.end()) && (Huespedes.find(this->email) == Huespedes.end())){
+        switch(tipo){
+            case empleado:
+                    Empleados.insert(pair<string,Empleado*>(this->email,
+                    new Empleado(
+                        this->nombre,
+                        this->email,
+                        this->contrasenia,
+                        this->cargo,
+                        list<Notificacion*> {},
+                        NULL,
+                        list<RespuestaEmpleado*> {}
+                    )));
+                
+
+                break;
+            case huesped:
+                    Huespedes.insert(pair<string,Huesped*>(this->email,
+                    new Huesped(
+                        this->nombre,
+                        this->email,
+                        this->contrasenia,
+                        this->esFinger,
+                        map<int, Reserva*> {},
+                        list<Estadia*> {}
+                    )));
+                break;
+            }
+    }
+    else
+        throw std::invalid_argument( "Ya existe un usuario registrado con ese correo");
 }
 
 void UsuarioController::cancelarAltaUsuario() {

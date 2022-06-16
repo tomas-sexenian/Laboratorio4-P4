@@ -48,10 +48,6 @@ void cargarDatosPrueba() {
     controladorUsuarios->ingresarCargo(recepcion);
     controladorUsuarios->confirmarAltaUsuario();
 
-    controladorUsuarios->ingresarTipo(empleado);
-    controladorUsuarios->ingresarDatosUsuario("Emilia","emilia@mail.com","123");
-    controladorUsuarios->ingresarCargo(recepcion);
-    controladorUsuarios->confirmarAltaUsuario();
 
     // CARGA DE HUESPEDES
 
@@ -193,13 +189,13 @@ void cargarDatosPrueba() {
     // CARGA DE ESTADIAS PARA RESERVAS DE HUESPEDES
 
     controladorReservas->seleccionarTipo(individual);
-    controladorReservas->seleccionarReserva(1);
+    controladorReservas->seleccionarReservaIndividual(1);
     controladorReservas->ingresarHuesped("sofia@mail.com");
     controladorReservas->ingresarEntradaEstadia(1,5,22,18,0);
     controladorReservas->confirmarAltaEstadia();
 
     controladorReservas->seleccionarTipo(grupal);
-    controladorReservas->seleccionarReserva(2);
+    controladorReservas->seleccionarReservaGrupal(2);
     controladorReservas->ingresarHuesped("frodo@mail.com");
     invitados = {"sam@mail.com","merry@mail.com","pippin@mail.com"};
     controladorReservas->ingresarInvitados(invitados);
@@ -207,7 +203,7 @@ void cargarDatosPrueba() {
     controladorReservas->confirmarAltaEstadia();
 
     controladorReservas->seleccionarTipo(individual);
-    controladorReservas->seleccionarReserva(4);
+    controladorReservas->seleccionarReservaIndividual(4);
     controladorReservas->ingresarHuesped("seba@mail.com");
     controladorReservas->ingresarEntradaEstadia(7,6,22,18,0);
     controladorReservas->confirmarAltaEstadia();
@@ -759,19 +755,24 @@ int main(){
                                 cout << "Indique si la estadia corresponde a una reserva individual o grupal: 1 = Individual / 2 = Grupal\n";
                                 cin >> eleccionTipoEstadia_CEmpleado;
                                 cout << "\n";
-                                switch(eleccionTipoEstadia_CEmpleado){
-                                    case 1:
-                                        controladorReservas->seleccionarTipo(individual);
-                                        break;
-                                    case 2:
-                                        controladorReservas->seleccionarTipo(grupal);
-                                        break;
-                                }
 
                                 cout << "Indique el codigo de la reserva asociada a la estadia\n";
                                 cin >> eleccionCodigoReserva_CEmpleado;
                                 cout << "\n";
-                                controladorReservas->seleccionarReserva(eleccionCodigoReserva_CEmpleado);
+                                
+                                switch(eleccionTipoEstadia_CEmpleado){
+                                    case 1:
+                                        controladorReservas->seleccionarTipo(individual);
+                                        controladorReservas->seleccionarReservaIndividual(eleccionCodigoReserva_CEmpleado);
+
+                                        break;
+                                    case 2:
+                                        controladorReservas->seleccionarTipo(grupal);
+                                        controladorReservas->seleccionarReservaGrupal(eleccionCodigoReserva_CEmpleado);
+
+                                        break;
+                                }
+
 
                                 imprimirTodosEmailHuespedes();
                                 cout << "Indique el email del huesped asociado a la estadia\n";
@@ -870,6 +871,18 @@ int main(){
                         switch (elegirOpcionHuesped){
                             case 1:
                                 //Realizar reserva
+
+                                /*
+
+                                    NOTA (borrar)
+                                    checkeate que checkin < checkout, porque
+                                    si no falla el algoritmo de estaDisponible
+                                    también no tiene sentido de que el dia de
+                                    checkin sea igual a checkout
+                                    Para DTFecha operator< ya está implementado
+
+
+                                */
 
                                 cout << "Ingrese la fecha de check in\n";
 
@@ -1070,7 +1083,7 @@ int main(){
                                 cin >> eleccionCancelar_CHuesped;
                                 cout << "\n";
                                 if (eleccionCancelar_CHuesped = 1){
-                                    controladorReservas->seleccionarReserva(eleccionReserva_CHuesped);
+                                    controladorReservas->cancelarReserva(eleccionReserva_CHuesped);
                                     cout << "La reserva ha sido cancelada con exito" << endl;
                                 } else if (eleccionCancelar_CHuesped = 2)
                                     cout << "Se ha cancelado el proceso de baja de reserva" << endl;

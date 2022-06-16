@@ -3,6 +3,7 @@
 
 #include <list>
 #include <map>
+#include <stdexcept>
 
 //VAN A TENER QUE HACER INCLUDE DE TODAS LAS DEPENDENCIAS DEL CONTROLADOR
 //YO SOLO INCLUI LO QUE ALMACENA CADA CONTROLADOR Y LAS NECESARIAS PARA DECLARAR
@@ -62,7 +63,7 @@ class ReservaController : public IControladorReserva {
         void ingresarDatosReserva(int,DTFecha,DTFecha,EstadoReserva);
         void agregarHuespedesReservaGrupal(map<string, Huesped*>);
         void confirmarReserva();
-        void cancelarReserva();
+        void cancelarReserva(int);
         list<DTReserva> obtenerReservasHostal(string);
         void liberarReservaIndividualSeleccionada();
         void liberarReservaGrupalSeleccionada();
@@ -74,7 +75,6 @@ class ReservaController : public IControladorReserva {
         void ingresarInvitados(list<string>);
         void ingresarPromo(string);
 
-        void seleccionarReserva(int);
         void ingresarEntradaEstadia(int,int,int,int,int);
         void confirmarAltaEstadia();
 

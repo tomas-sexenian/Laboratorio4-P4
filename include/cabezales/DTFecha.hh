@@ -13,6 +13,7 @@ class DTFecha {
         int getHora();
         int getMinuto();
         bool operator<(DTFecha);
+        bool operator<=(DTFecha);
 };
 
 #endif

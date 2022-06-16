@@ -27,7 +27,7 @@ class IControladorReserva {
         virtual void ingresarDatosReserva(int,DTFecha,DTFecha,EstadoReserva) = 0;
         virtual void agregarHuespedesReservaGrupal(map<string, Huesped*>) = 0;
         virtual void confirmarReserva() = 0;
-        virtual void cancelarReserva() = 0;
+        virtual void cancelarReserva(int) = 0;
         virtual list<DTReserva> obtenerReservasHostal(string) = 0;
         virtual void liberarReservaIndividualSeleccionada() = 0;
         virtual void liberarReservaGrupalSeleccionada() = 0;
@@ -39,7 +39,6 @@ class IControladorReserva {
         virtual void ingresarInvitados(list<string>) = 0;
         virtual void ingresarPromo(string) = 0;
 
-        virtual void seleccionarReserva(int) = 0;
         virtual void ingresarEntradaEstadia(int,int,int,int,int) = 0;
         virtual void confirmarAltaEstadia() = 0;
 
