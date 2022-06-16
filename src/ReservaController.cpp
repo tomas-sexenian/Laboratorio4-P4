@@ -162,7 +162,6 @@ void ReservaController::confirmarReserva() {
         if(habitacion->estaDisponible(this->checkIn, this->checkOut)){
         switch(tipo){
             case individual:
-            
                 ReservasIndividuales.insert(pair<int,ReservaIndividual*>(this->codigo,new ReservaIndividual(
                     this->codigo,
                     this->resIndividual->getTitular(),
@@ -171,6 +170,7 @@ void ReservaController::confirmarReserva() {
                     this->estado,
                     this->habitacion
                 )));
+                cout << "La reserva ha sido registrada con exito" << endl;
                 break;
             case grupal:
                 if((this->invitados.size() +1) <= habitacion->getCapacidad()){
@@ -183,6 +183,7 @@ void ReservaController::confirmarReserva() {
                         this->habitacion,
                         this->invitados
                     )));
+                    cout << "La reserva ha sido registrada con exito" << endl;
                     break;
                 }
                 else
@@ -198,10 +199,14 @@ void ReservaController::confirmarReserva() {
     
 
 void ReservaController::cancelarReserva(int UnCodigoReserva) {
-    if(ReservasIndividuales.find(UnCodigoReserva) != ReservasIndividuales.end())
+    if(ReservasIndividuales.find(UnCodigoReserva) != ReservasIndividuales.end()){
         delete &ReservasIndividuales.find(UnCodigoReserva);
-    else if(ReservasGrupales.find(UnCodigoReserva) != ReservasGrupales.end())
+        cout << "La reserva ha sido cancelada con exito" << endl;
+    }
+    else if(ReservasGrupales.find(UnCodigoReserva) != ReservasGrupales.end()){
         delete &ReservasGrupales.find(UnCodigoReserva);
+        cout << "La reserva ha sido cancelada con exito" << endl;
+    }
     else
         throw std::invalid_argument( "No se puede cancelar una reserva que no existe");
 }
@@ -323,5 +328,5 @@ void ReservaController::confirmarAltaEstadia(){
             controladorEstadias->getEstadias().insert(pair<int,Estadia*>(codigo, new Estadia(entradaEstadia,DTFecha(),promo,resGrupal,hostal,NULL,(*it))));
         }
     }
-    
+    cout << "La estadía ha sido registrada con exito" << endl;
 }

@@ -74,6 +74,7 @@ void CalificacionController::confirmarAltaCalificacion(int codigoReserva, string
     comentario = "";
     fecha = DTFecha();
     calificacionRecordada = NULL;
+    cout << "La calificación ha sido registrada con exito" << endl;
 }
 
 void CalificacionController::ingresarRespuesta(string UnaRespuesta) {
