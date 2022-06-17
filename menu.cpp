@@ -23,6 +23,7 @@ IControladorNotificaciones* controladorNotificaciones = Fabrica::getNotificacion
 IControladorReserva* controladorReservas = Fabrica::getReservaController();
 IControladorSistema* controladorSistema = Fabrica::getSistemaController();
 IControladorUsuario* controladorUsuarios = Fabrica::getUsuarioController();
+ 
 
 void cargarDatosPrueba() {
 
@@ -247,6 +248,8 @@ void cargarDatosPrueba() {
     controladorCalificaciones->responderCalificacion(2,"frodo@mail.com",DTFecha(15,6,22,23,0));
 }
 
+
+
 void imprimirTodosEmailEmpleados(){
     std::cout << "TODOS LOS EMPLEADOS DEL SISTEMA"<< endl;
     list<DTEmpleado> empleados = controladorUsuarios->obtenerTodosEmpleados();
@@ -456,7 +459,7 @@ void altaDeUsuario(){
     cout << "Ingrese el tipo de usuario: 1 = Empleado / 2 = Huesped\n";
     cin >> eleccionTipoUsuario_CUsuario;
     cout << "\n";
-    if (eleccionTipoUsuario_CUsuario = 1){
+    if (eleccionTipoUsuario_CUsuario == 1){
         controladorUsuarios->ingresarTipo(empleado);
         cout << "Ingrese el cargo del empleado: 1 = Administracion / 2 = Limpieza / 3 = Recepcion / 4 = Infraestructura\n";
         cin >> eleccionCargoUsuario_CUsuario;
@@ -476,10 +479,10 @@ void altaDeUsuario(){
                 break;
         }
     }
-    else if (eleccionTipoUsuario_CUsuario = 2){
+    else if (eleccionTipoUsuario_CUsuario == 2){
         controladorUsuarios->ingresarTipo(huesped);
         cout << "Indique si el huesped es finger o no: 1 = Si / 2 = No\n";
-        cin >> eleccionCargoUsuario_CUsuario;
+        cin >> eleccionEsFingerUsuario_CUsuario;
         cout << "\n";
         switch(eleccionEsFingerUsuario_CUsuario){
         case 1:
@@ -816,7 +819,7 @@ int realizarReserva(int codigoReserva){
                 eleccionEmailInvitadosReserva_CHuesped.push_back(eleccionEmailInvitado_CHuesped);
                 cout << "Si desea detenerse, ingrese 1 de lo contrario ingrese cualquier numero:";
                 cin >> eleccionSeguiraAgregando_CHuesped;
-                if (eleccionSeguiraAgregando_CHuesped = 1)
+                if (eleccionSeguiraAgregando_CHuesped == 1)
                     continuarArgegando_CHuesped = false;
             }
             controladorReservas->ingresarInvitados(eleccionEmailInvitadosReserva_CHuesped);
@@ -869,14 +872,14 @@ void consultaDeUsuario(){
     cout << "Indique si desea consultar por empleados o huespedes: 1 = Huespedes / 2 = Empleados" << endl;
     cin >> eleccionTipoUsuario_CHuesped;
     cout << "\n";
-    if (eleccionTipoUsuario_CHuesped = 1){
+    if (eleccionTipoUsuario_CHuesped == 1){
         imprimirTodosEmailHuespedes();
         cout << "Ingrese el mail del empleado que desea visualizar" << endl;
         getline(cin, eleccionEmailEmpleado_CHuesped);
         cout << "\n";
         imprimirDetalleEmpleado(eleccionEmailEmpleado_CHuesped);
     }
-    else if (eleccionTipoUsuario_CHuesped = 2){
+    else if (eleccionTipoUsuario_CHuesped == 2){
         imprimirTodosEmailEmpleados();
         cout << "Ingrese el mail del huesped que desea visualizar" << endl;
         getline(cin, eleccionEmailEmpleado_CHuesped);
@@ -952,9 +955,9 @@ void bajaDeReserva(){
     cout << "Indique si esta seguro de su cancelacion: 1 = Si / 2 = No" << endl;
     cin >> eleccionCancelar_CHuesped;
     cout << "\n";
-    if (eleccionCancelar_CHuesped = 1){
+    if (eleccionCancelar_CHuesped == 1){
         controladorReservas->cancelarReserva(eleccionReserva_CHuesped);
-    } else if (eleccionCancelar_CHuesped = 2)
+    } else if (eleccionCancelar_CHuesped == 2)
         cout << "Se ha cancelado el proceso de baja de reserva" << endl;
 }
 
@@ -964,7 +967,7 @@ void bajaDeReserva(){
 
 int main(){
     cin.ignore(256,'\n');
-    cargarDatosPrueba();
+    //cargarDatosPrueba();
     int autoNumberCodigoReserva = 5;
     cout << "Ingrese la fecha del sistema\n";
 
@@ -997,6 +1000,9 @@ int main(){
 
     bool elegirOpcionUsuario = true;
     int opcionUsuario;
+bool elegirOpcionHuesped;
+
+bool elegirOpcionEmpleado;
     while (elegirOpcionUsuario) {
          try{
             cout << "Seleccione el tipo de usuario que se encuentra utilizando el sistema\n";
@@ -1015,11 +1021,13 @@ int main(){
         }
         
         string eleccionHostalEmpleado_CEmpleado;
+        bool elegirOpcionAdministrador;
+
 
         switch (opcionUsuario){
             case 1:
                 //COMIENZO CASOS DE USO ADMINISTRADOR
-                bool elegirOpcionAdministrador = true;
+                elegirOpcionAdministrador = true;
                 int opcionAdministrador;
                 while (elegirOpcionAdministrador) {
                     try{
@@ -1072,7 +1080,7 @@ int main(){
 
                 //COMIENZO CASOS DE USO EMPLEADO
 
-                bool elegirOpcionEmpleado = true;
+                elegirOpcionEmpleado = true;
                 int opcionEmpleado;
 
                 while (elegirOpcionEmpleado) {
@@ -1123,9 +1131,11 @@ int main(){
                 }
                 //FIN CASOS DE USO ADMINISTRADOR
                 break;
+
             case 3:
+		
                 //COMIENZO CASOS DE USO HUESPED
-                bool elegirOpcionHuesped = true;
+                elegirOpcionHuesped = true;
                 int opcionHuesped;
                 while (elegirOpcionHuesped) {
                     try{
@@ -1138,15 +1148,15 @@ int main(){
                         cout << "7: Consulta de estadia\n";
                         cout << "8: Baja de reserva\n";
                         cout << "9: Salir\n";
-                        cin >> elegirOpcionHuesped;
+                        cin >> opcionHuesped;
                         cout << "\n";
-                        if ((elegirOpcionHuesped > 10) || (elegirOpcionHuesped < 1))
+                        if ((opcionHuesped > 10) || (opcionHuesped < 1))
                             throw invalid_argument("Opcion invalida, por favor ingrese una opcion valida");
                     }
                     catch(invalid_argument& e){
                         cout << e.what() << endl;
                     }
-                        switch (elegirOpcionHuesped){
+                        switch (opcionHuesped){
                             case 1:
                                 autoNumberCodigoReserva = realizarReserva(autoNumberCodigoReserva);
                                 break;
