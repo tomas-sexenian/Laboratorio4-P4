@@ -74,7 +74,6 @@ class UsuarioController: public IControladorUsuario {
         list<string> obtenerComentariosSinRespuestaHostalEmpleado(string);
         list<DTInfoHostal> obtenerCalificacionYURespuestasEmpleados(int);
         list<DTNotificacion> obtenerNotificacionesDelEmpleado();
-        void seleccionarEmpleado(string);
         void cancelarAsignacionEmpleado();
         void confirmarAsignacionEmpleado();
         void seleccionarCargo(TipoCargo);

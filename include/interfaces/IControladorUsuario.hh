@@ -44,7 +44,6 @@ public:
     virtual list<string> obtenerComentariosSinRespuestaHostalEmpleado(string) = 0;
     virtual list<DTInfoHostal> obtenerCalificacionYURespuestasEmpleados(int) = 0;
     virtual list<DTNotificacion> obtenerNotificacionesDelEmpleado() = 0;
-    virtual void seleccionarEmpleado(string) = 0;
     virtual void cancelarAsignacionEmpleado() = 0;
     virtual void confirmarAsignacionEmpleado() = 0;
     virtual void seleccionarCargo(TipoCargo) = 0;
