@@ -144,6 +144,70 @@ list<DTInfoHostalYCalificacion> HostalController::obtenerTodosHostalesYPromCalif
     return res;
 }
 
+//Obtiene calificaciones del hostal seleccionado
+list<DTCalificacion> HostalController::obtenerCalificaciones() {
+	EstadiaController* controladorEstadia = EstadiaController::getInstancia();
+	list<DTCalificacion> res;
+
+	auto itr = controladorEstadia->getEstadias().begin();
+    while(itr != controladorEstadia->getEstadias().end()){ //Iterar map
+        Estadia *e = itr->second;
+		if(e->getHostal()->getNombre() == hostalSeleccionado->getNombre()){
+			if(e->getCalificacion() != NULL){
+				DTCalificacion dt(
+								e->getCalificacion()->getPuntaje(), 
+								e->getCalificacion()->getComentario(),
+								e->getCalificacion()->getFecha()
+				);
+				res.push_back(dt);
+			}
+		}
+        itr++;
+    }
+	
+	return res;
+}
+
+//Obtiene comentarios del hostal seleccionado
+list<string> HostalController::obtenerComentarios() {
+	EstadiaController* controladorEstadia = EstadiaController::getInstancia();
+	list<string> res;
+
+	auto itr = controladorEstadia->getEstadias().begin();
+    while(itr != controladorEstadia->getEstadias().end()){ //Iterar map
+        Estadia *e = itr->second;
+		if(e->getHostal()->getNombre() == hostalSeleccionado->getNombre()){
+			if(e->getCalificacion() != NULL)
+				res.push_back(e->getCalificacion()->getComentario());
+		}
+        itr++;
+    }
+	
+	return res;
+}
+
+//Obtiene el promedio de calificaciones del hostal seleccionado
+float HostalController::obtenerPromedioCalificaciones() {
+	EstadiaController* controladorEstadia = EstadiaController::getInstancia();
+	float res = 0;
+	int cantCalificaciones = 0;
+
+	auto itr = controladorEstadia->getEstadias().begin();
+    while(itr != controladorEstadia->getEstadias().end()){ //Iterar map
+        Estadia *e = itr->second;
+		if(e->getHostal()->getNombre() == hostalSeleccionado->getNombre()){
+			if(e->getCalificacion() != NULL){
+				res += e->getCalificacion()->getPuntaje();
+				cantCalificaciones++; 
+			}
+		}
+        itr++;
+    }
+	if(cantCalificaciones==0) return 0;
+	else
+		return res/cantCalificaciones;
+}
+
 //LO QUE ANTES ERA ALTAHOSTAL
 
 void HostalController::ingresarDatosHostal(string UnNombre, string UnaDireccion, string UnTelefono) {

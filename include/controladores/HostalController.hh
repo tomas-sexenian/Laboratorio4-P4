@@ -9,6 +9,7 @@
 //LAS OPERCIONES
 
 #include "../interfaces/IControladorHostal.hh"
+#include "../controladores/EstadiaController.hh"
 #include "../cabezales/Hostal.hh"
 #include "../cabezales/DTHostal.hh"
 #include "../cabezales/DTInfoBasicaHostal.hh"
@@ -42,6 +43,9 @@ class HostalController : public IControladorHostal {
         DTInfoHostal verDetalles();
         void confirmarConsulta();
         list<DTInfoHostalYCalificacion> obtenerTodosHostalesYPromCalificacion();
+        list<DTCalificacion> obtenerCalificaciones();
+        list<string> obtenerComentarios();
+        float obtenerPromedioCalificaciones();
         //Lo que antes era AltaHostal
         void ingresarDatosHostal(string,string,string);
         void confirmarAltaHostal();

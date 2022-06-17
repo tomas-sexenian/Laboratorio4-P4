@@ -30,6 +30,9 @@ class IControladorHostal {
         virtual DTInfoHostal verDetalles() = 0;
         virtual void confirmarConsulta() = 0;
         virtual list<DTInfoHostalYCalificacion> obtenerTodosHostalesYPromCalificacion() = 0;
+        virtual list<DTCalificacion> obtenerCalificaciones() = 0;
+        virtual list<string> obtenerComentarios() = 0;
+        virtual float obtenerPromedioCalificaciones() = 0;
         //Lo que antes era AltaHostal
         virtual void ingresarDatosHostal(string,string,string) = 0;
         virtual void confirmarAltaHostal() = 0;
