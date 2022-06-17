@@ -1,4 +1,4 @@
-#include "./DTReservaGrupal.hh"
+#include "../include/cabezales/DTReservaGrupal.hh"
 
 DTReservaGrupal::DTReservaGrupal(){
     codigo = -1;
