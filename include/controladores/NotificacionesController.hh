@@ -10,6 +10,9 @@
 
 
 #include "../interfaces/IControladorNotificaciones.hh"
+#include "../controladores/UsuarioController.hh"
+#include "../cabezales/Notificacion.hh"
+#include "../cabezales/Empleado.hh"
 #include "../cabezales/notificacion.hh"
 #include "../cabezales/DTNotificacion.hh"
 
@@ -19,7 +22,8 @@ class NotificacionesController: public IControladorNotificaciones {
     private:
         static NotificacionesController * instancia;
         NotificacionesController();
-        list<Notificacion *> Notificaciones;
+        list<Notificacion*> Notificaciones;
+        list<string> Suscripciones;
         
         string autor;
         int puntaje;
