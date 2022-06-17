@@ -1,4 +1,4 @@
-#include "ReservaIndividual.hh"
+#include "../cabezales/ReservaIndividual.hh"
 
 ReservaIndividual::ReservaIndividual() {
     codigo = 0;

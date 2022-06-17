@@ -6,6 +6,7 @@
 #include "./Estadia.hh"
 #include <string>
 #include <map>
+#include <list>
 
 //Forward declarations
 class Reserva;

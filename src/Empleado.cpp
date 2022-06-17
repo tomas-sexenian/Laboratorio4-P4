@@ -40,9 +40,6 @@ void Empleado::notificar(){
     //HAY QUE IMPLEMENTAR 
 };
 
-bool Empleado::EsEmpleado(){
-    //HAY QUE IMPLEMENTAR 
-};
 
 list<Notificacion*> Empleado::getNotificaciones(){
     return notificaciones;

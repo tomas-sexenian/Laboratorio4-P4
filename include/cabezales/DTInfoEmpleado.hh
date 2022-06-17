@@ -1,5 +1,5 @@
-#ifndef INFOEMPLEADO
-#define INFOEMPLEADO
+#ifndef DTINFOEMPLEADO
+#define DTINFOEMPLEADO
 
 #include <string>
 

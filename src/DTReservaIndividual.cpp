@@ -1,4 +1,4 @@
-#include "./DTReservaIndividual.hh"
+#include "../cabezales/DTReservaIndividual.hh"
 
 DTReservaIndividual::DTReservaIndividual() {
     codigo = 0;

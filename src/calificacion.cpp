@@ -26,10 +26,6 @@ void Calificacion:: setFecha(DTFecha UnaFecha) {
 	fecha = UnaFecha;
 } 
 
-void Calificacion:: setFecha(DTFecha UnaFecha) {
-	fecha = UnaFecha;
-} 
-
 Calificacion:: Calificacion(int UnPuntaje, string UnComentario, DTFecha UnaFecha, Estadia* UnaEstadia,list<RespuestaEmpleado*> UnasRespuestas) {
 	puntaje = UnPuntaje;
 	comentario = UnComentario;

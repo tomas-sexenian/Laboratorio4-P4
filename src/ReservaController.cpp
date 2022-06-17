@@ -33,10 +33,12 @@ void ReservaController::seleccionarReservaGrupal(int UnCodigo) {
 }
 
 Reserva* ReservaController::seleccionarReserva(int UnCodigo) {
+    Reserva *res = NULL;
     if (ReservasGrupales.count(UnCodigo) != 0)
-        reservaGrupalSeleccionada = ReservasGrupales.find(UnCodigo)->second;
-    else
-        reservaIndividualSeleccionada = ReservasIndividuales.find(UnCodigo)->second;
+        res = ReservasGrupales.find(UnCodigo)->second;
+    else if(ReservasIndividuales.count(UnCodigo) != 0)
+        res = ReservasIndividuales.find(UnCodigo)->second;
+    return  res;
 }
 
 
@@ -176,7 +178,8 @@ void ReservaController::confirmarReserva() {
                 cout << "La reserva ha sido registrada con exito" << endl;
                 break;
             case grupal:
-                if((this->invitados.size() +1) <= habitacion->getCapacidad()){
+                int cantInvi = this->invitados.size();
+                if((cantInvi+1) <= habitacion->getCapacidad()){
                     ReservaGrupal *ins;
                     ins = new ReservaGrupal(
                         this->codigo,

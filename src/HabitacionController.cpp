@@ -67,12 +67,6 @@ void HabitacionController::cancelarAltaHabitacion() {
     capacidad = 0;
 }
 
-void HabitacionController::ingresarDatosHabitacion(int UnNumero, float UnPrecio, int UnaCapacidad) {
-    numero = UnNumero;
-    precio = UnPrecio;
-    capacidad = UnaCapacidad;
-}
-
 void HabitacionController::ingresarHostalHabitacion(string nombreHostal){
     HostalController* controladorHostales = HostalController::getInstancia();
     hostal = controladorHostales->getHostales().find(nombreHostal)->second;
