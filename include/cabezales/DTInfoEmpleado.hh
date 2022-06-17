@@ -14,7 +14,7 @@ class DTInfoEmpleado{
         TipoCargo cargo;
     public:
         DTInfoEmpleado(string,TipoCargo);
-        DTInfoEmpleado(Empleado);
+        DTInfoEmpleado(Empleado*);
         DTInfoEmpleado();
         ~DTInfoEmpleado();
         string getHostal();
