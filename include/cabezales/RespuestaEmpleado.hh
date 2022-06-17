@@ -5,6 +5,9 @@
 #include "./calificacion.hh"
 #include <string>
 
+//Forward declarations
+class Calificacion;
+
 using namespace std;
 
 class RespuestaEmpleado{

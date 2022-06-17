@@ -7,6 +7,10 @@
 #include <string>
 #include <list>
 
+//Forward declarations
+class Estadia;
+class RespuestaEmpleado;
+
 using namespace std;
 
 class Calificacion{

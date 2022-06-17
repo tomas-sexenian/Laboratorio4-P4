@@ -6,6 +6,7 @@
 /*  Nota: Revisar que estén todos los includes, y que ninguno de los presentes sobren. */
 
 #include "../cabezales/DTInfoEstadia.hh"
+#include "../cabezales/Estadia.hh"
 #include "../cabezales/DTEstadia.hh"
 
 using namespace std;

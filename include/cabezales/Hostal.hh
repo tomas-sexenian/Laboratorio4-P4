@@ -12,6 +12,10 @@
 
 #include "Fabrica.hh"
 
+//Forward declarations
+class Habitacion;
+class Empleado;
+
 using namespace std;
 
 
