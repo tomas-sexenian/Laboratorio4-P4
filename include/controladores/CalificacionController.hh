@@ -11,7 +11,7 @@
 
 
 #include "../interfaces/IControladorCalificacion.hh"
-#include "../cabezales/Calificacion.hh"
+#include "../cabezales/calificacion.hh"
 #include "../cabezales/DTCalificacion.hh"
 #include "../cabezales/RespuestaEmpleado.hh"
 #include "../controladores/SistemaController.hh"
