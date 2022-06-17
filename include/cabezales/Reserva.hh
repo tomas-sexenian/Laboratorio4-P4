@@ -8,6 +8,10 @@
 
 #include <string>
 
+//Forward declarations
+class Huesped;
+class Habitacion;
+
 using namespace std;
 
 class Reserva{

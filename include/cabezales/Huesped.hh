@@ -7,6 +7,10 @@
 #include <string>
 #include <map>
 
+//Forward declarations
+class Reserva;
+class Estadia;
+
 using namespace std;
 
 class Huesped: public Usuario {

@@ -3,12 +3,17 @@
 
 #include "./DTFecha.hh"
 #include "./Hostal.hh"
+#include "./Huesped.hh"
 #include "./Reserva.hh"
 #include "./calificacion.hh"
 
 #include <string>
 #include <list>
 #include <map>
+
+//Forward declarations
+class Calificacion;
+class Huesped;
 
 using namespace std;
 

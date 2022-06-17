@@ -9,6 +9,9 @@
 #include <string>
 #include <list>
 
+//Forward declarations
+class Hostal;
+
 using namespace std;
 
 class Empleado: public Usuario {

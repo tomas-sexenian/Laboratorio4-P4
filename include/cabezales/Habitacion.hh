@@ -8,6 +8,10 @@
 #include <string>
 #include <map>
 
+//Forward declarations
+class Hostal;
+class Reserva;
+
 class Habitacion{
 	private:
 		int numero;

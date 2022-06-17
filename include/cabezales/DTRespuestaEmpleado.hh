@@ -1,7 +1,6 @@
 #ifndef DTRESPUESTAEMPLEADO
 #define DTRESPUESTAEMPLEADO
 
-#include "./DTRespuestaEmpleado.hh"
 #include "./DTFecha.hh"
 
 #include <string>
