@@ -438,6 +438,7 @@ void imprimirTop3Hostales(){
 }
 
 int main(){
+    cin.ignore(256,'\n');
     cargarDatosPrueba();
     int autoNumberCodigoReserva = 5;
     cout << "Ingrese la fecha del sistema\n";
@@ -480,7 +481,6 @@ int main(){
             cout << "4: Quiero salir del sistema\n";
             cout << "Ingrese una opcion: ";
             cin >> opcionUsuario;
-            cin.ignore(256,'\n');
             cout << "\n";
             if ((opcionUsuario > 4) || (opcionUsuario < 1))
                 throw invalid_argument("Opcion invalida, por favor ingrese una opcion valida");
@@ -568,7 +568,6 @@ int main(){
                         cout << "6: Salir\n";
                         cout << "Ingrese una opcion: ";
                         cin >> opcionAdministrador;
-                        cin.ignore(256,'\n');
                         cout << "\n";
                         if ((opcionAdministrador > 6) || (opcionAdministrador < 1))
                             throw invalid_argument("Opcion invalida, por favor ingrese una opcion valida");
@@ -619,13 +618,13 @@ int main(){
                                 }
         
                                 cout << "Ingrese el nombre del usuario\n";
-                                cin >> eleccionNombreUsuario_CUsuario;
+                                getline(cin, eleccionNombreUsuario_CUsuario);
                                 cout << "\n";    
                                 cout << "Ingrese el mail del usuario\n";
-                                cin >> eleccionMailUsuario_CUsuario;
+                                getline(cin, eleccionMailUsuario_CUsuario);
                                 cout << "\n";  
                                 cout << "Ingrese la contrasenia del usuario\n";
-                                cin >> eleccionContraseniaUsuario_CUsuario;
+                                getline(cin, eleccionContraseniaUsuario_CUsuario);
                                 cout << "\n";  
                                 controladorUsuarios->ingresarDatosUsuario(eleccionNombreUsuario_CUsuario,eleccionMailUsuario_CUsuario,eleccionContraseniaUsuario_CUsuario);
 
@@ -633,15 +632,15 @@ int main(){
                                 break;
                             case 2:
                                 cout << "Ingrese el nombre del hostal\n";
-                                cin >> eleccionNombreHostal_CUsuario;
+                                getline(cin, eleccionNombreHostal_CUsuario);
                                 cout << "\n";   
 
                                 cout << "Ingrese la direccion del hostal\n";
-                                cin >> eleccionDireccionHostal_CUsuario;
+                                getline(cin, eleccionDireccionHostal_CUsuario);
                                 cout << "\n"; 
 
                                 cout << "Ingrese el telefono del hostal\n";
-                                cin >> eleccionTelefonoHostal_CUsuario;
+                                getline(cin, eleccionTelefonoHostal_CUsuario);
                                 cout << "\n";   
 
                                 controladorHostales->ingresarDatosHostal(eleccionNombreHostal_CUsuario,eleccionDireccionHostal_CUsuario,eleccionTelefonoHostal_CUsuario);
@@ -663,7 +662,7 @@ int main(){
                                 controladorHabitaciones->ingresarDatosHabitacion(eleccionNumeroHabitacion_CUsuario,eleccionCostoHabitacion_CUsuario,eleccionCapacidadHabitacion_CUsuario);
 
                                 cout << "Ingrese el nombre del hostal al cual pertenece la habitacion\n";
-                                cin >> eleccionNombreHostal_CUsuario;
+                                getline(cin, eleccionNombreHostal_CUsuario);
                                 cout << "\n";
 
                                 controladorHabitaciones->ingresarHostalHabitacion(eleccionNombreHostal_CUsuario);
@@ -672,7 +671,7 @@ int main(){
                             case 4:
                                 imprimirTodosEmailHuespedes();
                                 cout << "Ingrese el email del empleado\n";
-                                cin >> eleccionEmailEmpleado_CUsuario;
+                                getline(cin, eleccionEmailEmpleado_CUsuario);
                                 cout << "\n";
                                 controladorUsuarios->seleccionarEmpleado(eleccionEmailEmpleado_CUsuario);
 
@@ -695,7 +694,7 @@ int main(){
                                     }
                                 imprimirTodosNombreHostal();
                                 cout << "Ingrese el nombre del hostal en el cual trabajara el empleado\n";
-                                cin >> eleccionNombreHostal_CUsuario;
+                                getline(cin, eleccionNombreHostal_CUsuario);
                                 cout << "\n";
                                 controladorUsuarios->ingresarHostal(eleccionNombreHostal_CUsuario);
 
@@ -737,7 +736,7 @@ int main(){
             case 2:
                 imprimirTodosNombreHostal();
                 cout << "Indique el nombre del hostal en el cual trabaja\n";
-                cin >> eleccionHostalEmpleado_CEmpleado;
+                getline(cin, eleccionHostalEmpleado_CEmpleado);
                 cout << "\n";
 
                 //COMIENZO CASOS DE USO EMPLEADO
@@ -757,7 +756,6 @@ int main(){
                         cout << "7: Salir\n";
                         cout << "Ingrese una opcion: ";
                         cin >> opcionEmpleado;
-                        cin.ignore(256,'\n');
                         cout << "\n";
                         if ((opcionEmpleado > 7) || (opcionEmpleado < 1))
                             throw invalid_argument("Opcion invalida, por favor ingrese una opcion valida");
@@ -794,7 +792,7 @@ int main(){
 
                                 imprimirTodosEmailHuespedes();
                                 cout << "Indique el email del huesped asociado a la estadia\n";
-                                cin >> eleccionEmailHuespedEstadia_CEmpleado;
+                                getline(cin, eleccionEmailHuespedEstadia_CEmpleado);
                                 cout << "\n";
                                 controladorReservas->ingresarHuesped(eleccionEmailHuespedEstadia_CEmpleado);
 
@@ -805,7 +803,7 @@ int main(){
                             case 2:
                                 //Finalizar estadia
                                 cout << "Indique el comentario asociado a la estadia\n";
-                                cin >> eleccionComentarioEstadia_CEmpleado;
+                                getline(cin, eleccionComentarioEstadia_CEmpleado);
                                 cout << "\n";
                                 controladorCalificaciones->ingresarComentario(eleccionComentarioEstadia_CEmpleado);
 
@@ -822,7 +820,7 @@ int main(){
 
                                 imprimirTodosEmailHuespedes();
                                 cout << "Indique el email del huesped asociado a la estadia\n";
-                                cin >> eleccionEmailHuespedEstadia_CEmpleado;
+                                getline(cin, eleccionEmailHuespedEstadia_CEmpleado);
                                 cout << "\n";
                                 controladorReservas->ingresarHuesped(eleccionEmailHuespedEstadia_CEmpleado);
                                 
@@ -831,7 +829,7 @@ int main(){
                             case 3:
                                 //Comentar calificacion
                                 cout << "Indique el comentario asociado a la calificacion\n";
-                                cin >> eleccionComentarioCalificacion_CEmpleado;
+                                getline(cin, eleccionComentarioCalificacion_CEmpleado);
                                 cout << "\n";
                                 controladorCalificaciones->ingresarRespuesta(eleccionComentarioCalificacion_CEmpleado);
                                 
@@ -840,7 +838,7 @@ int main(){
                                 cout << "\n";
 
                                 cout << "Indique el email del huesped asociado a la estadia\n";
-                                cin >> eleccionEmailHuespedEstadia_CEmpleado;
+                                getline(cin, eleccionEmailHuespedEstadia_CEmpleado);
                                 cout << "\n";
                                 controladorReservas->ingresarHuesped(eleccionEmailHuespedEstadia_CEmpleado);
 
@@ -878,7 +876,6 @@ int main(){
                         cout << "8: Baja de reserva\n";
                         cout << "9: Salir\n";
                         cin >> elegirOpcionHuesped;
-                        cin.ignore(256,'\n');
                         cout << "\n";
                         if ((elegirOpcionHuesped > 10) || (elegirOpcionHuesped < 1))
                             throw invalid_argument("Opcion invalida, por favor ingrese una opcion valida");
@@ -943,7 +940,7 @@ int main(){
 
                                 imprimirTodosNombreHostal();
                                 cout << "Indique el nombre del hostal donde realizara la reserva\n";
-                                cin >> eleccionHostalReserva_CHuesped;
+                                getline(cin, eleccionHostalReserva_CHuesped);
                                 cout << "\n";
                                 controladorReservas->seleccionarHostal(eleccionHostalReserva_CHuesped);
                                 
@@ -960,14 +957,14 @@ int main(){
                                     case 1:
                                         controladorReservas->seleccionarTipo(individual);
                                         cout << "Por favor indique su email\n";
-                                        cin >> eleccionEmailHuespedEstadia_CEmpleado;
+                                        getline(cin, eleccionEmailHuespedEstadia_CEmpleado);
                                         cout << "\n";
                                         controladorReservas->ingresarHuesped(eleccionEmailHuespedEstadia_CEmpleado);
                                         break;
                                     case 2:
                                         controladorReservas->seleccionarTipo(grupal);
                                         cout << "Por favor indique su email\n";
-                                        cin >> eleccionEmailHuespedEstadia_CEmpleado;
+                                        getline(cin, eleccionEmailHuespedEstadia_CEmpleado);
                                         cout << "\n";
                                         controladorReservas->ingresarHuesped(eleccionEmailHuespedEstadia_CEmpleado);
                                         cout << "Por favor indique sus huespedes invitados\n";
@@ -975,7 +972,7 @@ int main(){
                                         continuarArgegando_CHuesped = true;
                                         while (continuarArgegando_CHuesped){
                                             cout << "Por favor indique el email del huesped:";
-                                            cin >> eleccionEmailInvitado_CHuesped;
+                                            getline(cin, eleccionEmailInvitado_CHuesped);
                                             eleccionEmailInvitadosReserva_CHuesped.push_back(eleccionEmailInvitado_CHuesped);
                                             cout << "Si desea detenerse, ingrese 1 de lo contrario ingrese cualquier numero:";
                                             cin >> eleccionSeguiraAgregando_CHuesped;
@@ -991,14 +988,14 @@ int main(){
                                 //Consultar top 3 hostales
                                 void imprimirTop3Hostales();
                                 cout << "Si desea ver detalles sobre algun hostal en particular, ingrese su nombre" << endl;
-                                cin >> eleccionHostal_CHuesped;
+                                getline(cin, eleccionHostal_CHuesped);
                                 cout << "\n";
                                 imprimirDetalleHostal(eleccionHostal_CHuesped);
                                 break;
                             case 3:
                                 //Calificar estadia
                                 cout << "Por ingrese el comentario\n";
-                                cin >> eleccionComentarioEstadia_CHuesped;
+                                getline(cin, eleccionComentarioEstadia_CHuesped);
                                 cout << "\n";
                                 controladorCalificaciones->ingresarComentario(eleccionComentarioEstadia_CHuesped);
 
@@ -1013,7 +1010,7 @@ int main(){
                                 cin >> eleccionCodigoReserva_CEmpleado;
                                 cout << "\n";
                                 cout << "Por favor indique su email\n";
-                                cin >> eleccionEmailHuespedEstadia_CEmpleado;
+                                getline(cin, eleccionEmailHuespedEstadia_CEmpleado);
                                 cout << "\n";
                                 controladorCalificaciones->confirmarAltaCalificacion(eleccionCodigoReserva_CEmpleado,eleccionEmailHuespedEstadia_CEmpleado);
 
@@ -1026,14 +1023,14 @@ int main(){
                                 if (eleccionTipoUsuario_CHuesped = 1){
                                     imprimirTodosEmailHuespedes();
                                     cout << "Ingrese el mail del empleado que desea visualizar" << endl;
-                                    cin >> eleccionEmailEmpleado_CHuesped;
+                                    getline(cin, eleccionEmailEmpleado_CHuesped);
                                     cout << "\n";
                                     imprimirDetalleEmpleado(eleccionEmailEmpleado_CHuesped);
                                 }
                                 else if (eleccionTipoUsuario_CHuesped = 2){
                                     imprimirTodosEmailEmpleados();
                                     cout << "Ingrese el mail del huesped que desea visualizar" << endl;
-                                    cin >> eleccionEmailEmpleado_CHuesped;
+                                    getline(cin, eleccionEmailEmpleado_CHuesped);
                                     cout << "\n";
                                     imprimirDetalleHuesped(eleccionEmailEmpleado_CHuesped);
                                 }
@@ -1042,7 +1039,7 @@ int main(){
                                 //Consulta de hostal
                                 imprimirTodosNombreHostal();
                                 cout << "Ingrese el nombre del hostal que desea consultar" << endl;
-                                cin >> eleccionHostal_CHuesped;
+                                getline(cin, eleccionHostal_CHuesped);
                                 cout << "\n";
                                 imprimirDetalleHostal(eleccionHostal_CHuesped);
                                 controladorHostales->seleccionarHostal(eleccionHostal_CHuesped);
@@ -1061,7 +1058,7 @@ int main(){
                                 //Consulta de reserva
                                 imprimirTodosNombreHostal();
                                 cout << "Ingrese el nombre del hostal cuya reserva desea consultar" << endl;
-                                cin >> eleccionHostal_CHuesped;
+                                getline(cin, eleccionHostal_CHuesped);
                                 cout << "\n";
                                 imprimirTodasReservas(eleccionHostal_CHuesped);
                                 cout << "Ingrese el numero de la reserva que desea consultar" << endl;
@@ -1073,11 +1070,11 @@ int main(){
                                 //Consulta de estadia
                                 imprimirTodosNombreHostal();
                                 cout << "Ingrese el nombre del hostal en el que se realizo la estadia" << endl;
-                                cin >> eleccionHostal_CHuesped;
+                                getline(cin, eleccionHostal_CHuesped);
                                 cout << "\n";
                                 imprimirTodasEstadias(eleccionHostal_CHuesped);
                                 cout << "Ingrese el email del huesped cuya estadia desea consultar" << endl;
-                                cin >> eleccionHuesped_CHuesped;
+                                getline(cin, eleccionHuesped_CHuesped);
                                 cout << "\n";
                                 imprimirDetalleEstadia(eleccionHostal_CHuesped,eleccionHuesped_CHuesped);
                                 break;
@@ -1085,7 +1082,7 @@ int main(){
                                 //Baja de reserva
                                 imprimirTodosNombreHostal();
                                 cout << "Ingrese el nombre del hostal cuya reserva desea cancelar" << endl;
-                                cin >> eleccionHostal_CHuesped;
+                                getline(cin, eleccionHostal_CHuesped);
                                 cout << "\n";
                                 imprimirTodasReservas(eleccionHostal_CHuesped);
                                 cout << "Ingrese el numero de la reserva que desea cancelar" << endl;
