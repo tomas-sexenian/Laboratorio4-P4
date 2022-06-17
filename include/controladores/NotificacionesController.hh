@@ -10,7 +10,7 @@
 
 
 #include "../interfaces/IControladorNotificaciones.hh"
-#include "../cabezales/Notificacion.hh"
+#include "../cabezales/notificacion.hh"
 #include "../cabezales/DTNotificacion.hh"
 
 using namespace std;
