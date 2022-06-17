@@ -13,6 +13,7 @@
 #include "../controladores/UsuarioController.hh"
 #include "../cabezales/Notificacion.hh"
 #include "../cabezales/Empleado.hh"
+#include "../cabezales/notificacion.hh"
 #include "../cabezales/DTNotificacion.hh"
 
 using namespace std;

@@ -1,4 +1,4 @@
-#include "./ReservaGrupal.hh"
+#include "../include/cabezales/ReservaGrupal.hh"
 
 ReservaGrupal::~ReservaGrupal(){
     //FALTA IMPLEMENTAR
