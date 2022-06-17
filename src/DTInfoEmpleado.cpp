@@ -13,7 +13,7 @@ DTInfoEmpleado::DTInfoEmpleado(string UnHostal, TipoCargo UnCargo) {
     cargo = UnCargo;
 }
 
-DTInfoEmpleado::DTInfoEmpleado(Empleado* e){
+DTInfoEmpleado::DTInfoEmpleado(Empleado e){
     Hostal* h = e->getHostal();
 
     hostal = h->getNombre();

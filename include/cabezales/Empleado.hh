@@ -31,7 +31,6 @@ class Empleado: public Usuario {
         void setRespuesta(RespuestaEmpleado*);
 
         void notificar();
-        bool EsEmpleado();
 
         Empleado();
         Empleado(string,string,string,TipoCargo,list<Notificacion*>,Hostal*,list<RespuestaEmpleado*>);

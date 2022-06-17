@@ -37,6 +37,9 @@ DTInfoEstadia EstadiaController::obtenerEstadia() {
         DTInfoEstadia info = DTInfoEstadia(emailHuesped,estadiaSeleccionada->getHostal()->getNombre(),estadiaSeleccionada->getEntrada(),estadiaSeleccionada->getSalida(),estadiaSeleccionada->getReserva()->getHabitacion()->getNumero(),estadiaSeleccionada->getPromo(),codigoReserva);
         return info;
     }
+    else{
+        return DTInfoEstadia();
+    }
 }
 
 Estadia* EstadiaController::finalizarEstadia() {

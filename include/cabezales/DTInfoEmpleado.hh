@@ -1,5 +1,5 @@
-#ifndef INFOEMPLEADO
-#define INFOEMPLEADO
+#ifndef DTINFOEMPLEADO
+#define DTINFOEMPLEADO
 
 #include <string>
 
@@ -14,7 +14,7 @@ class DTInfoEmpleado{
         TipoCargo cargo;
     public:
         DTInfoEmpleado(string,TipoCargo);
-        DTInfoEmpleado(Empleado*);
+        DTInfoEmpleado(Empleado);
         DTInfoEmpleado();
         ~DTInfoEmpleado();
         string getHostal();

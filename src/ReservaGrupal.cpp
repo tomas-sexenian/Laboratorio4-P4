@@ -1,8 +1,9 @@
 #include "../include/cabezales/ReservaGrupal.hh"
 
 ReservaGrupal::~ReservaGrupal(){
-    //FALTA IMPLEMENTAR
-}; 
+    delete &this->getCheckIn();
+    delete &this->getCheckOut();
+};
 
 ReservaGrupal::ReservaGrupal(){
     codigo = 0;
@@ -29,11 +30,6 @@ int ReservaGrupal::getCantHuespedes(){
     for(map<string,Huesped*>::iterator it = this->invitados.begin(); it != this->invitados.end(); it++)
         res++;
     return res + 1;
-};
-
-ReservaGrupal::~ReservaGrupal(){
-    delete &this->getCheckIn();
-    delete &this->getCheckOut();
 };
 
 float ReservaGrupal::calcularCosto(){
