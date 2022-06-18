@@ -25,3 +25,8 @@ int Notificacion::getPuntaje() {
 void Notificacion::setPuntaje(int UnPuntaje) {
 	puntaje = UnPuntaje;
 }
+Notificacion::Notificacion(){};
+    
+Notificacion::Notificacion(string,int,string){};
+      
+Notificacion::~Notificacion(){}; 

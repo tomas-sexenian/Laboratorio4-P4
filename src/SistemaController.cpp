@@ -1,19 +1,21 @@
 #include "../include/controladores/SistemaController.hh"
 
 SistemaController::SistemaController() {
-    DTFecha date;
-    this->fechaActual->setFecha(date);
+    DTFecha *date= new DTFecha();
+    FechaSistema* fecha = FechaSistema::getInstancia();
+    fecha->setFecha(*date);
+
 }
 
 SistemaController::SistemaController(DTFecha UnaFecha) {
-    this->fechaActual->setFecha(UnaFecha);
+    FechaSistema* fecha = FechaSistema::getInstancia();
+    fecha->setFecha(UnaFecha);
 }
 
 SistemaController::~SistemaController() {
-    delete this->fechaActual;
 }
 
-SistemaController* SistemaController::instancia;
+SistemaController* SistemaController::instancia=NULL;
 SistemaController * SistemaController::getInstancia(){
     if (SistemaController::instancia == NULL)
         SistemaController::instancia = new SistemaController();
@@ -23,9 +25,11 @@ SistemaController * SistemaController::getInstancia(){
 // DE ACA HACIA ABAJO IMPLEMENTAN LAS OPERACIONES
 
 DTFecha SistemaController::obtenerFechaActual(){
-    return this->fechaActual->getFecha();
+    FechaSistema* fecha = FechaSistema::getInstancia();
+    return fecha->getFecha();
 }
 
 void SistemaController::modificarFecha(DTFecha UnaFecha) {
-    this->fechaActual->setFecha(UnaFecha);
+    FechaSistema* fecha = FechaSistema::getInstancia();
+    fecha->setFecha(UnaFecha);
 }

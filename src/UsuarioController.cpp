@@ -1,12 +1,15 @@
 #include "../include/controladores/UsuarioController.hh"
 
+UsuarioController* UsuarioController:: instancia=NULL;
+
 UsuarioController::UsuarioController() {
+    
 }
+
 
 UsuarioController::~UsuarioController() {
 }
 
-UsuarioController* UsuarioController::instancia;
 UsuarioController * UsuarioController::getInstancia(){
     if (UsuarioController::instancia == NULL)
         UsuarioController::instancia = new UsuarioController();

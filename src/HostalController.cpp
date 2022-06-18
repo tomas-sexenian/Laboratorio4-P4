@@ -1,12 +1,13 @@
 #include "../include/controladores/HostalController.hh"
 
+
 HostalController::HostalController() {
 }
 
 HostalController::~HostalController() {
 }
 
-HostalController* HostalController::instancia;
+HostalController* HostalController::instancia=NULL;
 HostalController * HostalController::getInstancia(){
     if (HostalController::instancia == NULL)
         HostalController::instancia = new HostalController();
@@ -44,7 +45,7 @@ list<DTHostal> HostalController::obtenerTop3Hostales() {
     auto itr = Hostales.begin();
     while(itr != Hostales.end()){ //Iterar map
         Hostal *h = itr->second;
-        float calificacionH = h->obtenerPromedioCalificaciones();
+        float calificacionH = obtenerPromedioCalificaciones();
 
         if(calificacionH > calificacionPrimero){
             tercero = segundo;
@@ -91,12 +92,14 @@ list<DTHostal> HostalController::obtenerTop3Hostales() {
 }
 
 DTInfoBasicaHostal HostalController::obtenerInfoBasicaHostal() {
+    float prom = obtenerPromedioCalificaciones();
+    list<DTCalificacion> cal = obtenerCalificaciones();
     DTInfoBasicaHostal dt(
         hostalSeleccionado->getNombre(),
         hostalSeleccionado->getDireccion(),
         hostalSeleccionado->getTelefono(),
-        hostalSeleccionado->obtenerPromedioCalificaciones(),
-        hostalSeleccionado->obtenerCalificaciones()
+        prom,
+        cal
     );
     return dt;
 }
@@ -121,7 +124,9 @@ void HostalController::seleccionarHostal(string NombreHostal) {
 
 //Ver detalles del Hostal seleccionado
 DTInfoHostal HostalController::verDetalles() {
-    DTInfoHostal res(hostalSeleccionado->obtenerComentarios(), hostalSeleccionado->obtenerPromedioCalificaciones());
+     float prom = obtenerPromedioCalificaciones();
+     list<string> lista = obtenerComentarios();
+    DTInfoHostal res(lista, prom);
     return res;
 }
 
@@ -137,7 +142,8 @@ list<DTInfoHostalYCalificacion> HostalController::obtenerTodosHostalesYPromCalif
     while(itr != Hostales.end()){ //Iterar map
         Hostal *h = itr->second;
         DTHostal dtHostal(h->getNombre(), h->getDireccion(), h->getTelefono());
-        DTInfoHostalYCalificacion dtInfo(dtHostal, h->obtenerPromedioCalificaciones());
+        float prom = obtenerPromedioCalificaciones();
+        DTInfoHostalYCalificacion dtInfo(dtHostal, prom);
         res.push_back(dtInfo);
         itr++;
     }

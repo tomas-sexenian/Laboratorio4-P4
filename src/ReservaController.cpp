@@ -1,12 +1,14 @@
 #include "../include/controladores/ReservaController.hh"
 
+
+
 ReservaController::ReservaController() {
 }
 
 ReservaController::~ReservaController() {
 }
 
-ReservaController* ReservaController::instancia;
+ReservaController* ReservaController::instancia=NULL;
 ReservaController * ReservaController::getInstancia(){
     if (ReservaController::instancia == NULL)
         ReservaController::instancia = new ReservaController();
@@ -209,14 +211,14 @@ void ReservaController::confirmarReserva() {
 
 void ReservaController::cancelarReserva(int UnCodigoReserva) {
     if(ReservasIndividuales.find(UnCodigoReserva) != ReservasIndividuales.end()){
-        delete &ReservasIndividuales.find(UnCodigoReserva)->second;
+        delete ReservasIndividuales.find(UnCodigoReserva)->second;
         ReservasIndividuales.erase(UnCodigoReserva);
         ReservasIndividuales.find(UnCodigoReserva)->second->getTitular()->getReservas().erase(UnCodigoReserva);
 
         cout << "La reserva ha sido cancelada con exito" << endl;
     }
     else if(ReservasGrupales.find(UnCodigoReserva) != ReservasGrupales.end()){
-        delete &ReservasGrupales.find(UnCodigoReserva)->second;
+        delete ReservasGrupales.find(UnCodigoReserva)->second;
         ReservasGrupales.erase(UnCodigoReserva);
         ReservasGrupales.find(UnCodigoReserva)->second->getTitular()->getReservas().erase(UnCodigoReserva);
 

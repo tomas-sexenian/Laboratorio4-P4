@@ -6,6 +6,8 @@
 #include "../cabezales/Empleado.hh"
 #include "../../include/TipoCargo.hh"
 
+class Empleado;
+
 using namespace std;
 
 class DTInfoEmpleado{

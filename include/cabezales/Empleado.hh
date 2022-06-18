@@ -11,6 +11,7 @@
 
 //Forward declarations
 class Hostal;
+class RespuestaEmpleado;
 
 using namespace std;
 

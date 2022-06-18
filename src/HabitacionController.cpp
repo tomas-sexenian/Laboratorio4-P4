@@ -7,7 +7,7 @@ HabitacionController::HabitacionController() {
 HabitacionController::~HabitacionController() {
 }
 
-HabitacionController* HabitacionController::instancia;
+HabitacionController* HabitacionController::instancia=NULL;
 HabitacionController * HabitacionController::getInstancia(){
     if (HabitacionController::instancia == NULL)
         HabitacionController::instancia = new HabitacionController();

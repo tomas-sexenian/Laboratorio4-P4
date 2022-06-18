@@ -1,12 +1,14 @@
 #include "../include/controladores/CalificacionController.hh"
 
+
 CalificacionController::CalificacionController() {
+    
 }
 
 CalificacionController::~CalificacionController() {
 }
 
-CalificacionController* CalificacionController::instancia;
+CalificacionController* CalificacionController::instancia=NULL;
 CalificacionController * CalificacionController::getInstancia(){
     if (CalificacionController::instancia == NULL)
         CalificacionController::instancia = new CalificacionController();

@@ -10,6 +10,9 @@
 #include "../interfaces/IControladorSistema.hh"
 #include "../interfaces/IControladorUsuario.hh"
 
+class IControladorEstadia;
+class IControladorReserva;
+class IControladorUsuario;
 
 class Fabrica {
     public:

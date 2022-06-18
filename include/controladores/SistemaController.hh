@@ -18,7 +18,7 @@ class SistemaController: public IControladorSistema{
         SistemaController();
         SistemaController(DTFecha);
 
-        FechaSistema *fechaActual;
+       
     public:
 		static SistemaController* getInstancia();
 	    ~SistemaController();
