@@ -11,8 +11,10 @@
 #include "../cabezales/DTFecha.hh"
 #include "../TipoReserva.hh"
 #include "../EstadoReserva.hh"
+#include "../cabezales/Huesped.hh"
 
-
+class Huesped;
+class Habitacion;
 
 using namespace std;
 
@@ -37,7 +39,7 @@ class IControladorReserva {
         virtual void seleccionarTipo(TipoReserva) = 0;
         virtual void ingresarHuesped(string) = 0;
         virtual void ingresarInvitados(list<string>) = 0;
-        virtual void ingresarPromo(string) = 0;
+
 
         virtual void ingresarEntradaEstadia(int,int,int,int,int) = 0;
         virtual void confirmarAltaEstadia() = 0;

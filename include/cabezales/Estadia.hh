@@ -14,6 +14,8 @@
 //Forward declarations
 class Calificacion;
 class Huesped;
+class Hostal;
+class Reserva;
 
 using namespace std;
 

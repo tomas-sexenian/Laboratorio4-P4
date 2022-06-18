@@ -71,9 +71,9 @@ class UsuarioController: public IControladorUsuario {
         void agregarComentario(string);
         list<DTEmpleado> obtenerTodosEmpleados();
         DTInfoEmpleado obtenerHostalYCargoEmpleado();
-        list<string> obtenerComentariosSinRespuestaHostalEmpleado(string);
-        list<DTInfoHostal> obtenerCalificacionYURespuestasEmpleados(int);
-        list<DTNotificacion> obtenerNotificacionesDelEmpleado();
+        //list<string> obtenerComentariosSinRespuestaHostalEmpleado(string);
+        //list<DTInfoHostal> obtenerCalificacionYURespuestasEmpleados(int);
+        //list<DTNotificacion> obtenerNotificacionesDelEmpleado();
         void cancelarAsignacionEmpleado();
         void confirmarAsignacionEmpleado();
         void seleccionarCargo(TipoCargo);

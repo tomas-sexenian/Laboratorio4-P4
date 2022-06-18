@@ -14,7 +14,7 @@ FechaSistema::FechaSistema() {
 FechaSistema::~FechaSistema() {
 }
 
-FechaSistema* FechaSistema::instancia;
+FechaSistema* FechaSistema::instancia=NULL;
 FechaSistema * FechaSistema::getInstancia(){
     if (FechaSistema::instancia == NULL)
         FechaSistema::instancia = new FechaSistema();

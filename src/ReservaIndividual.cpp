@@ -1,4 +1,4 @@
-#include "../cabezales/ReservaIndividual.hh"
+#include "../include/cabezales/ReservaIndividual.hh"
 
 ReservaIndividual::ReservaIndividual() {
     codigo = 0;
@@ -21,11 +21,10 @@ float ReservaIndividual::calcularCosto() {
     DTFecha ingreso = getCheckIn();
     DTFecha egreso = getCheckOut();
     int dif = (egreso.getDia() + (egreso.getMes()*31) + (egreso.getAnio()*31*12)) - (ingreso.getDia() + (ingreso.getMes()*31) + (ingreso.getAnio()*31*12));
-    return 0; //(dif * habitacion->getPrecio());
+    return dif * habitacion->getPrecio();
 
 }
 
 ReservaIndividual::~ReservaIndividual(){
-    delete &this->getCheckIn();
-    delete &this->getCheckOut();
+   
 }

@@ -6,7 +6,7 @@ NotificacionesController::NotificacionesController() {
 NotificacionesController::~NotificacionesController() {
 }
 
-NotificacionesController* NotificacionesController::instancia;
+NotificacionesController* NotificacionesController::instancia=NULL;
 NotificacionesController * NotificacionesController::getInstancia(){
     if (NotificacionesController::instancia == NULL)
         NotificacionesController::instancia = new NotificacionesController();

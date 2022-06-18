@@ -1,12 +1,13 @@
 #include "../include/controladores/EstadiaController.hh"
 
+
 EstadiaController::EstadiaController() {
 }
 
 EstadiaController::~EstadiaController() {
 }
 
-EstadiaController* EstadiaController::instancia;
+EstadiaController* EstadiaController::instancia=NULL;
 EstadiaController * EstadiaController::getInstancia(){
     if (EstadiaController::instancia == NULL)
         EstadiaController::instancia = new EstadiaController();

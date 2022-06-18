@@ -1,8 +1,6 @@
 #include "../include/cabezales/ReservaGrupal.hh"
 
 ReservaGrupal::~ReservaGrupal(){
-    delete &this->getCheckIn();
-    delete &this->getCheckOut();
 };
 
 ReservaGrupal::ReservaGrupal(){

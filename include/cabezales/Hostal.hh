@@ -41,9 +41,7 @@ class Hostal{
         map<string, Empleado*> getEmpleados();
         void setEmpleado(Empleado*);
 
-        list<DTCalificacion> obtenerCalificaciones();
-        list<string> obtenerComentarios();
-        float obtenerPromedioCalificaciones();
+       
 };
 
 #endif

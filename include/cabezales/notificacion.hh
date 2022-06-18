@@ -14,9 +14,9 @@ class Notificacion{
     public:
         Notificacion();
         Notificacion(string,int,string);
-        ~Notificacion();
+        ~Notificacion(); 
         string getAutor();
-        void setAutor(string);
+        void setAutor(string); 
         string getComentario();
         void setComentario(string);
         int getPuntaje();

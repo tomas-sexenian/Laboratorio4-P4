@@ -35,3 +35,7 @@ IControladorSistema * Fabrica :: getSistemaController(){
 IControladorUsuario * Fabrica :: getUsuarioController(){
     return UsuarioController::getInstancia();
 };
+
+IControladorReserva * Fabrica :: getReservaController(){
+    return ReservaController::getInstancia();
+};

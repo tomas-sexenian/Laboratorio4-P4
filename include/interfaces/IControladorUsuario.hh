@@ -15,6 +15,8 @@
 #include <list>
 #include <utility>
   
+class DTInfoEmpleado;
+
 using namespace std; 
 
 class IControladorUsuario {
@@ -41,9 +43,9 @@ public:
     virtual void agregarComentario(string) = 0;
     virtual list<DTEmpleado> obtenerTodosEmpleados() = 0;
     virtual DTInfoEmpleado obtenerHostalYCargoEmpleado() = 0;
-    virtual list<string> obtenerComentariosSinRespuestaHostalEmpleado(string) = 0;
-    virtual list<DTInfoHostal> obtenerCalificacionYURespuestasEmpleados(int) = 0;
-    virtual list<DTNotificacion> obtenerNotificacionesDelEmpleado() = 0;
+    // virtual list<string> obtenerComentariosSinRespuestaHostalEmpleado(string) = 0;
+    // virtual list<DTInfoHostal> obtenerCalificacionYURespuestasEmpleados(int) = 0;
+    // virtual list<DTNotificacion> obtenerNotificacionesDelEmpleado() = 0;
     virtual void cancelarAsignacionEmpleado() = 0;
     virtual void confirmarAsignacionEmpleado() = 0;
     virtual void seleccionarCargo(TipoCargo) = 0;
