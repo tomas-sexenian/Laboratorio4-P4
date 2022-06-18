@@ -618,7 +618,7 @@ void modificarFechaDelSistema(){
     cin >> MinutoSistema;
     cout << "\n";
 
-    controladorSistema->modificarFecha(DTFecha(AnioSistema,MesSistema,DiaSistema,HoraSistema,HoraSistema));
+    controladorSistema->modificarFecha(DTFecha(DiaSistema,MesSistema,AnioSistema,HoraSistema,MinutoSistema));
 }
 
 //Registrar estadia
@@ -966,43 +966,40 @@ void bajaDeReserva(){
 // ----------------------------------------------------------------- //
 
 int main(){
-    cin.ignore();
-    //cargarDatosPrueba();
+    cargarDatosPrueba();
     int autoNumberCodigoReserva = 5;
+    int AnioMain, MesMain, DiaMain, HoraMain, MinutoMain;
+
     cout << "Ingrese la fecha del sistema\n";
 
     cout << "Anio:";
-    int AnioSistema;
-    cin >> AnioSistema;
-    cout << "\n";
+    cin >> AnioMain;
+    cin.ignore(256, '\n');
 
     cout << "Mes:";
-    int MesSistema;
-    cin >> MesSistema;
-    cout << "\n";
+    cin >> MesMain;
+    cin.ignore(256, '\n');
 
     cout << "Dia:";
-    int DiaSistema;
-    cin >> DiaSistema;
-    cout << "\n";
+    cin >> DiaMain;
+    cin.ignore(256, '\n');
 
     cout << "Hora:";
-    int HoraSistema;
-    cin >> HoraSistema;
-    cout << "\n";
+    cin >> HoraMain;
+    cin.ignore(256, '\n');
 
     cout << "Minuto:";
-    int MinutoSistema;
-    cin >> MinutoSistema;
-    cout << "\n";
+    cin >> MinutoMain;
+    cin.ignore(256, '\n');
 
-    controladorSistema->modificarFecha(DTFecha(AnioSistema,MesSistema,DiaSistema,HoraSistema,HoraSistema));
+
+    controladorSistema->modificarFecha(DTFecha(DiaMain,MesMain,AnioMain,HoraMain,MinutoMain));
 
     bool elegirOpcionUsuario = true;
     int opcionUsuario;
-bool elegirOpcionHuesped;
+    bool elegirOpcionHuesped;
 
-bool elegirOpcionEmpleado;
+    bool elegirOpcionEmpleado;
     while (elegirOpcionUsuario) {
          try{
             cout << "Seleccione el tipo de usuario que se encuentra utilizando el sistema\n";
