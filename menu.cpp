@@ -618,7 +618,7 @@ void modificarFechaDelSistema(){
     cin >> MinutoSistema;
     cout << "\n";
 
-    controladorSistema->modificarFecha(DTFecha(AnioSistema,MesSistema,DiaSistema,HoraSistema,MinutoSistema));
+    controladorSistema->modificarFecha(DTFecha(DiaSistema,MesSistema,AnioSistema,HoraSistema,MinutoSistema));
 
 }
 
@@ -754,7 +754,7 @@ int realizarReserva(int codigoReserva){
     cin >> MinutoSistema;
     cout << "\n";
 
-    DTFecha checkIn = DTFecha(AnioSistema,MesSistema,DiaSistema,HoraSistema,MinutoSistema);
+    DTFecha checkIn = DTFecha(DiaSistema,MesSistema,AnioSistema,HoraSistema,MinutoSistema);
 
     cout << "Ingrese la fecha de check out\n";
 
@@ -778,7 +778,7 @@ int realizarReserva(int codigoReserva){
     cin >> MinutoSistema;
     cout << "\n";
 
-    DTFecha checkOut = DTFecha(AnioSistema,MesSistema,DiaSistema,HoraSistema,MinutoSistema);
+    DTFecha checkOut = DTFecha(DiaSistema,MesSistema,AnioSistema,HoraSistema,MinutoSistema);
 
     controladorReservas->ingresarDatosReserva(codigoReserva,checkIn,checkOut,abierta);
 
