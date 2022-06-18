@@ -618,7 +618,7 @@ void modificarFechaDelSistema(){
     cin >> MinutoSistema;
     cout << "\n";
 
-    controladorSistema->modificarFecha(DTFecha(AnioSistema,MesSistema,DiaSistema,HoraSistema,HoraSistema));
+    controladorSistema->modificarFecha(DTFecha(AnioSistema,MesSistema,DiaSistema,HoraSistema,MinutoSistema));
 }
 
 //Registrar estadia
