@@ -149,8 +149,8 @@ void cargarDatosPrueba() {
 
     // CARGA DE RESEVAS DE HUESPEDES EN HOSTALES
 
-    DTFecha checkIn = DTFecha(1,5,22,14,0);
-    DTFecha checkOut = DTFecha(10,5,22,10,0);
+    DTFecha checkIn = DTFecha(1,5,2022,14,0);
+    DTFecha checkOut = DTFecha(10,5,2022,10,0);
     controladorReservas->ingresarDatosReserva(1,checkIn,checkOut,abierta);
     controladorReservas->seleccionarHostal("La posada del finger");
     controladorReservas->seleccionarHabitacion(1);
@@ -158,8 +158,8 @@ void cargarDatosPrueba() {
     controladorReservas->ingresarHuesped("sofia@mail.com");
     controladorReservas->confirmarReserva();
 
-    checkIn = DTFecha(4,1,1,20,0);
-    checkOut = DTFecha(5,1,1,2,0);
+    checkIn = DTFecha(4,1,2001,20,0);
+    checkOut = DTFecha(5,1,2001,2,0);
     controladorReservas->ingresarDatosReserva(2,checkIn,checkOut,abierta);
     controladorReservas->seleccionarHostal("El Pony Pisador");
     controladorReservas->seleccionarHabitacion(1);
@@ -169,8 +169,8 @@ void cargarDatosPrueba() {
     controladorReservas->ingresarInvitados(invitados);
     controladorReservas->confirmarReserva();
 
-    checkIn = DTFecha(7,6,22,14,0);
-    checkOut = DTFecha(30,6,22,11,0);
+    checkIn = DTFecha(7,6,2022,14,0);
+    checkOut = DTFecha(30,6,2022,11,0);
     controladorReservas->ingresarDatosReserva(3,checkIn,checkOut,abierta);
     controladorReservas->seleccionarHostal("La posada del finger");
     controladorReservas->seleccionarHabitacion(3);
@@ -178,8 +178,8 @@ void cargarDatosPrueba() {
     controladorReservas->ingresarHuesped("sofia@mail.com");
     controladorReservas->confirmarReserva();
 
-    checkIn = DTFecha(10,6,22,14,0);
-    checkOut = DTFecha(30,6,22,11,0);
+    checkIn = DTFecha(10,6,2022,14,0);
+    checkOut = DTFecha(30,6,2022,11,0);
     controladorReservas->ingresarDatosReserva(4,checkIn,checkOut,abierta);
     controladorReservas->seleccionarHostal("Caverna Lujosa");
     controladorReservas->seleccionarHabitacion(1);
@@ -215,37 +215,37 @@ void cargarDatosPrueba() {
 
     controladorEstadias->seleccionarEstadia(1,"sofia@mail.com");
     e = controladorEstadias->finalizarEstadia();
-    e->setSalida(DTFecha(10,5,22,9,0));
+    e->setSalida(DTFecha(10,5,2022,9,0));
 
     controladorEstadias->seleccionarEstadia(2,"frodo@mail.com");
     e = controladorEstadias->finalizarEstadia();
-    e->setSalida(DTFecha(5,1,1,2,0));
+    e->setSalida(DTFecha(5,1,2001,2,0));
 
     controladorEstadias->seleccionarEstadia(4,"seba@mail.com");
     e = controladorEstadias->finalizarEstadia();
-    e->setSalida(DTFecha(15,6,22,22,0));
+    e->setSalida(DTFecha(15,6,2022,22,0));
 
     // CALIFICACIONES DE ESTADIAS
 
     controladorCalificaciones->ingresarComentario("Un poco caro para lo que ofrecen. El famoso gimnasio era una caminadora (que hacia tremendo ruido) y 2 pesas, la piscina parecia el lago del Parque Rodo y el desayuno eran 2 tostadas con mermelada. Internet se pasaba cayendo. No vuevlo");
     controladorCalificaciones->ingresarPuntaje(3);
-    controladorCalificaciones->ingresarFecha(DTFecha(11,5,22,18,0));
+    controladorCalificaciones->ingresarFecha(DTFecha(11,5,2022,18,0));
     controladorCalificaciones->confirmarAltaCalificacion(1,"sofia@mail.com");
 
     controladorCalificaciones->ingresarComentario("Se pone peligroso de noche, no recomiendo. Ademas no hay caja fuerte para guardar los anillos");
     controladorCalificaciones->ingresarPuntaje(2);
-    controladorCalificaciones->ingresarFecha(DTFecha(5,1,1,3,0));
+    controladorCalificaciones->ingresarFecha(DTFecha(5,1,2001,3,0));
     controladorCalificaciones->confirmarAltaCalificacion(2,"frodo@mail.com");
 
     controladorCalificaciones->ingresarComentario("Habia pulgas en la habitacion. Que lugar mas mamarracho!!");
     controladorCalificaciones->ingresarPuntaje(1);
-    controladorCalificaciones->ingresarFecha(DTFecha(15,6,22,11,0));
+    controladorCalificaciones->ingresarFecha(DTFecha(15,6,2022,11,0));
     controladorCalificaciones->confirmarAltaCalificacion(4,"seba@mail.com");
 
     // COMENTARIOS A CALIFICACIONES
 
     controladorCalificaciones->ingresarRespuesta("Desaparecio y se fue sin pagar");
-    controladorCalificaciones->responderCalificacion(2,"frodo@mail.com",DTFecha(15,6,22,23,0));
+    controladorCalificaciones->responderCalificacion(2,"frodo@mail.com",DTFecha(15,6,2022,23,0));
 }
 
 
