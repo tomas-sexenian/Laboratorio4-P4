@@ -6,11 +6,13 @@ DTFecha::DTFecha() {
     dia = 1;
     mes = 1;
     anio = 1901;
+    hora = 0;
+    minuto = 0;
 }
 
 DTFecha::DTFecha(int UnDia, int UnMes, int UnAnio, int UnaHora, int UnMinuto ) {
-    if (UnDia > 31 || UnMes > 12 || UnDia < 1 || UnMes < 1 || UnAnio < 1900)
-      throw std::invalid_argument("Revise haber ingesado bien la fecha");
+    if (UnDia > 31 || UnMes > 12 || UnDia < 1 || UnMes < 1 || UnAnio < 1900 || UnaHora < 0 || UnaHora > 23 || UnMinuto < 0 || UnMinuto > 59)
+      throw std::invalid_argument("Revise haber ingresado bien la fecha");
     else { 
         dia = UnDia;
         mes = UnMes;

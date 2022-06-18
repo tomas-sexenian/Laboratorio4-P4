@@ -1,9 +1,8 @@
 #include "../include/controladores/SistemaController.hh"
 
 SistemaController::SistemaController() {
-    DTFecha *date= new DTFecha();
     FechaSistema* fecha = FechaSistema::getInstancia();
-    fecha->setFecha(*date);
+    fecha->setFecha(DTFecha());
 
 }
 
