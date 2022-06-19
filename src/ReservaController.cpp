@@ -27,14 +27,16 @@ map<int,ReservaGrupal*> ReservaController::getReservasGrupales() {
 // DE ACA HACIA ABAJO IMPLEMENTAN LAS OPERACIONES
 
 void ReservaController::seleccionarReservaIndividual(int UnCodigo) {
-    reservaIndividualSeleccionada = ReservasIndividuales.find(UnCodigo)->second;
+    if(ReservasIndividuales.count(UnCodigo) == 0) throw std::invalid_argument( "No se puede seleccionar una reserva que no existe");
+    else reservaIndividualSeleccionada = ReservasIndividuales.find(UnCodigo)->second;
 }
 
 void ReservaController::seleccionarReservaGrupal(int UnCodigo) {
-    reservaGrupalSeleccionada = ReservasGrupales.find(UnCodigo)->second;
+    if(ReservasGrupales.count(UnCodigo) == 0) throw std::invalid_argument( "No se puede seleccionar una reserva que no existe");
+    else reservaGrupalSeleccionada = ReservasGrupales.find(UnCodigo)->second;
 }
 
-Reserva* ReservaController::seleccionarReserva(int UnCodigo) {
+Reserva* ReservaController::obtenerReserva(int UnCodigo) {
     Reserva *res = NULL;
     if (ReservasGrupales.count(UnCodigo) != 0)
         res = ReservasGrupales.find(UnCodigo)->second;
@@ -284,6 +286,8 @@ void ReservaController::ingresarDatosReserva(int UnCodigo, DTFecha UnCheckIn, DT
     estado = UnEstado;
 }
 
+
+
 void ReservaController::seleccionarHostal(string nombreHostal) {
     HostalController* controladorHostales = HostalController::getInstancia();
     hostal = controladorHostales->getHostales().find(nombreHostal)->second;
@@ -312,27 +316,4 @@ void ReservaController::ingresarInvitados(list<string> UnosInvitados) {
                 listaInvitados.push_back(i->second);
         }
     }
-}
-
-
-void ReservaController::ingresarEntradaEstadia(int dia, int mes ,int anio,int hora ,int minuto) {
-    entradaEstadia = DTFecha(dia, mes, anio, hora ,minuto);
-}
-
-void ReservaController::ingresarEntradaEstadia(DTFecha UnaFecha) {
-    entradaEstadia = UnaFecha;
-}
-
-
-void ReservaController::confirmarAltaEstadia(){
-    EstadiaController* controladorEstadias = EstadiaController::getInstancia();
-    if (tipo == individual){
-        controladorEstadias->getEstadias().insert(pair<int,Estadia*>(codigo, new Estadia(entradaEstadia,DTFecha(),promo,resIndividual,hostal,NULL,huesped)));
-    } else {
-        controladorEstadias->getEstadias().insert(pair<int,Estadia*>(codigo, new Estadia(entradaEstadia,DTFecha(),promo,resGrupal,hostal,NULL,huesped)));
-        for (std::list<Huesped*>::iterator it = listaInvitados.begin(); it != listaInvitados.end(); ++it){
-            controladorEstadias->getEstadias().insert(pair<int,Estadia*>(codigo, new Estadia(entradaEstadia,DTFecha(),promo,resGrupal,hostal,NULL,(*it))));
-        }
-    }
-    cout << "La estadía ha sido registrada con exito" << endl;
 }

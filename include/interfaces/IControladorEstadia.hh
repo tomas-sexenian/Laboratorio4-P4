@@ -7,6 +7,7 @@
 
 #include "../cabezales/DTInfoEstadia.hh"
 #include "../cabezales/Estadia.hh"
+#include "../TipoReserva.hh"
 #include "../cabezales/DTEstadia.hh"
 
 using namespace std;
@@ -18,6 +19,13 @@ class IControladorEstadia {
        virtual Estadia* finalizarEstadia() = 0;
        virtual void confirmarFinEstadia() = 0;
        virtual list<DTEstadia> obtenerTodasEstadiasHostal(string) = 0;
+
+    virtual void seleccionarTipo(TipoReserva) = 0;
+    virtual void seleccionarReserva(int) = 0;
+    virtual void ingresarHuesped(string) = 0;
+    virtual void ingresarInvitados(list<string>) = 0;
+    virtual void ingresarEntradaEstadia(int,int,int,int,int) = 0;
+    virtual void confirmarAltaEstadia() = 0;
 };
 
 #endif

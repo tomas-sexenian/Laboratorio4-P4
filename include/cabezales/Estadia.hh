@@ -27,6 +27,7 @@ class Estadia{
         Hostal* hostal;
         Calificacion* calificacion;
         Huesped* huesped;
+        list<string> invitados;
     public:
         DTFecha getEntrada();
         void setEntrada(DTFecha);
@@ -42,11 +43,12 @@ class Estadia{
         void setPromo(string);
         Huesped* getHuesped();
         void setHuesped(Huesped*);
-
+        list<string> getInvitados();
+        void setInvitados(list<string>);
 
         Estadia();
         ~Estadia();
-        Estadia(DTFecha,DTFecha,string,Reserva*,Hostal*,Calificacion*,Huesped*);
+        Estadia(DTFecha,DTFecha,string,Reserva*,Hostal*,Calificacion*,Huesped*, list<string>);
 
 };
 

@@ -24,9 +24,22 @@ void CalificacionController::setCalificacion() {
         this->puntaje,
         this->comentario,
         this->fecha,
-        NULL,
+        NULL, //Hay que pasarle la estadia
         list<RespuestaEmpleado*> {}
     )));
+
+
+    /*
+        Nota: 
+        Leer los //
+
+
+
+
+
+    */
+
+    //tambien hay que insertar la calificacion en la estadia
 }
 
 Calificacion* CalificacionController::getCalificacionRecordada() {

@@ -1,6 +1,5 @@
 #include "../include/controladores/EstadiaController.hh"
 
-
 EstadiaController::EstadiaController() {
 }
 
@@ -18,9 +17,6 @@ map<int,Estadia*> EstadiaController::getEstadias() {
     return Estadias;
 }
 
-void EstadiaController::setEstadia() {
-    this->Estadias.insert(pair<int,Estadia*>(this->codigoReserva ,new Estadia(this->entrada,this->salida,this->promo,NULL,NULL,NULL,NULL)));
-}
 
 // DE ACA HACIA ABAJO IMPLEMENTAN LAS OPERACIONES
 
@@ -49,18 +45,9 @@ Estadia* EstadiaController::finalizarEstadia() {
         estadiaSeleccionada->setSalida(sist->obtenerFechaActual());
     }
     ReservaController* controladorReservas = ReservaController::getInstancia();
-    Reserva* r = controladorReservas->seleccionarReserva(codigoReserva);
-    if(dynamic_cast<ReservaIndividual*>(r)){
-         ReservaIndividual* r_individual = dynamic_cast<ReservaIndividual*>(r);
-         r_individual->setEstadoReserva(cerrada);
-    } else if (dynamic_cast<ReservaGrupal*>(r)){
-        ReservaGrupal* r_grupal = dynamic_cast<ReservaGrupal*>(r);
-        for(map<string,Huesped*>::iterator it = r_grupal->getInvitados().begin(); it != r_grupal->getInvitados().end(); it++){
-            if (it->second->getEmail() == this->emailHuesped)
-                r_grupal->getInvitados().erase(emailHuesped);
-
-        }
-    }
+    Reserva* r = controladorReservas->obtenerReserva(estadiaSeleccionada->getReserva()->getCodigo());
+    r->setEstadoReserva(cerrada);
+    
     return estadiaSeleccionada;
 }
 
@@ -81,4 +68,45 @@ list<DTEstadia> EstadiaController::obtenerTodasEstadiasHostal(string nombreHosta
         }
     }
     return res;
+}
+
+
+
+void EstadiaController::seleccionarReserva(int UnCodigo){
+    ReservaController* controladorReservas = ReservaController::getInstancia();
+    reservaSeleccionada = controladorReservas->obtenerReserva(UnCodigo);
+}
+
+void EstadiaController::seleccionarTipo(TipoReserva UnTipo){
+    tipoReserva = UnTipo;
+}
+
+void EstadiaController::ingresarHuesped(string UnEmail){
+    UsuarioController* controladorUsuarios = UsuarioController::getInstancia();
+    huesped = controladorUsuarios->getHuespedes().find(UnEmail)->second;
+}
+
+void EstadiaController::ingresarInvitados(list<string> UnosInvitados){
+    invitados = UnosInvitados;
+}
+
+void EstadiaController::ingresarEntradaEstadia(int UnDia, int UnMes, int UnAnio, int UnaHora, int UnMinuto){
+    entrada = DTFecha(UnDia, UnMes, UnAnio, UnaHora, UnMinuto);
+}
+
+
+void EstadiaController::confirmarAltaEstadia(){
+    if (tipoReserva == individual){
+        list<string> listaVacia;
+        Estadias.insert(pair<int,Estadia*>(reservaSeleccionada->getCodigo(), new Estadia(entrada,DTFecha(),"",reservaSeleccionada,reservaSeleccionada->getHabitacion()->getHostal(),NULL,huesped, listaVacia)));
+    } else {
+        Estadia *est = new Estadia(entrada,DTFecha(),"",reservaSeleccionada,reservaSeleccionada->getHabitacion()->getHostal(),NULL,huesped, invitados);
+        Estadias.insert(pair<int,Estadia*>(reservaSeleccionada->getCodigo(), est));
+        UsuarioController* controladorUsuarios = UsuarioController::getInstancia();
+        for (std::list<string>::iterator it = invitados.begin(); it != invitados.end(); ++it){
+            Huesped *i = controladorUsuarios->getHuespedes().find(*it)->second;
+            i->setEstadia(est);
+        }
+    }
+    cout << "La estadia ha sido registrada con exito" << endl;
 }
