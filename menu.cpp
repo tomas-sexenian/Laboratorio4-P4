@@ -189,25 +189,25 @@ void cargarDatosPrueba() {
 
     // CARGA DE ESTADIAS PARA RESERVAS DE HUESPEDES
 
-    controladorReservas->seleccionarTipo(individual);
-    controladorReservas->seleccionarReservaIndividual(1);
-    controladorReservas->ingresarHuesped("sofia@mail.com");
-    controladorReservas->ingresarEntradaEstadia(1,5,2022,18,0);
-    controladorReservas->confirmarAltaEstadia();
+    controladorEstadias->seleccionarTipo(individual);
+    controladorEstadias->seleccionarReserva(1);
+    controladorEstadias->ingresarHuesped("sofia@mail.com");
+    controladorEstadias->ingresarEntradaEstadia(1,5,2022,18,0);
+    controladorEstadias->confirmarAltaEstadia();
 
-    controladorReservas->seleccionarTipo(grupal);
-    controladorReservas->seleccionarReservaGrupal(2);
-    controladorReservas->ingresarHuesped("frodo@mail.com");
+    controladorEstadias->seleccionarTipo(grupal);
+    controladorEstadias->seleccionarReserva(2);
+    controladorEstadias->ingresarHuesped("frodo@mail.com");
     invitados = {"sam@mail.com","merry@mail.com","pippin@mail.com"};
-    controladorReservas->ingresarInvitados(invitados);
-    controladorReservas->ingresarEntradaEstadia(4,1,2001,21,0);
-    controladorReservas->confirmarAltaEstadia();
+    controladorEstadias->ingresarInvitados(invitados);
+    controladorEstadias->ingresarEntradaEstadia(4,1,2001,21,0);
+    controladorEstadias->confirmarAltaEstadia();
 
-    controladorReservas->seleccionarTipo(individual);
-    controladorReservas->seleccionarReservaIndividual(4);
-    controladorReservas->ingresarHuesped("seba@mail.com");
-    controladorReservas->ingresarEntradaEstadia(7,6,2022,18,0);
-    controladorReservas->confirmarAltaEstadia();
+    controladorEstadias->seleccionarTipo(individual);
+    controladorEstadias->seleccionarReserva(4);
+    controladorEstadias->ingresarHuesped("seba@mail.com");
+    controladorEstadias->ingresarEntradaEstadia(7,6,2022,18,0);
+    controladorEstadias->confirmarAltaEstadia();
 
     // FINALIZACION DE ESTADIAS
 
@@ -640,27 +640,40 @@ void registrarEstadia(string eleccionHostalEmpleado_CEmpleado){
                                 
     switch(eleccionTipoEstadia_CEmpleado){
     case 1:
-        controladorReservas->seleccionarTipo(individual);
-        controladorReservas->seleccionarReservaIndividual(eleccionCodigoReserva_CEmpleado);
-
+        controladorEstadias->seleccionarTipo(individual);
         break;
     case 2:
-        controladorReservas->seleccionarTipo(grupal);
-        controladorReservas->seleccionarReservaGrupal(eleccionCodigoReserva_CEmpleado);
-
+        controladorEstadias->seleccionarTipo(grupal);
         break;
     }
-
+    controladorEstadias->seleccionarReserva(eleccionCodigoReserva_CEmpleado);
 
     imprimirTodosEmailHuespedes();
     cout << "Indique el email del huesped asociado a la estadia\n";
     getline(cin, eleccionEmailHuespedEstadia_CEmpleado);
     cout << "\n";
-    controladorReservas->ingresarHuesped(eleccionEmailHuespedEstadia_CEmpleado);
+    controladorEstadias->ingresarHuesped(eleccionEmailHuespedEstadia_CEmpleado);
 
+    DTFecha fechaSis = controladorSistema->obtenerFechaActual();
 
-    controladorReservas->ingresarEntradaEstadia(controladorSistema->obtenerFechaActual());
-    controladorReservas->confirmarAltaEstadia();
+    /*cout << "Por favor indique sus huespedes invitados\n";
+    eleccionEmailInvitadosReserva_CHuesped = {};
+    continuarArgegando_CHuesped = true;
+    while (continuarArgegando_CHuesped){
+        cout << "Por favor indique el email del invitado:";
+        getline(cin, eleccionEmailInvitado_CHuesped);
+        eleccionEmailInvitadosReserva_CHuesped.push_back(eleccionEmailInvitado_CHuesped);
+        cout << "Si desea detenerse, ingrese 1 de lo contrario ingrese cualquier numero:";
+        cin >> eleccionSeguiraAgregando_CHuesped;
+        if (eleccionSeguiraAgregando_CHuesped == 1)
+            continuarArgegando_CHuesped = false;
+    }
+    controladorReservas->ingresarInvitados(eleccionEmailInvitadosReserva_CHuesped);
+*/
+
+    //mal, habria que pedir la fecha de la estadia
+    controladorEstadias->ingresarEntradaEstadia(fechaSis.getDia(), fechaSis.getMes(), fechaSis.getAnio(), fechaSis.getHora(), fechaSis.getMinuto());
+    controladorEstadias->confirmarAltaEstadia();
 }
 //Finalizar estadia
 void finalizarEstadia(){

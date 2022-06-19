@@ -68,7 +68,7 @@ class ReservaController : public IControladorReserva {
         void agregarHuespedesReservaGrupal(map<string, Huesped*>);
         void confirmarReserva();
         void cancelarReserva(int);
-        Reserva* seleccionarReserva(int);
+        Reserva* obtenerReserva(int);
         list<DTReserva> obtenerReservasHostal(string);
         
         void seleccionarHostal(string);
@@ -76,12 +76,6 @@ class ReservaController : public IControladorReserva {
         void seleccionarTipo(TipoReserva);
         void ingresarHuesped(string);
         void ingresarInvitados(list<string>);
-        void ingresarPromo(string);
-
-        void ingresarEntradaEstadia(int,int,int,int,int);
-        void confirmarAltaEstadia();
-
-        void ingresarEntradaEstadia(DTFecha);
 };
 
 #endif
