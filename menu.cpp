@@ -464,6 +464,7 @@ void altaDeUsuario(){
         controladorUsuarios->ingresarTipo(empleado);
         cout << "Ingrese el cargo del empleado: 1 = Administracion / 2 = Limpieza / 3 = Recepcion / 4 = Infraestructura\n";
         cin >> eleccionCargoUsuario_CUsuario;
+	cin.ignore(256, '\n');
         cout << "\n";
         switch(eleccionCargoUsuario_CUsuario){
             case 1:
