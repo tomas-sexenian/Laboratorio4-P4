@@ -40,7 +40,8 @@ Reserva* ReservaController::seleccionarReserva(int UnCodigo) {
         res = ReservasGrupales.find(UnCodigo)->second;
     else if(ReservasIndividuales.count(UnCodigo) != 0)
         res = ReservasIndividuales.find(UnCodigo)->second;
-    return  res;
+    else throw std::invalid_argument( "No se puede seleccionar una reserva que no existe");
+    return res;
 }
 
 
@@ -314,8 +315,8 @@ void ReservaController::ingresarInvitados(list<string> UnosInvitados) {
 }
 
 
-void ReservaController::ingresarEntradaEstadia(int anio,int mes ,int dia ,int hora ,int minuto) {
-    entradaEstadia = DTFecha(anio,mes ,dia ,hora ,minuto);
+void ReservaController::ingresarEntradaEstadia(int dia, int mes ,int anio,int hora ,int minuto) {
+    entradaEstadia = DTFecha(dia, mes, anio, hora ,minuto);
 }
 
 void ReservaController::ingresarEntradaEstadia(DTFecha UnaFecha) {
