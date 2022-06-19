@@ -20,16 +20,26 @@ map<int,Estadia*> EstadiaController::getEstadias() {
 
 // DE ACA HACIA ABAJO IMPLEMENTAN LAS OPERACIONES
 
-void EstadiaController::seleccionarEstadia(int codigoReserva, string emailHuesped) {
+void EstadiaController::seleccionarEstadia(int codigoReserva, string email) {
     Estadia* res = NULL;
     for(map<int,Estadia*>::iterator it = this->Estadias.begin(); it != this->Estadias.end(); it++){
-        if (it->second->getReserva()->getCodigo() == codigoReserva && it->second->getHuesped()->getEmail() == emailHuesped)
+        if (it->second->getReserva()->getCodigo() == codigoReserva && it->second->getHuesped()->getEmail() == email)
             res =  it->second;
     }
     estadiaSeleccionada = res;
 }
 
-DTInfoEstadia EstadiaController::obtenerEstadia() {
+Estadia* EstadiaController::obtenerEstadia(int codigoReserva, string email) {
+    Estadia* res = NULL;
+    for(map<int,Estadia*>::iterator it = this->Estadias.begin(); it != this->Estadias.end(); it++){
+        if (it->second->getReserva()->getCodigo() == codigoReserva && it->second->getHuesped()->getEmail() == email)
+            res =  it->second;
+    }
+    if(res == NULL) throw std::invalid_argument( "No se puede obtener una estadia que no existe");
+    return res;
+}
+
+DTInfoEstadia EstadiaController::obtenerInfoEstadia() {
     if (estadiaSeleccionada != NULL){
         DTInfoEstadia info = DTInfoEstadia(emailHuesped,estadiaSeleccionada->getHostal()->getNombre(),estadiaSeleccionada->getEntrada(),estadiaSeleccionada->getSalida(),estadiaSeleccionada->getReserva()->getHabitacion()->getNumero(),estadiaSeleccionada->getPromo(),codigoReserva);
         return info;

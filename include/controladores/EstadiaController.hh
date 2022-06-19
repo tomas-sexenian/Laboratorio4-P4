@@ -2,6 +2,7 @@
 #define ESTADIACONTROLLER
 
 #include <list>
+#include <map>
 
 
 //VAN A TENER QUE HACER INCLUDE DE TODAS LAS DEPENDENCIAS DEL CONTROLADOR
@@ -47,7 +48,8 @@ class EstadiaController : public IControladorEstadia {
         map<int,Estadia*> getEstadias();
 
         void seleccionarEstadia(int,string);
-        DTInfoEstadia obtenerEstadia();
+        DTInfoEstadia obtenerInfoEstadia();
+        Estadia* obtenerEstadia(int, string);
         Estadia* finalizarEstadia();
         void confirmarFinEstadia();
         list<DTEstadia> obtenerTodasEstadiasHostal(string);

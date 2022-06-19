@@ -15,6 +15,7 @@
 #include "../cabezales/DTCalificacion.hh"
 #include "../cabezales/RespuestaEmpleado.hh"
 #include "../controladores/SistemaController.hh"
+#include "../controladores/EstadiaController.hh"
 
 using namespace std;
 
@@ -34,7 +35,6 @@ class CalificacionController: public IControladorCalificacion {
 		static CalificacionController* getInstancia();
 	    ~CalificacionController();
         map<int,Calificacion *> getCalificaciones();
-        void setCalificacion();
         Calificacion * getCalificacionRecordada();
         void setCalificacionRecordada(int,string);
 
