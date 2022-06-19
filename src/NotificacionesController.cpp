@@ -35,3 +35,7 @@ void NotificacionesController::eliminarNotificaciones() {
 
 void NotificacionesController::eliminarSubscripcion(string EmailEmpleado) {
 }
+
+void NotificacionesController::eliminarNotificaciones() {
+    Notificaciones.clear();
+}

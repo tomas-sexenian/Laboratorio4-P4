@@ -76,6 +76,8 @@ class ReservaController : public IControladorReserva {
         void seleccionarTipo(TipoReserva);
         void ingresarHuesped(string);
         void ingresarInvitados(list<string>);
+
+        void eliminarReservas();
 };
 
 #endif

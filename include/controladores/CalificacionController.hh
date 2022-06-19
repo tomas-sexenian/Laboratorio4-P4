@@ -45,5 +45,8 @@ class CalificacionController: public IControladorCalificacion {
 
         void ingresarRespuesta(string);
         void responderCalificacion(int,string,DTFecha);
+
+        void eliminarCalificaciones();
+        void eliminarRespuestasEmpleado();
 };
 #endif

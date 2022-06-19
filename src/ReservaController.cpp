@@ -317,3 +317,8 @@ void ReservaController::ingresarInvitados(list<string> UnosInvitados) {
         }
     }
 }
+
+void ReservaController::eliminarReservas() {
+    ReservasIndividuales.clear();
+    ReservasGrupales.clear();
+}

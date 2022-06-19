@@ -120,3 +120,7 @@ void EstadiaController::confirmarAltaEstadia(){
     }
     cout << "La estadia ha sido registrada con exito" << endl;
 }
+
+void EstadiaController::eliminarEstadias(){
+    Estadias.clear();
+}

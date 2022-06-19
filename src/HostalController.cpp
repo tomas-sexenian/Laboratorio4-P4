@@ -237,3 +237,7 @@ void HostalController::cancelarAltaHostal() {
     direccion = "";
     telefono = "";
 }
+
+void HostalController::cancelarAltaHostal() {
+    Hostales.clear();
+}

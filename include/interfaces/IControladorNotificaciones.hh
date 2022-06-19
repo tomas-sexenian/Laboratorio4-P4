@@ -15,6 +15,8 @@ class IControladorNotificaciones {
         virtual void subscribirEmpleado(string) = 0;
         virtual void eliminarNotificaciones() = 0;
         virtual void eliminarSubscripcion(string) = 0;
+
+        virtual void eliminarNotificaciones() = 0;
 };
 
 #endif

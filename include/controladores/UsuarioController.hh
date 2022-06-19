@@ -79,5 +79,7 @@ class UsuarioController: public IControladorUsuario {
         void seleccionarCargo(TipoCargo);
         list<DTEmpleado> obtenerEmpleadosNoAsignadosHostal(string);
         void ingresarHostal(string);
+
+        void eliminarUsurios();
 };
 #endif

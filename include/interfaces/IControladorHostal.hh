@@ -37,6 +37,8 @@ class IControladorHostal {
         virtual void ingresarDatosHostal(string,string,string) = 0;
         virtual void confirmarAltaHostal() = 0;
         virtual void cancelarAltaHostal() = 0;
+
+        virtual void eliminarHostales() = 0;
 };
 
 #endif

@@ -21,7 +21,8 @@ class IControladorHabitacion {
         virtual void confirmarAltaHabitacion() = 0;
         virtual void cancelarAltaHabitacion() = 0;
         virtual void ingresarHostalHabitacion(string) = 0;
-       
+        
+        virtual void eliminarHabitaciones() = 0;
 };
 
 #endif

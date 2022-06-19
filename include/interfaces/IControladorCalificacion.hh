@@ -19,6 +19,8 @@ class IControladorCalificacion {
 
         virtual void ingresarRespuesta(string) = 0;
         virtual void responderCalificacion(int,string,DTFecha) = 0;
+
+        virtual void eliminarCalificaciones() = 0;
 };
 
 #endif
