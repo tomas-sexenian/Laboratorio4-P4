@@ -51,13 +51,15 @@ void HabitacionController::ingresarDatosHabitacion(int UnNumero, float UnPrecio,
 }
 
 void HabitacionController::confirmarAltaHabitacion() {
-    this->Habitaciones.insert(pair<int,Habitacion*>(this->numero,new Habitacion(
+    Habitacion *ins = new Habitacion(
         this->numero,
         this->precio,
         this->capacidad,
-        NULL,
+        this->hostal,
         map<int, Reserva*> {}
-    )));
+    );
+    this->Habitaciones.insert(pair<int,Habitacion*>(this->numero, ins));
+    this->hostal->setHabitacion(ins);
     cout << "La habitación ha sido registrada con exito" << endl;
 }
 

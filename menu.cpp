@@ -192,7 +192,7 @@ void cargarDatosPrueba() {
     controladorReservas->seleccionarTipo(individual);
     controladorReservas->seleccionarReservaIndividual(1);
     controladorReservas->ingresarHuesped("sofia@mail.com");
-    controladorReservas->ingresarEntradaEstadia(1,5,22,18,0);
+    controladorReservas->ingresarEntradaEstadia(1,5,2022,18,0);
     controladorReservas->confirmarAltaEstadia();
 
     controladorReservas->seleccionarTipo(grupal);
@@ -200,13 +200,13 @@ void cargarDatosPrueba() {
     controladorReservas->ingresarHuesped("frodo@mail.com");
     invitados = {"sam@mail.com","merry@mail.com","pippin@mail.com"};
     controladorReservas->ingresarInvitados(invitados);
-    controladorReservas->ingresarEntradaEstadia(4,1,1,21,0);
+    controladorReservas->ingresarEntradaEstadia(4,1,2001,21,0);
     controladorReservas->confirmarAltaEstadia();
 
     controladorReservas->seleccionarTipo(individual);
     controladorReservas->seleccionarReservaIndividual(4);
     controladorReservas->ingresarHuesped("seba@mail.com");
-    controladorReservas->ingresarEntradaEstadia(7,6,22,18,0);
+    controladorReservas->ingresarEntradaEstadia(7,6,2022,18,0);
     controladorReservas->confirmarAltaEstadia();
 
     // FINALIZACION DE ESTADIAS
