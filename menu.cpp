@@ -454,11 +454,12 @@ void altaDeUsuario(){
     string eleccionContraseniaUsuario_CUsuario;
     int eleccionCargoUsuario_CUsuario;
     int eleccionEsFingerUsuario_CUsuario;
-    cin.ignore();
 
     cout << "Ingrese el tipo de usuario: 1 = Empleado / 2 = Huesped\n";
     cin >> eleccionTipoUsuario_CUsuario;
+    cin.ignore(256, '\n');
     cout << "\n";
+
     if (eleccionTipoUsuario_CUsuario == 1){
         controladorUsuarios->ingresarTipo(empleado);
         cout << "Ingrese el cargo del empleado: 1 = Administracion / 2 = Limpieza / 3 = Recepcion / 4 = Infraestructura\n";
@@ -481,9 +482,12 @@ void altaDeUsuario(){
     }
     else if (eleccionTipoUsuario_CUsuario == 2){
         controladorUsuarios->ingresarTipo(huesped);
+
         cout << "Indique si el huesped es finger o no: 1 = Si / 2 = No\n";
         cin >> eleccionEsFingerUsuario_CUsuario;
+        cin.ignore(256, '\n');
         cout << "\n";
+
         switch(eleccionEsFingerUsuario_CUsuario){
         case 1:
             controladorUsuarios->ingresarEsFinger(true);
@@ -497,12 +501,15 @@ void altaDeUsuario(){
     cout << "Ingrese el nombre del usuario\n";
     getline(cin, eleccionNombreUsuario_CUsuario);
     cout << "\n";    
+
     cout << "Ingrese el mail del usuario\n";
     getline(cin, eleccionMailUsuario_CUsuario);
     cout << "\n";  
+
     cout << "Ingrese la contrasenia del usuario\n";
     getline(cin, eleccionContraseniaUsuario_CUsuario);
     cout << "\n";  
+
     controladorUsuarios->ingresarDatosUsuario(eleccionNombreUsuario_CUsuario,eleccionMailUsuario_CUsuario,eleccionContraseniaUsuario_CUsuario);
 
     controladorUsuarios->confirmarAltaUsuario();
@@ -512,7 +519,6 @@ void altaDeUsuario(){
 void altaDeHostal(){
     // PARA ALTA DE HOSTAL
     string eleccionNombreHostal_CUsuario, eleccionDireccionHostal_CUsuario, eleccionTelefonoHostal_CUsuario;
-    cin.ignore();
     cout << "Ingrese el nombre del hostal\n";
     getline(cin, eleccionNombreHostal_CUsuario);
     cout << "\n";   
@@ -533,17 +539,20 @@ void altaDeHabitacion(){
     // PARA ALTA DE HABITACION
     int eleccionNumeroHabitacion_CUsuario, eleccionCapacidadHabitacion_CUsuario, eleccionCostoHabitacion_CUsuario;
     string eleccionNombreHostal_CUsuario;
-    cin.ignore();
+
     cout << "Ingrese el numero de habitacion\n";
     cin >> eleccionNumeroHabitacion_CUsuario;
+    cin.ignore(256, '\n');
     cout << "\n";
 
     cout << "Ingrese el costo de la habitacion\n";
     cin >> eleccionCostoHabitacion_CUsuario;
+    cin.ignore(256, '\n');
     cout << "\n";
 
     cout << "Ingrese la capacidad de la habitacion\n";
     cin >> eleccionCapacidadHabitacion_CUsuario;
+    cin.ignore(256, '\n');
     cout << "\n";
 
     controladorHabitaciones->ingresarDatosHabitacion(eleccionNumeroHabitacion_CUsuario,eleccionCostoHabitacion_CUsuario,eleccionCapacidadHabitacion_CUsuario);
@@ -560,16 +569,20 @@ void asignarEmpleadoAHostal(){
     // PARA ASIGNAR EMPLEADO A HOSTAL
     string eleccionEmailEmpleado_CUsuario,eleccionNombreHostal_CUsuario;
     int eleccionCargoUsuario_CUsuario;
-    cin.ignore();
+
     imprimirTodosEmailHuespedes();
+
     cout << "Ingrese el email del empleado\n";
     getline(cin, eleccionEmailEmpleado_CUsuario);
     cout << "\n";
+
     controladorUsuarios->seleccionarEmpleado(eleccionEmailEmpleado_CUsuario);
 
     cout << "Ingrese el cargo del empleado: 1 = Administracion / 2 = Limpieza / 3 = Recepcion / 4 = Infraestructura\n";
     cin >> eleccionCargoUsuario_CUsuario;
+    cin.ignore(256, '\n');
     cout << "\n";
+
     switch(eleccionCargoUsuario_CUsuario){
         case 1:
             controladorUsuarios->ingresarCargo(administracion);
@@ -585,6 +598,7 @@ void asignarEmpleadoAHostal(){
             break;
         }
         imprimirTodosNombreHostal();
+
         cout << "Ingrese el nombre del hostal en el cual trabajara el empleado\n";
         getline(cin, eleccionNombreHostal_CUsuario);
         cout << "\n";
@@ -595,27 +609,32 @@ void asignarEmpleadoAHostal(){
 //Modificar fecha del sistema
 void modificarFechaDelSistema(){
     int AnioSistema,MesSistema,DiaSistema,HoraSistema,MinutoSistema;
-    cin.ignore();
+
     cout << "Ingrese la fecha del sistema\n";
 
     cout << "Anio:";
     cin >> AnioSistema;
+    cin.ignore(256, '\n');
     cout << "\n";
 
     cout << "Mes:";
     cin >> MesSistema;
+    cin.ignore(256, '\n');
     cout << "\n";
 
     cout << "Dia:";
     cin >> DiaSistema;
+    cin.ignore(256, '\n');
     cout << "\n";
 
     cout << "Hora:";
     cin >> HoraSistema;
+    cin.ignore(256, '\n');
     cout << "\n";
 
     cout << "Minuto:";
     cin >> MinutoSistema;
+    cin.ignore(256, '\n');
     cout << "\n";
 
     controladorSistema->modificarFecha(DTFecha(DiaSistema,MesSistema,AnioSistema,HoraSistema,MinutoSistema));
@@ -627,15 +646,17 @@ void registrarEstadia(string eleccionHostalEmpleado_CEmpleado){
     // PARA REGISTRAR ESTADIA
     int eleccionTipoEstadia_CEmpleado, eleccionCodigoReserva_CEmpleado;
     string eleccionEmailHuespedEstadia_CEmpleado;
-    cin.ignore();
+
     cout << "Indique si la estadia corresponde a una reserva individual o grupal: 1 = Individual / 2 = Grupal\n";
     cin >> eleccionTipoEstadia_CEmpleado;
+    cin.ignore(256, '\n');
     cout << "\n";
                                 
     imprimirTodasReservas(eleccionHostalEmpleado_CEmpleado);
 
     cout << "Indique el codigo de la reserva asociada a la estadia\n";
     cin >> eleccionCodigoReserva_CEmpleado;
+    cin.ignore(256, '\n');
     cout << "\n";
                                 
     switch(eleccionTipoEstadia_CEmpleado){
@@ -649,9 +670,11 @@ void registrarEstadia(string eleccionHostalEmpleado_CEmpleado){
     controladorEstadias->seleccionarReserva(eleccionCodigoReserva_CEmpleado);
 
     imprimirTodosEmailHuespedes();
+
     cout << "Indique el email del huesped asociado a la estadia\n";
     getline(cin, eleccionEmailHuespedEstadia_CEmpleado);
     cout << "\n";
+
     controladorEstadias->ingresarHuesped(eleccionEmailHuespedEstadia_CEmpleado);
 
     DTFecha fechaSis = controladorSistema->obtenerFechaActual();
@@ -675,12 +698,13 @@ void registrarEstadia(string eleccionHostalEmpleado_CEmpleado){
     controladorEstadias->ingresarEntradaEstadia(fechaSis.getDia(), fechaSis.getMes(), fechaSis.getAnio(), fechaSis.getHora(), fechaSis.getMinuto());
     controladorEstadias->confirmarAltaEstadia();
 }
+
 //Finalizar estadia
 void finalizarEstadia(){
     // PARA FINALIZAR ESTADIA
     string eleccionComentarioEstadia_CEmpleado,eleccionEmailHuespedEstadia_CEmpleado;
     int eleccionPuntajeEstadia_CEmpleado,eleccionCodigoReserva_CEmpleado;
-    cin.ignore();
+
     cout << "Indique el comentario asociado a la estadia\n";
     getline(cin, eleccionComentarioEstadia_CEmpleado);
     cout << "\n";
@@ -688,6 +712,7 @@ void finalizarEstadia(){
 
     cout << "Indique el puntaje asociado a la estadia\n";
     cin >> eleccionPuntajeEstadia_CEmpleado;
+    cin.ignore(256, '\n');
     cout << "\n";
     controladorCalificaciones->ingresarPuntaje(eleccionPuntajeEstadia_CEmpleado);
 
@@ -695,6 +720,7 @@ void finalizarEstadia(){
 
     cout << "Indique el codigo de la reserva asociada a la estadia\n";
     cin >> eleccionCodigoReserva_CEmpleado;
+    cin.ignore(256, '\n');
     cout << "\n";
 
     imprimirTodosEmailHuespedes();
@@ -710,7 +736,7 @@ void comentarCalificacion(){
     // PARA COMENTAR CALIFICACION
     string eleccionComentarioCalificacion_CEmpleado,eleccionEmailHuespedEstadia_CEmpleado;
     int eleccionCodigoReserva_CEmpleado;
-    cin.ignore();
+
     cout << "Indique el comentario asociado a la calificacion\n";
     getline(cin, eleccionComentarioCalificacion_CEmpleado);
     cout << "\n";
@@ -718,6 +744,7 @@ void comentarCalificacion(){
                                 
     cout << "Indique el codigo de la reserva asociada a la estadia\n";
     cin >> eleccionCodigoReserva_CEmpleado;
+    cin.ignore(256, '\n');
     cout << "\n";
 
     cout << "Indique el email del huesped asociado a la estadia\n";
@@ -727,6 +754,7 @@ void comentarCalificacion(){
 
     controladorCalificaciones->responderCalificacion(eleccionCodigoReserva_CEmpleado,eleccionEmailHuespedEstadia_CEmpleado,controladorSistema->obtenerFechaActual());
 }
+
 //Suscribirse a notificaciones
 void suscribirseANotificaciones(){}
 //Consulta de notificaciones
@@ -741,74 +769,87 @@ int realizarReserva(int codigoReserva){
     int eleccionHabitacionReserva_CHuesped,eleccionTipoReserva_CHuesped,eleccionSeguiraAgregando_CHuesped;
     list<string> eleccionEmailInvitadosReserva_CHuesped;
     bool continuarArgegando_CHuesped;
-    int AnioSistema, MesSistema, DiaSistema, HoraSistema, MinutoSistema;
-    cin.ignore();
-
+    int AnioReserva, MesReserva, DiaReserva, HoraReserva, MinutoReserva;
     
     cout << "Ingrese la fecha de check in\n";
 
     cout << "Anio:";
-    cin >> AnioSistema;
+    cin >> AnioReserva;
+    cin.ignore(256, '\n');
     cout << "\n";
 
     cout << "Mes:";
-    cin >> MesSistema;
+    cin >> MesReserva;
     cout << "\n";
 
     cout << "Dia:";
-    cin >> DiaSistema;
+    cin >> DiaReserva;
+    cin.ignore(256, '\n');
     cout << "\n";
 
     cout << "Hora:";
-    cin >> HoraSistema;
+    cin >> HoraReserva;
+    cin.ignore(256, '\n');
     cout << "\n";
 
     cout << "Minuto:";
-    cin >> MinutoSistema;
+    cin >> MinutoReserva;
+    cin.ignore(256, '\n');
     cout << "\n";
 
-    DTFecha checkIn = DTFecha(DiaSistema,MesSistema,AnioSistema,HoraSistema,MinutoSistema);
+    DTFecha checkIn = DTFecha(DiaReserva,MesReserva,AnioReserva,HoraReserva,MinutoReserva);
 
     cout << "Ingrese la fecha de check out\n";
 
     cout << "Anio:";
-    cin >> AnioSistema;
+    cin >> AnioReserva;
+    cin.ignore(256, '\n');
     cout << "\n";
 
     cout << "Mes:";
-    cin >> MesSistema;
+    cin >> MesReserva;
+    cin.ignore(256, '\n');
     cout << "\n";
 
     cout << "Dia:";
-    cin >> DiaSistema;
+    cin >> DiaReserva;
+    cin.ignore(256, '\n');
     cout << "\n";
 
     cout << "Hora:";
-    cin >> HoraSistema;
+    cin >> HoraReserva;
+    cin.ignore(256, '\n');
     cout << "\n";
 
     cout << "Minuto:";
-    cin >> MinutoSistema;
+    cin >> MinutoReserva;
+    cin.ignore(256, '\n');
     cout << "\n";
 
-    DTFecha checkOut = DTFecha(DiaSistema,MesSistema,AnioSistema,HoraSistema,MinutoSistema);
+    DTFecha checkOut = DTFecha(DiaReserva,MesReserva,AnioReserva,HoraReserva,MinutoReserva);
 
     controladorReservas->ingresarDatosReserva(codigoReserva,checkIn,checkOut,abierta);
 
     imprimirTodosNombreHostal();
+
     cout << "Indique el nombre del hostal donde realizara la reserva\n";
     getline(cin, eleccionHostalReserva_CHuesped);
     cout << "\n";
+
     controladorReservas->seleccionarHostal(eleccionHostalReserva_CHuesped);
                                 
     imprimirTodosNumeroHabitacion(eleccionHostalReserva_CHuesped,checkIn,checkOut);
+
     cout << "Indique el numero de habitacion\n";
     cin >> eleccionHabitacionReserva_CHuesped;
+    cin.ignore(256, '\n');
     cout << "\n";
+
     controladorReservas->seleccionarHabitacion(eleccionHabitacionReserva_CHuesped);
 
     cout << "Indique el tipo de reserva: 1 = Individual / 2 = Grupal\n";
     cin >> eleccionTipoReserva_CHuesped;
+    cin.ignore(256, '\n');
     cout << "\n";
     switch(eleccionTipoReserva_CHuesped){
         case 1:
@@ -833,6 +874,7 @@ int realizarReserva(int codigoReserva){
                 eleccionEmailInvitadosReserva_CHuesped.push_back(eleccionEmailInvitado_CHuesped);
                 cout << "Si desea detenerse, ingrese 1 de lo contrario ingrese cualquier numero:";
                 cin >> eleccionSeguiraAgregando_CHuesped;
+                cin.ignore(256, '\n');
                 if (eleccionSeguiraAgregando_CHuesped == 1)
                     continuarArgegando_CHuesped = false;
             }
@@ -845,7 +887,7 @@ int realizarReserva(int codigoReserva){
 //Consultar top 3 hostales
 void consultarTop3Hostales(){
     string eleccionHostal_CHuesped;
-    cin.ignore();
+
     void imprimirTop3Hostales();
     cout << "Si desea ver detalles sobre algun hostal en particular, ingrese su nombre" << endl;
     getline(cin, eleccionHostal_CHuesped);
@@ -854,10 +896,9 @@ void consultarTop3Hostales(){
 }
 //Calificar estadia
 void calificarEstadia(){
-    cin.ignore();
-    // PARA CALIFICAR ESTADIA
     string eleccionComentarioEstadia_CHuesped,eleccionEmailHuespedEstadia_CEmpleado;
     int eleccionPuntajeEstadia_CHuesped,eleccionCodigoReserva_CEmpleado;
+
     cout << "Por ingrese el comentario\n";
     getline(cin, eleccionComentarioEstadia_CHuesped);
     cout << "\n";
@@ -865,6 +906,7 @@ void calificarEstadia(){
 
     cout << "Por favor ingrese el puntaje\n";
     cin >> eleccionPuntajeEstadia_CHuesped;
+    cin.ignore(256, '\n');
     cout << "\n";
     controladorCalificaciones->ingresarPuntaje(eleccionPuntajeEstadia_CHuesped);
 
@@ -872,6 +914,7 @@ void calificarEstadia(){
 
     cout << "Indique el codigo de la reserva asociada a la estadia\n";
     cin >> eleccionCodigoReserva_CEmpleado;
+    cin.ignore(256, '\n');
     cout << "\n";
     cout << "Por favor indique su email\n";
     getline(cin, eleccionEmailHuespedEstadia_CEmpleado);
@@ -880,11 +923,12 @@ void calificarEstadia(){
 }
 //Consulta de usuario
 void consultaDeUsuario(){
-    cin.ignore();
     int eleccionTipoUsuario_CHuesped;
     string eleccionEmailEmpleado_CHuesped, eleccionEmailHuesped_CHuesped,eleccionHostal_CHuesped;
+
     cout << "Indique si desea consultar por empleados o huespedes: 1 = Huespedes / 2 = Empleados" << endl;
     cin >> eleccionTipoUsuario_CHuesped;
+    cin.ignore(256, '\n');
     cout << "\n";
     if (eleccionTipoUsuario_CHuesped == 1){
         imprimirTodosEmailHuespedes();
@@ -903,10 +947,10 @@ void consultaDeUsuario(){
 }
 //Consulta de hostal
 void consultaDeHostal(){
-    cin.ignore();
     int cantCalificaciones_CHuesped;
     DTInfoBasicaHostal infoBasicaHostal_CHuesped;
     string eleccionHostal_CHuesped;
+
     imprimirTodosNombreHostal();
     cout << "Ingrese el nombre del hostal que desea consultar" << endl;
     getline(cin, eleccionHostal_CHuesped);
@@ -926,7 +970,6 @@ void consultaDeHostal(){
 }
 //Consulta de reserva
 void consultaDeReserva(){
-    cin.ignore();
     int eleccionReserva_CHuesped;
     string eleccionHostal_CHuesped;
     imprimirTodosNombreHostal();
@@ -936,12 +979,12 @@ void consultaDeReserva(){
     imprimirTodasReservas(eleccionHostal_CHuesped);
     cout << "Ingrese el numero de la reserva que desea consultar" << endl;
     cin >> eleccionReserva_CHuesped;
+    cin.ignore(256, '\n');
     cout << "\n";
     imprimirDetalleReserva(eleccionReserva_CHuesped,eleccionHostal_CHuesped);
 }
 //Consulta de estadia
 void consultaDeEstadia(){
-    cin.ignore();
     string eleccionHuesped_CHuesped,eleccionHostal_CHuesped;
     imprimirTodosNombreHostal();
     cout << "Ingrese el nombre del hostal en el que se realizo la estadia" << endl;
@@ -953,9 +996,9 @@ void consultaDeEstadia(){
     cout << "\n";
     imprimirDetalleEstadia(eleccionHostal_CHuesped,eleccionHuesped_CHuesped);
 }
+
 //Baja de reserva
 void bajaDeReserva(){
-    cin.ignore();
     int eleccionCancelar_CHuesped,eleccionReserva_CHuesped;
     string eleccionHostal_CHuesped;
     imprimirTodosNombreHostal();
@@ -965,9 +1008,11 @@ void bajaDeReserva(){
     imprimirTodasReservas(eleccionHostal_CHuesped);
     cout << "Ingrese el numero de la reserva que desea cancelar" << endl;
     cin >> eleccionReserva_CHuesped;
+    cin.ignore(256, '\n');
     cout << "\n";
     cout << "Indique si esta seguro de su cancelacion: 1 = Si / 2 = No" << endl;
     cin >> eleccionCancelar_CHuesped;
+    cin.ignore(256, '\n');
     cout << "\n";
     if (eleccionCancelar_CHuesped == 1){
         controladorReservas->cancelarReserva(eleccionReserva_CHuesped);
