@@ -519,6 +519,7 @@ void altaDeUsuario(){
 //Alta de hostal
 void altaDeHostal(){
     // PARA ALTA DE HOSTAL
+    cin.ignore(256, '\n');
     string eleccionNombreHostal_CUsuario, eleccionDireccionHostal_CUsuario, eleccionTelefonoHostal_CUsuario;
     cout << "Ingrese el nombre del hostal\n";
     getline(cin, eleccionNombreHostal_CUsuario);
