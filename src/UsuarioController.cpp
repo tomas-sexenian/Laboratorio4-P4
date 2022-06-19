@@ -256,8 +256,3 @@ void UsuarioController::ingresarHostal(string nombreHostal) {
     HostalController* controladorHostales = HostalController::getInstancia();
     hostal = controladorHostales->getHostales().find(nombreHostal)->second;
 }
-
-void UsuarioController::eliminarUsurios() {
-    Huespedes.clear();
-    Empleados.clear();
-}

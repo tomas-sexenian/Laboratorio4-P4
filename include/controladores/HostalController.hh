@@ -50,8 +50,6 @@ class HostalController : public IControladorHostal {
         void ingresarDatosHostal(string,string,string);
         void confirmarAltaHostal();
         void cancelarAltaHostal();
-
-        void eliminarHostales();
 };
 
 #endif

@@ -52,8 +52,6 @@ public:
     virtual list<DTEmpleado> obtenerEmpleadosNoAsignadosHostal(string) = 0;
     virtual void ingresarHostal(string) = 0;
 
-    virtual void eliminarUsuarios() = 0;
-
 };
 
 #endif

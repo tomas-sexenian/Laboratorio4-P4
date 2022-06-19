@@ -21,14 +21,12 @@ class IControladorEstadia {
        virtual void confirmarFinEstadia() = 0;
        virtual list<DTEstadia> obtenerTodasEstadiasHostal(string) = 0;
 
-        virtual void seleccionarTipo(TipoReserva) = 0;
-        virtual void seleccionarReserva(int) = 0;
-        virtual void ingresarHuesped(string) = 0;
-        virtual void ingresarInvitados(list<string>) = 0;
-        virtual void ingresarEntradaEstadia(int,int,int,int,int) = 0;
-        virtual void confirmarAltaEstadia() = 0;
-
-        virtual void eliminarEstadias() = 0;
+    virtual void seleccionarTipo(TipoReserva) = 0;
+    virtual void seleccionarReserva(int) = 0;
+    virtual void ingresarHuesped(string) = 0;
+    virtual void ingresarInvitados(list<string>) = 0;
+    virtual void ingresarEntradaEstadia(int,int,int,int,int) = 0;
+    virtual void confirmarAltaEstadia() = 0;
 };
 
 #endif

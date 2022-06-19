@@ -40,7 +40,5 @@ class HabitacionController: public IControladorHabitacion {
         void confirmarAltaHabitacion();
         void cancelarAltaHabitacion();
         void ingresarHostalHabitacion(string);
-
-        void eliminarHabitaciones();
 };
 #endif

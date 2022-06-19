@@ -41,8 +41,6 @@ class IControladorReserva {
         virtual void ingresarHuesped(string) = 0;
         virtual void ingresarInvitados(list<string>) = 0;
 
-        virtual void eliminarReservas() = 0;
-
 }; 
 
 #endif

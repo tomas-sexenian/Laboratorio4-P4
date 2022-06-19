@@ -33,7 +33,5 @@ class NotificacionesController: public IControladorNotificaciones {
         void subscribirEmpleado(string);
         void eliminarNotificaciones();
         void eliminarSubscripcion(string);
-
-        void eliminarNotificaciones();
 };
 #endif

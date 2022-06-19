@@ -1258,11 +1258,4 @@ int main(){
                 break;
         }  
     }
-    controladorCalificaciones->eliminarCalificaciones();
-    controladorEstadias->eliminarEstadias();
-    controladorHabitaciones->eliminarHabitaciones();
-    controladorHostales->eliminarHostales();
-    controladorNotificaciones->eliminarNotificaciones();
-    controladorReservas->eliminarReservas();
-    controladorUsuarios->eliminarUsuarios();
 }

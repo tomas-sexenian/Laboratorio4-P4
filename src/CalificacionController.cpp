@@ -79,11 +79,3 @@ void CalificacionController::responderCalificacion(int codigoReserva, string ema
     RespuestasEmpleados.insert((pair<Calificacion *,RespuestaEmpleado*>(c,nueva)));
     
 }
-
-void CalificacionController::eliminarCalificaciones() {
-    Calificaciones.clear();
-}
-
-void CalificacionController::eliminarRespuestasEmpleado() {
-    RespuestasEmpleados.clear();
-}

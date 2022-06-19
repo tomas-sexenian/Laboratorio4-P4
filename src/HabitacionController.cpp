@@ -73,7 +73,4 @@ void HabitacionController::ingresarHostalHabitacion(string nombreHostal){
     HostalController* controladorHostales = HostalController::getInstancia();
     hostal = controladorHostales->getHostales().find(nombreHostal)->second;
 }
-
-void HabitacionController::eliminarHabitaciones() {
-    Habitaciones.clear();
-}
+    
