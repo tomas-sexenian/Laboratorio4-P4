@@ -13,7 +13,7 @@ EstadiaController * EstadiaController::getInstancia(){
     return EstadiaController::instancia;
 };
 
-map<int,Estadia*> EstadiaController::getEstadias() {
+multimap<int,Estadia*> EstadiaController::getEstadias() {
     return Estadias;
 }
 
@@ -22,7 +22,7 @@ map<int,Estadia*> EstadiaController::getEstadias() {
 
 void EstadiaController::seleccionarEstadia(int codigoReserva, string email) {
     Estadia* res = NULL;
-    for(map<int,Estadia*>::iterator it = this->Estadias.begin(); it != this->Estadias.end(); it++){
+    for(multimap<int,Estadia*>::iterator it = this->Estadias.begin(); it != this->Estadias.end(); it++){
         if (it->second->getReserva()->getCodigo() == codigoReserva && it->second->getHuesped()->getEmail() == email)
             res =  it->second;
     }
@@ -32,7 +32,7 @@ void EstadiaController::seleccionarEstadia(int codigoReserva, string email) {
 
 Estadia* EstadiaController::obtenerEstadia(int codigoReserva, string email) {
     Estadia* res = NULL;
-    for(map<int,Estadia*>::iterator it = this->Estadias.begin(); it != this->Estadias.end(); it++){
+    for(multimap<int,Estadia*>::iterator it = this->Estadias.begin(); it != this->Estadias.end(); it++){
         if (it->second->getReserva()->getCodigo() == codigoReserva && it->second->getHuesped()->getEmail() == email)
             res =  it->second;
     }
@@ -73,7 +73,7 @@ void EstadiaController::confirmarFinEstadia() {
 
 list<DTEstadia> EstadiaController::obtenerTodasEstadiasHostal(string nombreHostal){
     list<DTEstadia> res = {};
-    for(map<int,Estadia*>::iterator it = this->Estadias.begin(); it != this->Estadias.end(); it++){
+    for(multimap<int,Estadia*>::iterator it = this->Estadias.begin(); it != this->Estadias.end(); it++){
         if (it->second->getHostal()->getNombre() == nombreHostal){
             DTEstadia item = DTEstadia(it->second->getHuesped()->getNombre(),it->second->getHostal()->getNombre(),it->second->getEntrada(),it->second->getSalida(),it->second->getReserva()->getHabitacion()->getNumero(),it->second->getPromo());
             res.push_back(item);
