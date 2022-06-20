@@ -9,6 +9,7 @@ using namespace std;
 
 class DTEstadia{
     private: 
+        int codigoReserva;
         string emailHuesped;
         string nombreHostal;
         DTFecha entrada;
@@ -16,9 +17,10 @@ class DTEstadia{
         int habitacion;
         string promo;
     public:
-        DTEstadia(string,string,DTFecha,DTFecha,int,string);
+        DTEstadia(int, string,string,DTFecha,DTFecha,int,string);
         DTEstadia();
         ~DTEstadia();
+        int getCodigoReserva();
         string getEmailHuesped();
         string getNombreHostal();
         DTFecha getEntrada();

@@ -52,7 +52,7 @@ class EstadiaController : public IControladorEstadia {
         Estadia* obtenerEstadia(int, string);
         Estadia* finalizarEstadia();
         void confirmarFinEstadia();
-        list<DTEstadia> obtenerTodasEstadiasHostal(string);
+        list<DTEstadia*> obtenerTodasEstadiasHostal(string);
 
         void seleccionarReserva(int);
         void seleccionarTipo(TipoReserva);

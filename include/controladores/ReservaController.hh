@@ -69,7 +69,7 @@ class ReservaController : public IControladorReserva {
         void confirmarReserva();
         void cancelarReserva(int);
         Reserva* obtenerReserva(int);
-        list<DTReserva> obtenerReservasHostal(string);
+        list<DTReserva*> obtenerReservasHostal(string);
         
         void seleccionarHostal(string);
         void seleccionarHabitacion(int);

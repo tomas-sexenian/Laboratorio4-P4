@@ -232,14 +232,14 @@ void ReservaController::cancelarReserva(int UnCodigoReserva) {
         throw std::invalid_argument( "No se puede cancelar una reserva que no existe");
 }
 
-list<DTReserva> ReservaController::obtenerReservasHostal(string UnHostal) {
-    list<DTReserva> res;
+list<DTReserva*> ReservaController::obtenerReservasHostal(string UnHostal) {
+    list<DTReserva*> res;
 
     auto itrInd = ReservasIndividuales.begin();
     while(itrInd != ReservasIndividuales.end()){ //Iterar map
         ReservaIndividual *r = itrInd->second;
         if(r->getHabitacion()->getHostal()->getNombre() == UnHostal){
-            DTReservaIndividual dt(
+            DTReservaIndividual *dt = new DTReservaIndividual(
                         r->getCodigo(), 
                         r->getHabitacion()->getHostal()->getNombre(), 
                         r->getCheckIn(),
@@ -263,7 +263,7 @@ list<DTReserva> ReservaController::obtenerReservasHostal(string UnHostal) {
                 DTHuesped invitado_i = DTHuesped(it->second->getNombre(),it->second->getEmail(),it->second->getContrasenia(),it->second->getEsFinger());
                 lstInvitados.push_back(invitado_i);
             }
-            DTReservaGrupal dt(
+            DTReservaGrupal *dt = new DTReservaGrupal(
                         r->getCodigo(), 
                         r->getHabitacion()->getHostal()->getNombre(), 
                         r->getCheckIn(),

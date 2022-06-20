@@ -33,7 +33,7 @@ class IControladorReserva {
         virtual void agregarHuespedesReservaGrupal(map<string, Huesped*>) = 0;
         virtual void confirmarReserva() = 0;
         virtual void cancelarReserva(int) = 0;
-        virtual list<DTReserva> obtenerReservasHostal(string) = 0;
+        virtual list<DTReserva*> obtenerReservasHostal(string) = 0;
         
         virtual void seleccionarHostal(string) = 0;
         virtual void seleccionarHabitacion(int) = 0;

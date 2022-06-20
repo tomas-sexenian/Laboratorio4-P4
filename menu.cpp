@@ -301,9 +301,9 @@ void imprimirDetalleHuesped(string emailHuesped){
             std::cout << "Nombre: " << it->getNombre() << " \n";
             std::cout << "Email: " << it->getEmail() << " \n";
             if (it->getEsFinger())
-                cout << "Es finger" << it->getEmail() << " \n";
+                cout << "Es finger" << " \n";
             else
-                cout << "No es finger" << it->getEmail() << " \n";
+                cout << "No es finger" << " \n";
         }
     }
 }
@@ -330,15 +330,15 @@ void imprimirDetalleHostal(string nombreHostal){
 
 void imprimirTodasReservas(string nombreHostal){
     std::cout << "TODAS LAS RESERVAS DEL HOSTAL: " << nombreHostal << endl;
-    list<DTReserva> reservas = controladorReservas->obtenerReservasHostal(nombreHostal);
-    for (std::list<DTReserva>::iterator it = reservas.begin(); it != reservas.end(); ++it){
-        if(dynamic_cast<DTReservaIndividual*>(&(*it))){
-            DTReservaIndividual* res_individual = dynamic_cast<DTReservaIndividual*>(&(*it));
+    list<DTReserva*> reservas = controladorReservas->obtenerReservasHostal(nombreHostal);
+    for (std::list<DTReserva*>::iterator it = reservas.begin(); it != reservas.end(); ++it){
+        if(dynamic_cast<DTReservaIndividual*>(*it)){
+            DTReservaIndividual* res_individual = dynamic_cast<DTReservaIndividual*>(*it);
             std::cout << "Tipo Reserva: Individual" << endl;
             std::cout << "Codigo Reserva: " << res_individual->getCodigo() << endl;
         }
-        if (dynamic_cast<DTReservaGrupal*>(&(*it))){
-            DTReservaGrupal* res_grupal = dynamic_cast<DTReservaGrupal*>(&(*it));
+        if (dynamic_cast<DTReservaGrupal*>(*it)){
+            DTReservaGrupal* res_grupal = dynamic_cast<DTReservaGrupal*>(*it);
             std::cout << "Tipo Reserva: Grupal" << endl;
             std::cout << "Codigo Reserva: " << res_grupal->getCodigo() << endl;
         }
@@ -347,15 +347,15 @@ void imprimirTodasReservas(string nombreHostal){
 
 void imprimirDetalleReserva(int codigoReserva, string nombreHostal){
     std::cout << "DETALLE DE LA RESERVA: " << codigoReserva << endl;
-    list<DTReserva> reservas = controladorReservas->obtenerReservasHostal(nombreHostal);
-    for (std::list<DTReserva>::iterator it = reservas.begin(); it != reservas.end(); ++it){
-        if(dynamic_cast<DTReservaIndividual*>(&(*it))){
-            DTReservaIndividual* res_individual = dynamic_cast<DTReservaIndividual*>(&(*it));
+    list<DTReserva*> reservas = controladorReservas->obtenerReservasHostal(nombreHostal);
+    for (std::list<DTReserva*>::iterator it = reservas.begin(); it != reservas.end(); ++it){
+        if(dynamic_cast<DTReservaIndividual*>(*it)){
+            DTReservaIndividual* res_individual = dynamic_cast<DTReservaIndividual*>(*it);
             if (res_individual->getCodigo() == codigoReserva){
                 std::cout << "Tipo Reserva: Individual" << endl;
                 std::cout << "Codigo Reserva: " << res_individual->getCodigo() << endl;
-                std::cout << "Fecha CheckIn: " << res_individual->getCheckin().getDia() << "/" << res_individual->getCheckin().getMes() << res_individual->getCheckin().getDia() << endl;
-                std::cout << "Fecha CheckOut: " << res_individual->getCheckout().getDia() << "/" << res_individual->getCheckout().getMes() << res_individual->getCheckout().getDia() << endl;
+                std::cout << "Fecha CheckIn: " << res_individual->getCheckin().getDia() << "/"<<  res_individual->getCheckin().getMes() << "/"<< res_individual->getCheckin().getAnio() << endl;
+                std::cout << "Fecha CheckOut: " << res_individual->getCheckout().getDia() << "/" << res_individual->getCheckout().getMes() << "/"<< res_individual->getCheckout().getAnio() << endl;
                 std::cout << "Habitacion: " << res_individual->getHabitacion() << endl;
                 std::cout << "Costo: " << res_individual->getCosto() << endl;
                 switch(res_individual->getEstado()){
@@ -371,16 +371,16 @@ void imprimirDetalleReserva(int codigoReserva, string nombreHostal){
                 }
             }
         }
-        if (dynamic_cast<DTReservaGrupal*>(&(*it))){
-            DTReservaGrupal* res_grupal = dynamic_cast<DTReservaGrupal*>(&(*it));
+        if (dynamic_cast<DTReservaGrupal*>(*it)){
+            DTReservaGrupal* res_grupal = dynamic_cast<DTReservaGrupal*>(*it);
             if (res_grupal->getCodigo() == codigoReserva){
                 std::cout << "Tipo Reserva: Grupal" << endl;
                 std::cout << "Codigo Reserva: " << res_grupal->getCodigo() << endl;
-                std::cout << "Fecha CheckIn: " << res_grupal->getCheckin().getDia() << "/" << res_grupal->getCheckin().getMes() << res_grupal->getCheckin().getDia() << endl;
-                std::cout << "Fecha CheckOut: " << res_grupal->getCheckout().getDia() << "/" << res_grupal->getCheckout().getMes() << res_grupal->getCheckout().getDia() << endl;
+                std::cout << "Fecha CheckIn: " << res_grupal->getCheckin().getDia() << "/"<<  res_grupal->getCheckin().getMes() << "/"<< res_grupal->getCheckin().getAnio() << endl;
+                std::cout << "Fecha CheckOut: " << res_grupal->getCheckout().getDia() << "/" << res_grupal->getCheckout().getMes() << "/"<< res_grupal->getCheckout().getAnio() << endl;
                 std::cout << "Habitacion: " << res_grupal->getHabitacion() << endl;
                 std::cout << "Costo: " << res_grupal->getCosto() << endl;
-                switch(it->getEstado()){
+                switch((*it)->getEstado()){
                     case abierta:
                         std::cout << "Estado Reserva: Abierta"<< endl;
                         break;
@@ -412,22 +412,23 @@ void imprimirTodosNumeroHabitacion(string nombreHostal, DTFecha checkIn, DTFecha
 
 void imprimirTodasEstadias(string nombreHostal){
     std::cout << "TODAS LAS ESTADIAS DEL HOSTAL: " << nombreHostal << endl;
-    list<DTEstadia> estadias = controladorEstadias->obtenerTodasEstadiasHostal(nombreHostal);
-    for (std::list<DTEstadia>::iterator it = estadias.begin(); it != estadias.end(); ++it){
-        std::cout << "Email del huesped:" << it->getEmailHuesped() << endl;
-        std::cout << "Habitacion: " << it->getHabitacion() << endl;
+    list<DTEstadia*> estadias = controladorEstadias->obtenerTodasEstadiasHostal(nombreHostal);
+    for (std::list<DTEstadia*>::iterator it = estadias.begin(); it != estadias.end(); ++it){
+        std::cout << "Codigo reserva: "<< (*it)->getCodigoReserva() <<" - Email del huesped:" << (*it)->getEmailHuesped() << endl;
     }
 }
 
-void imprimirDetalleEstadia(string nombreHostal,string emailHuesped){
-    std::cout << "TODAS LAS ESTADIAS DEL HUESPED " << emailHuesped << " EN EL HOSTAL " << nombreHostal << endl;
-    list<DTEstadia> estadias = controladorEstadias->obtenerTodasEstadiasHostal(nombreHostal);
-    for (std::list<DTEstadia>::iterator it = estadias.begin(); it != estadias.end(); ++it){
-        if (it->getEmailHuesped() == emailHuesped ){
-            std::cout << "Habitacion: " << it->getHabitacion() << endl;
-            std::cout << "Promo: " << it->getPromo() << endl;
-            std::cout << "Entrada: " << it->getEntrada().getDia() << "/" << it->getEntrada().getMes() << "/" << it->getEntrada().getAnio() << endl;
-            std::cout << "Salida: " << it->getSalida().getDia() << "/" << it->getSalida().getMes() << "/" << it->getSalida().getAnio() << endl;
+void imprimirDetalleEstadia(string nombreHostal,string emailHuesped, int codigo){
+    std::cout << "DETALLE DE LA ESTADIA " << codigo << endl;
+    list<DTEstadia*> estadias = controladorEstadias->obtenerTodasEstadiasHostal(nombreHostal);
+    for (std::list<DTEstadia*>::iterator it = estadias.begin(); it != estadias.end(); ++it){
+        if ((*it)->getEmailHuesped() == emailHuesped && (*it)->getCodigoReserva() == codigo){
+            std::cout << "Hostal: " << (*it)->getNombreHostal() << endl;
+            std::cout << "Codigo reserva: " << (*it)->getCodigoReserva() << endl;
+            std::cout << "Huesped: " << (*it)->getEmailHuesped() << endl;
+            std::cout << "Habitacion: " << (*it)->getHabitacion() << endl;
+            std::cout << "Entrada: " << (*it)->getEntrada().getDia() << "/" << (*it)->getEntrada().getMes() << "/" << (*it)->getEntrada().getAnio() << endl;
+            std::cout << "Salida: " << (*it)->getSalida().getDia() << "/" << (*it)->getSalida().getMes() << "/" << (*it)->getSalida().getAnio() << endl;
         }
     }
 }
@@ -959,15 +960,15 @@ void consultaDeUsuario(){
     cin.ignore(256, '\n');
     cout << "\n";
     if (eleccionTipoUsuario_CHuesped == 1){
-        imprimirTodosEmailEmpleados();
-        cout << "Ingrese el mail del huesped que desea visualizar" << endl;
-        getline(cin, eleccionEmailEmpleado_CHuesped);
-        cout << "\n";
-        imprimirDetalleHuesped(eleccionEmailEmpleado_CHuesped);
-    }
-    else if (eleccionTipoUsuario_CHuesped == 2){
         imprimirTodosEmailHuespedes();
         cout << "Ingrese el mail del empleado que desea visualizar" << endl;
+        getline(cin, eleccionEmailHuesped_CHuesped);
+        cout << "\n";
+        imprimirDetalleHuesped(eleccionEmailHuesped_CHuesped);
+    }
+    else if (eleccionTipoUsuario_CHuesped == 2){
+        imprimirTodosEmailEmpleados();
+        cout << "Ingrese el mail del huesped que desea visualizar" << endl;
         getline(cin, eleccionEmailEmpleado_CHuesped);
         cout << "\n";
         imprimirDetalleEmpleado(eleccionEmailEmpleado_CHuesped);
@@ -1021,6 +1022,7 @@ void consultaDeEstadia(){
     cin.ignore(256, '\n');
 
     string eleccionHuesped_CHuesped,eleccionHostal_CHuesped;
+    int eleccionCodigo_CHuesped;
     imprimirTodosNombreHostal();
     cout << "Ingrese el nombre del hostal en el que se realizo la estadia" << endl;
     getline(cin, eleccionHostal_CHuesped);
@@ -1029,7 +1031,11 @@ void consultaDeEstadia(){
     cout << "Ingrese el email del huesped cuya estadia desea consultar" << endl;
     getline(cin, eleccionHuesped_CHuesped);
     cout << "\n";
-    imprimirDetalleEstadia(eleccionHostal_CHuesped,eleccionHuesped_CHuesped);
+    cout << "Ingrese el codigo de la reserva cuya estadia desea consultar" << endl;
+    cin >> eleccionCodigo_CHuesped;
+    cin.ignore(256, '\n');
+    cout << "\n";
+    imprimirDetalleEstadia(eleccionHostal_CHuesped,eleccionHuesped_CHuesped, eleccionCodigo_CHuesped);
 }
 
 //Baja de reserva
