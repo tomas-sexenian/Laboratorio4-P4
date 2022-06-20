@@ -148,9 +148,9 @@ list<DTInfoHostalYCalificacion> HostalController::obtenerTodosHostalesYPromCalif
 list<DTCalificacion> HostalController::obtenerCalificaciones() {
 	EstadiaController* controladorEstadia = EstadiaController::getInstancia();
 	list<DTCalificacion> res;
-    map<int,Estadia*> estadias = controladorEstadia->getEstadias();
+    multimap<int,Estadia*> estadias = controladorEstadia->getEstadias();
 
-    for(map<int,Estadia*>::iterator itr = estadias.begin(); itr != estadias.end(); itr++){
+    for(multimap<int,Estadia*>::iterator itr = estadias.begin(); itr != estadias.end(); itr++){
         Estadia *e = itr->second;
 		if(e->getHostal()->getNombre() == hostalSeleccionado->getNombre()){
 			if(e->getCalificacion() != NULL){
@@ -171,9 +171,9 @@ list<DTCalificacion> HostalController::obtenerCalificaciones() {
 list<string> HostalController::obtenerComentarios() {
 	EstadiaController* controladorEstadia = EstadiaController::getInstancia();
 	list<string> res;
-    map<int,Estadia*> estadias = controladorEstadia->getEstadias();
+    multimap<int,Estadia*> estadias = controladorEstadia->getEstadias();
 
-	for(map<int,Estadia*>::iterator itr = estadias.begin(); itr != estadias.end(); itr++){
+	for(multimap<int,Estadia*>::iterator itr = estadias.begin(); itr != estadias.end(); itr++){
         Estadia *e = itr->second;
 		if(e->getHostal()->getNombre() == hostalSeleccionado->getNombre()){
 			if(e->getCalificacion() != NULL)
@@ -190,9 +190,9 @@ float HostalController::obtenerPromedioCalificaciones() {
 	EstadiaController* controladorEstadia = EstadiaController::getInstancia();
 	float res = 0;
 	int cantCalificaciones = 0;
-    map<int,Estadia*> estadias = controladorEstadia->getEstadias();
+    multimap<int,Estadia*> estadias = controladorEstadia->getEstadias();
 
-    for(map<int,Estadia*>::iterator itr = estadias.begin(); itr != estadias.end(); itr++){
+    for(multimap<int,Estadia*>::iterator itr = estadias.begin(); itr != estadias.end(); itr++){
         Estadia *e = itr->second;
 		if(e->getHostal()->getNombre() == hostalSeleccionado->getNombre()){
 			if(e->getCalificacion() != NULL){
