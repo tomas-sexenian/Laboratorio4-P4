@@ -222,7 +222,7 @@ void cargarDatosPrueba() {
     e->setSalida(DTFecha(5,1,2001,2,0));
 
     controladorEstadias->seleccionarEstadia(4,"seba@mail.com");
-    e = controladorEstadias->finalizarEstadia();
+    e = controladorEstadias->finalizarEstadia(); //agregar parametro de setSalida
     e->setSalida(DTFecha(15,6,2022,22,0));
 
     // CALIFICACIONES DE ESTADIAS
@@ -267,10 +267,10 @@ void imprimirTodosEmailHuespedes(){
 }
 
 void imprimirDetalleEmpleado(string emailEmpleado){
-    std::cout << "DETALLE DE EMPLEADO:"<< endl;
     list<DTEmpleado> empleados = controladorUsuarios->obtenerTodosEmpleados();
     for (std::list<DTEmpleado>::iterator it = empleados.begin(); it != empleados.end(); ++it){
         if (it->getEmail() == emailEmpleado){
+            std::cout << "DETALLE DE EMPLEADO:"<< endl;
             std::cout << "Nombre: " << it->getNombre() << " \n";
             std::cout << "Email: " << it->getEmail() << " \n";
             string cargoEmpleado;
@@ -294,10 +294,10 @@ void imprimirDetalleEmpleado(string emailEmpleado){
 }
 
 void imprimirDetalleHuesped(string emailHuesped){
-    std::cout << "DETALLE DE HUESPED:"<< endl;
     list<DTHuesped> huespedes = controladorUsuarios->obtenerTodosHuespedes();
     for (std::list<DTHuesped>::iterator it = huespedes.begin(); it != huespedes.end(); ++it){
         if (it->getEmail() == emailHuesped){
+            std::cout << "DETALLE DE HUESPED:"<< endl;
             std::cout << "Nombre: " << it->getNombre() << " \n";
             std::cout << "Email: " << it->getEmail() << " \n";
             if (it->getEsFinger())
@@ -446,8 +446,9 @@ void imprimirTop3Hostales(){
 
 //Alta de usuario
 void altaDeUsuario(){
-
     // PARA ALTA DE USUARIO
+    cin.ignore(256, '\n');
+
     int eleccionTipoUsuario_CUsuario;
     string eleccionNombreUsuario_CUsuario;
     string eleccionMailUsuario_CUsuario;
@@ -539,6 +540,7 @@ void altaDeHostal(){
 //Alta de habitacion
 void altaDeHabitacion(){
     // PARA ALTA DE HABITACION
+    cin.ignore(256, '\n');
     int eleccionNumeroHabitacion_CUsuario, eleccionCapacidadHabitacion_CUsuario, eleccionCostoHabitacion_CUsuario;
     string eleccionNombreHostal_CUsuario;
 
@@ -569,10 +571,11 @@ void altaDeHabitacion(){
 //Asignar empleado a hostal
 void asignarEmpleadoAHostal(){
     // PARA ASIGNAR EMPLEADO A HOSTAL
+    cin.ignore(256, '\n');
     string eleccionEmailEmpleado_CUsuario,eleccionNombreHostal_CUsuario;
     int eleccionCargoUsuario_CUsuario;
 
-    imprimirTodosEmailHuespedes();
+    imprimirTodosEmailEmpleados();
 
     cout << "Ingrese el email del empleado\n";
     getline(cin, eleccionEmailEmpleado_CUsuario);
@@ -610,6 +613,7 @@ void asignarEmpleadoAHostal(){
 }
 //Modificar fecha del sistema
 void modificarFechaDelSistema(){
+    cin.ignore(256, '\n');
     int AnioSistema,MesSistema,DiaSistema,HoraSistema,MinutoSistema;
 
     cout << "Ingrese la fecha del sistema\n";
@@ -646,6 +650,8 @@ void modificarFechaDelSistema(){
 //Registrar estadia
 void registrarEstadia(string eleccionHostalEmpleado_CEmpleado){
     // PARA REGISTRAR ESTADIA
+    cin.ignore(256, '\n');
+
     int eleccionTipoEstadia_CEmpleado, eleccionCodigoReserva_CEmpleado;
     string eleccionEmailHuespedEstadia_CEmpleado;
 
@@ -704,6 +710,7 @@ void registrarEstadia(string eleccionHostalEmpleado_CEmpleado){
 //Finalizar estadia
 void finalizarEstadia(){
     // PARA FINALIZAR ESTADIA
+    cin.ignore(256, '\n');
     string eleccionComentarioEstadia_CEmpleado,eleccionEmailHuespedEstadia_CEmpleado;
     int eleccionPuntajeEstadia_CEmpleado,eleccionCodigoReserva_CEmpleado;
 
@@ -731,11 +738,14 @@ void finalizarEstadia(){
     cout << "\n";
     controladorReservas->ingresarHuesped(eleccionEmailHuespedEstadia_CEmpleado);
                                 
-    controladorCalificaciones->confirmarAltaCalificacion(eleccionCodigoReserva_CEmpleado,eleccionEmailHuespedEstadia_CEmpleado);
+    controladorEstadias->seleccionarEstadia(eleccionCodigoReserva_CEmpleado, eleccionEmailHuespedEstadia_CEmpleado);
+    controladorEstadias->finalizarEstadia();
 }
 //Comentar calificacion
 void comentarCalificacion(){
     // PARA COMENTAR CALIFICACION
+    cin.ignore(256, '\n');
+    
     string eleccionComentarioCalificacion_CEmpleado,eleccionEmailHuespedEstadia_CEmpleado;
     int eleccionCodigoReserva_CEmpleado;
 
@@ -758,15 +768,25 @@ void comentarCalificacion(){
 }
 
 //Suscribirse a notificaciones
-void suscribirseANotificaciones(){}
+void suscribirseANotificaciones(){
+    cin.ignore(256, '\n');
+
+}
 //Consulta de notificaciones
-void consultaDeNotificaciones(){}
+void consultaDeNotificaciones(){
+    cin.ignore(256, '\n');
+
+}
 //Eliminar suscripcion
-void eliminarSUscripcion(){}
+void eliminarSUscripcion(){
+    cin.ignore(256, '\n');
+
+}
 
 //Realizar reserva
 int realizarReserva(int codigoReserva){
     // PARA REALIZAR RESERVA
+    cin.ignore(256, '\n');
     string eleccionHostalReserva_CHuesped,eleccionEmailInvitado_CHuesped,eleccionEmailHuespedEstadia_CEmpleado;
     int eleccionHabitacionReserva_CHuesped,eleccionTipoReserva_CHuesped,eleccionSeguiraAgregando_CHuesped;
     list<string> eleccionEmailInvitadosReserva_CHuesped;
@@ -888,6 +908,8 @@ int realizarReserva(int codigoReserva){
 }
 //Consultar top 3 hostales
 void consultarTop3Hostales(){
+    cin.ignore(256, '\n');
+
     string eleccionHostal_CHuesped;
 
     void imprimirTop3Hostales();
@@ -898,6 +920,8 @@ void consultarTop3Hostales(){
 }
 //Calificar estadia
 void calificarEstadia(){
+    cin.ignore(256, '\n');
+
     string eleccionComentarioEstadia_CHuesped,eleccionEmailHuespedEstadia_CEmpleado;
     int eleccionPuntajeEstadia_CHuesped,eleccionCodigoReserva_CEmpleado;
 
@@ -925,6 +949,8 @@ void calificarEstadia(){
 }
 //Consulta de usuario
 void consultaDeUsuario(){
+    cin.ignore(256, '\n');
+
     int eleccionTipoUsuario_CHuesped;
     string eleccionEmailEmpleado_CHuesped, eleccionEmailHuesped_CHuesped,eleccionHostal_CHuesped;
 
@@ -933,22 +959,24 @@ void consultaDeUsuario(){
     cin.ignore(256, '\n');
     cout << "\n";
     if (eleccionTipoUsuario_CHuesped == 1){
-        imprimirTodosEmailHuespedes();
-        cout << "Ingrese el mail del empleado que desea visualizar" << endl;
-        getline(cin, eleccionEmailEmpleado_CHuesped);
-        cout << "\n";
-        imprimirDetalleEmpleado(eleccionEmailEmpleado_CHuesped);
-    }
-    else if (eleccionTipoUsuario_CHuesped == 2){
         imprimirTodosEmailEmpleados();
         cout << "Ingrese el mail del huesped que desea visualizar" << endl;
         getline(cin, eleccionEmailEmpleado_CHuesped);
         cout << "\n";
         imprimirDetalleHuesped(eleccionEmailEmpleado_CHuesped);
     }
+    else if (eleccionTipoUsuario_CHuesped == 2){
+        imprimirTodosEmailHuespedes();
+        cout << "Ingrese el mail del empleado que desea visualizar" << endl;
+        getline(cin, eleccionEmailEmpleado_CHuesped);
+        cout << "\n";
+        imprimirDetalleEmpleado(eleccionEmailEmpleado_CHuesped);
+    }
 }
 //Consulta de hostal
 void consultaDeHostal(){
+    cin.ignore(256, '\n');
+
     int cantCalificaciones_CHuesped;
     DTInfoBasicaHostal infoBasicaHostal_CHuesped;
     string eleccionHostal_CHuesped;
@@ -962,7 +990,8 @@ void consultaDeHostal(){
     infoBasicaHostal_CHuesped = controladorHostales->obtenerInfoBasicaHostal();
     cout << "Promedio de calificaciones del hostal: " << infoBasicaHostal_CHuesped.getPromedioCalificaciones() << endl;
     cantCalificaciones_CHuesped = 0;
-    for (std::list<DTCalificacion>::iterator it = infoBasicaHostal_CHuesped.getCalificaciones().begin(); it != infoBasicaHostal_CHuesped.getCalificaciones().end(); ++it){
+    list<DTCalificacion> calificaciones = infoBasicaHostal_CHuesped.getCalificaciones();
+    for (std::list<DTCalificacion>::iterator it = calificaciones.begin(); it != calificaciones.end(); ++it){
         cout << "Calificacion numero " << cantCalificaciones_CHuesped << endl;
         cout << "Comentario: " << it->getComentario() << endl;
         cout << "Puntaje: " << it->getPuntaje() << endl;
@@ -972,6 +1001,8 @@ void consultaDeHostal(){
 }
 //Consulta de reserva
 void consultaDeReserva(){
+    cin.ignore(256, '\n');
+
     int eleccionReserva_CHuesped;
     string eleccionHostal_CHuesped;
     imprimirTodosNombreHostal();
@@ -987,6 +1018,8 @@ void consultaDeReserva(){
 }
 //Consulta de estadia
 void consultaDeEstadia(){
+    cin.ignore(256, '\n');
+
     string eleccionHuesped_CHuesped,eleccionHostal_CHuesped;
     imprimirTodosNombreHostal();
     cout << "Ingrese el nombre del hostal en el que se realizo la estadia" << endl;
@@ -1001,6 +1034,8 @@ void consultaDeEstadia(){
 
 //Baja de reserva
 void bajaDeReserva(){
+    cin.ignore(256, '\n');
+
     int eleccionCancelar_CHuesped,eleccionReserva_CHuesped;
     string eleccionHostal_CHuesped;
     imprimirTodosNombreHostal();

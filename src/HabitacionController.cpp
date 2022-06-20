@@ -24,10 +24,10 @@ map<int,Habitacion *> HabitacionController::getHabitaciones() {
 list<DTHabitacion> HabitacionController::obtenerHabitacionesDisponiblesHostal(string NombreHostal, DTFecha checkIn, DTFecha checkOut) {
     list<DTHabitacion> res;
     HostalController* controladorHostales = HostalController::getInstancia();
-    Hostal *hostal = controladorHostales->getHostales().find(NombreHostal)->second;
+    map<int, Habitacion *> habitaciones = controladorHostales->getHostales().find(NombreHostal)->second->getHabitaciones();
 
-    auto itrInd = hostal->getHabitaciones().begin();
-    while(itrInd != hostal->getHabitaciones().end()){ //Iterar map
+    auto itrInd = habitaciones.begin();
+    while(itrInd != habitaciones.end()){ //Iterar map
         Habitacion *h = itrInd->second;
         if(h->estaDisponible(checkIn, checkOut)){
             DTHabitacion dt(h->getNumero(), h->getPrecio(), h->getCapacidad());
