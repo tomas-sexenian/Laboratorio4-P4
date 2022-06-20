@@ -24,7 +24,7 @@ class CalificacionController: public IControladorCalificacion {
         static CalificacionController * instancia;
         CalificacionController();
         map<int,Calificacion *> Calificaciones;
-        map<Calificacion *,RespuestaEmpleado *> RespuestasEmpleados;
+        multimap<Calificacion *,RespuestaEmpleado *> RespuestasEmpleados;
 
         int puntaje,codigoReserva;
         string comentario;
