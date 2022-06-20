@@ -23,12 +23,10 @@ map<string,Hostal*> HostalController::getHostales() {
 
 list<DTHostal> HostalController::obtenerTodosHostales() {
     list<DTHostal> res;
-    auto itr = Hostales.begin();
-    while(itr != Hostales.end()){ //Iterar map
+    for(map<string,Hostal*>::iterator itr = Hostales.begin(); itr != Hostales.end(); itr++){
         Hostal *h = itr->second;
         DTHostal dt(h->getNombre(), h->getDireccion(), h->getTelefono());
         res.push_back(dt);
-        itr++;
     }
     return res;
 }
@@ -42,8 +40,7 @@ list<DTHostal> HostalController::obtenerTop3Hostales() {
     Hostal* tercero = NULL;
     float calificacionTercero = -1;
 
-    auto itr = Hostales.begin();
-    while(itr != Hostales.end()){ //Iterar map
+    for(map<string,Hostal*>::iterator itr = Hostales.begin(); itr != Hostales.end(); itr++){
         Hostal *h = itr->second;
         float calificacionH = obtenerPromedioCalificaciones();
 
@@ -65,7 +62,6 @@ list<DTHostal> HostalController::obtenerTop3Hostales() {
             tercero = h;
             calificacionTercero = calificacionH;
         }
-        itr++;
     }
 
     DTHostal dtPrimero;
@@ -106,12 +102,11 @@ DTInfoBasicaHostal HostalController::obtenerInfoBasicaHostal() {
 
 list<DTHabitacion> HostalController::obtenerHabitacionesHostal() {
     list<DTHabitacion> res;
-    auto itr = hostalSeleccionado->getHabitaciones().begin();
-    while(itr != hostalSeleccionado->getHabitaciones().begin()){ //Iterar map
+    map<int,Habitacion*> habitaciones = hostalSeleccionado->getHabitaciones();
+    for(map<int,Habitacion*>::iterator itr = habitaciones.begin(); itr != habitaciones.end(); itr++){
         Habitacion *h = itr->second;
         DTHabitacion dt(h->getNumero(), h->getPrecio(), h->getCapacidad());
         res.push_back(dt);
-        itr++;
     }
     return res;
 }
@@ -119,13 +114,14 @@ list<DTHabitacion> HostalController::obtenerHabitacionesHostal() {
 
 void HostalController::seleccionarHostal(string NombreHostal) {
     Hostal* h = Hostales.find(NombreHostal)->second;
+    if(h == NULL) throw std::invalid_argument("No se puede seleccionar un hostal que no existe");
     hostalSeleccionado = h;
 }
 
 //Ver detalles del Hostal seleccionado
 DTInfoHostal HostalController::verDetalles() {
-     float prom = obtenerPromedioCalificaciones();
-     list<string> lista = obtenerComentarios();
+    float prom = obtenerPromedioCalificaciones();
+    list<string> lista = obtenerComentarios();
     DTInfoHostal res(lista, prom);
     return res;
 }
@@ -138,14 +134,12 @@ void HostalController::confirmarConsulta() {
 //Medio al pedo, borralo si queres y hacelo desde el menu
 list<DTInfoHostalYCalificacion> HostalController::obtenerTodosHostalesYPromCalificacion() {
     list<DTInfoHostalYCalificacion> res;
-    auto itr = Hostales.begin();
-    while(itr != Hostales.end()){ //Iterar map
+    for(map<string,Hostal*>::iterator itr = Hostales.begin(); itr != Hostales.end(); itr++){
         Hostal *h = itr->second;
         DTHostal dtHostal(h->getNombre(), h->getDireccion(), h->getTelefono());
         float prom = obtenerPromedioCalificaciones();
         DTInfoHostalYCalificacion dtInfo(dtHostal, prom);
         res.push_back(dtInfo);
-        itr++;
     }
     return res;
 }
@@ -154,9 +148,9 @@ list<DTInfoHostalYCalificacion> HostalController::obtenerTodosHostalesYPromCalif
 list<DTCalificacion> HostalController::obtenerCalificaciones() {
 	EstadiaController* controladorEstadia = EstadiaController::getInstancia();
 	list<DTCalificacion> res;
+    map<int,Estadia*> estadias = controladorEstadia->getEstadias();
 
-	auto itr = controladorEstadia->getEstadias().begin();
-    while(itr != controladorEstadia->getEstadias().end()){ //Iterar map
+    for(map<int,Estadia*>::iterator itr = estadias.begin(); itr != estadias.end(); itr++){
         Estadia *e = itr->second;
 		if(e->getHostal()->getNombre() == hostalSeleccionado->getNombre()){
 			if(e->getCalificacion() != NULL){
@@ -168,7 +162,6 @@ list<DTCalificacion> HostalController::obtenerCalificaciones() {
 				res.push_back(dt);
 			}
 		}
-        itr++;
     }
 	
 	return res;
@@ -178,9 +171,9 @@ list<DTCalificacion> HostalController::obtenerCalificaciones() {
 list<string> HostalController::obtenerComentarios() {
 	EstadiaController* controladorEstadia = EstadiaController::getInstancia();
 	list<string> res;
+    map<int,Estadia*> estadias = controladorEstadia->getEstadias();
 
-	auto itr = controladorEstadia->getEstadias().begin();
-    while(itr != controladorEstadia->getEstadias().end()){ //Iterar map
+	for(map<int,Estadia*>::iterator itr = estadias.begin(); itr != estadias.end(); itr++){
         Estadia *e = itr->second;
 		if(e->getHostal()->getNombre() == hostalSeleccionado->getNombre()){
 			if(e->getCalificacion() != NULL)
@@ -197,9 +190,9 @@ float HostalController::obtenerPromedioCalificaciones() {
 	EstadiaController* controladorEstadia = EstadiaController::getInstancia();
 	float res = 0;
 	int cantCalificaciones = 0;
+    map<int,Estadia*> estadias = controladorEstadia->getEstadias();
 
-	auto itr = controladorEstadia->getEstadias().begin();
-    while(itr != controladorEstadia->getEstadias().end()){ //Iterar map
+    for(map<int,Estadia*>::iterator itr = estadias.begin(); itr != estadias.end(); itr++){
         Estadia *e = itr->second;
 		if(e->getHostal()->getNombre() == hostalSeleccionado->getNombre()){
 			if(e->getCalificacion() != NULL){
@@ -207,7 +200,6 @@ float HostalController::obtenerPromedioCalificaciones() {
 				cantCalificaciones++; 
 			}
 		}
-        itr++;
     }
 	if(cantCalificaciones==0) return 0;
 	else

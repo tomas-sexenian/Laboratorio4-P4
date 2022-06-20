@@ -111,7 +111,8 @@ list<DTReserva> ReservaController::getListaReservasNoCanceladasHuesped(string Un
         ReservaGrupal *r = itrGrup->second;
         if((r->getTitular()->getEmail() == UnEmail) && (r->getEstadoReserva() != cancelada)){
             list<DTHuesped> lstInvitados = {};
-            for(map<string,Huesped*>::iterator it = r->getInvitados().begin(); it != r->getInvitados().end(); it++){
+            map<string,Huesped*> invitados = r->getInvitados();
+            for(map<string,Huesped*>::iterator it = invitados.begin(); it != invitados.end(); it++){
                 DTHuesped invitado_i = DTHuesped(it->second->getNombre(),it->second->getEmail(),it->second->getContrasenia(),it->second->getEsFinger());
                 lstInvitados.push_back(invitado_i);
             }
@@ -257,7 +258,8 @@ list<DTReserva> ReservaController::obtenerReservasHostal(string UnHostal) {
         ReservaGrupal *r = itrGrup->second;
         if(r->getHabitacion()->getHostal()->getNombre() == UnHostal){
             list<DTHuesped> lstInvitados = {};
-            for(map<string,Huesped*>::iterator it = r->getInvitados().begin(); it != r->getInvitados().end(); it++){
+            map<string,Huesped*> invitados = r->getInvitados();
+            for(map<string,Huesped*>::iterator it = invitados.begin(); it != invitados.end(); it++){
                 DTHuesped invitado_i = DTHuesped(it->second->getNombre(),it->second->getEmail(),it->second->getContrasenia(),it->second->getEsFinger());
                 lstInvitados.push_back(invitado_i);
             }

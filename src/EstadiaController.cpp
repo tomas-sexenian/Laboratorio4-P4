@@ -26,6 +26,7 @@ void EstadiaController::seleccionarEstadia(int codigoReserva, string email) {
         if (it->second->getReserva()->getCodigo() == codigoReserva && it->second->getHuesped()->getEmail() == email)
             res =  it->second;
     }
+    if(res == NULL) throw std::invalid_argument( "No se puede seleccionar una estadia que no existe");
     estadiaSeleccionada = res;
 }
 
@@ -50,10 +51,11 @@ DTInfoEstadia EstadiaController::obtenerInfoEstadia() {
 }
 
 Estadia* EstadiaController::finalizarEstadia() {
-    if (estadiaSeleccionada != NULL){
-        SistemaController* sist = SistemaController::getInstancia();
-        estadiaSeleccionada->setSalida(sist->obtenerFechaActual());
-    }
+    if (estadiaSeleccionada == NULL)
+        throw std::invalid_argument( "Debe haber una estadia seleccionada");
+    
+    SistemaController* sist = SistemaController::getInstancia ();
+    estadiaSeleccionada->setSalida(sist->obtenerFechaActual());
     ReservaController* controladorReservas = ReservaController::getInstancia();
     Reserva* r = controladorReservas->obtenerReserva(estadiaSeleccionada->getReserva()->getCodigo());
     r->setEstadoReserva(cerrada);
