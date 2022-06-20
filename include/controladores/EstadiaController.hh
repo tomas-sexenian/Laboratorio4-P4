@@ -30,7 +30,7 @@ class EstadiaController : public IControladorEstadia {
     private:
         static EstadiaController * instancia;
         EstadiaController();
-        map<int,Estadia*> Estadias;
+        multimap<int,Estadia*> Estadias;
         Estadia* estadiaSeleccionada;
         string promo;
         int codigoReserva;
@@ -45,7 +45,7 @@ class EstadiaController : public IControladorEstadia {
     public:
 		static EstadiaController* getInstancia();
 	    ~EstadiaController();
-        map<int,Estadia*> getEstadias();
+        multimap<int,Estadia*> getEstadias();
 
         void seleccionarEstadia(int,string);
         DTInfoEstadia obtenerInfoEstadia();
