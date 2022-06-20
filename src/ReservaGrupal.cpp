@@ -39,8 +39,8 @@ float ReservaGrupal::calcularCosto(){
         if (it->second->getEsFinger())
             cantFingers++;
     if ((cantFingers = 1 && this->getTitular()->getEsFinger()) || (cantFingers > 2))
-        return dif * this->calcularCosto() * 0.7;
-    return dif * this->calcularCosto();
+        return dif * this->getHabitacion()->getPrecio() * 0.7;
+    return dif * this->getHabitacion()->getPrecio();
 };
 
 map<string, Huesped*> ReservaGrupal::getInvitados(){

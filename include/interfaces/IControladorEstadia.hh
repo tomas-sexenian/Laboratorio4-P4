@@ -19,7 +19,7 @@ class IControladorEstadia {
        virtual Estadia* obtenerEstadia(int, string) = 0;
        virtual Estadia* finalizarEstadia() = 0;
        virtual void confirmarFinEstadia() = 0;
-       virtual list<DTEstadia> obtenerTodasEstadiasHostal(string) = 0;
+       virtual list<DTEstadia*> obtenerTodasEstadiasHostal(string) = 0;
 
     virtual void seleccionarTipo(TipoReserva) = 0;
     virtual void seleccionarReserva(int) = 0;

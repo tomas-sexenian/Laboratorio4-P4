@@ -4,6 +4,7 @@ DTEstadia::~DTEstadia() {
 }
 
 DTEstadia::DTEstadia() {
+    codigoReserva = 0;
     emailHuesped = "";
     nombreHostal = "";
     entrada = DTFecha();
@@ -12,13 +13,18 @@ DTEstadia::DTEstadia() {
     promo = "";
 }
 
-DTEstadia::DTEstadia(string UnEmail, string UnNombre, DTFecha UnaEntrada, DTFecha UnaSalida, int UnaHabitacion, string UnaPromo) {
+DTEstadia::DTEstadia(int UnCodigo, string UnEmail, string UnNombre, DTFecha UnaEntrada, DTFecha UnaSalida, int UnaHabitacion, string UnaPromo) {
+    codigoReserva = UnCodigo;
     emailHuesped = UnEmail;
     nombreHostal = UnNombre;
     entrada = UnaEntrada;
     salida = UnaSalida;
     habitacion = UnaHabitacion;
     promo = UnaPromo;
+}
+
+int DTEstadia::getCodigoReserva(){
+    return codigoReserva;
 }
 
 string DTEstadia::getEmailHuesped() {

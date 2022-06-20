@@ -129,7 +129,9 @@ list<DTEstadia> UsuarioController::obtenerEstadiasFinalizadasHuesped() {
     for (auto const& itr : estadiasHuesped) { //Iterar list
         Estadia *e = itr;
         if(e->getSalida() < fechaSis){
-            DTEstadia dt(huespedSeleccionado->getEmail(), 
+            DTEstadia dt(
+                        e->getReserva()->getCodigo(),
+                        huespedSeleccionado->getEmail(), 
                         huespedSeleccionado->getNombre(), 
                         e->getEntrada(), 
                         e->getSalida(), 
