@@ -76,7 +76,7 @@ list<DTEstadia*> EstadiaController::obtenerTodasEstadiasHostal(string nombreHost
     list<DTEstadia*> res = {};
     for(multimap<int,Estadia*>::iterator it = this->Estadias.begin(); it != this->Estadias.end(); it++){
         if (it->second->getHostal()->getNombre() == nombreHostal){
-            DTEstadia *item = new DTEstadia(it->second->getReserva()->getCodigo() ,it->second->getHuesped()->getEmail(),it->second->getHostal()->getNombre(),it->second->getEntrada(),it->second->getSalida(),it->second->getReserva()->getHabitacion()->getNumero(),it->second->getPromo());
+            DTEstadia *item = new DTEstadia(it->first ,it->second->getHuesped()->getEmail(),it->second->getHostal()->getNombre(),it->second->getEntrada(),it->second->getSalida(),it->second->getReserva()->getHabitacion()->getNumero(),it->second->getPromo());
             res.push_back(item);
         }
     }
