@@ -22,7 +22,7 @@ class HabitacionController: public IControladorHabitacion {
     private:
         static HabitacionController * instancia;
         HabitacionController();
-        map<int,Habitacion *> Habitaciones;
+        multimap<int,Habitacion *> Habitaciones;
         Habitacion *habitacionSeleccionada;
 
         //Memoria
@@ -30,15 +30,17 @@ class HabitacionController: public IControladorHabitacion {
         Hostal* hostal;
     public:
 		static HabitacionController* getInstancia();
-	    ~HabitacionController();
-        map<int,Habitacion *> getHabitaciones();
+	    virtual ~HabitacionController();
+        multimap<int,Habitacion *> getHabitaciones();
 
-        void seleccionarHabitacion(int);
+        void seleccionarHabitacion(string, int);
         list<DTHabitacion> obtenerHabitacionesDisponiblesHostal(string,DTFecha,DTFecha);
         //Lo que antes era AltaHabitacion
         void ingresarDatosHabitacion(int,float,int);
         void confirmarAltaHabitacion();
         void cancelarAltaHabitacion();
         void ingresarHostalHabitacion(string);
+
+        void LiberarMemoria();
 };
 #endif

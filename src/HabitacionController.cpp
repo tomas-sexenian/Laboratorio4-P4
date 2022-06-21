@@ -5,6 +5,7 @@ HabitacionController::HabitacionController() {
 }
 
 HabitacionController::~HabitacionController() {
+    
 }
 
 HabitacionController* HabitacionController::instancia=NULL;
@@ -14,7 +15,7 @@ HabitacionController * HabitacionController::getInstancia(){
     return HabitacionController::instancia;
 };
 
-map<int,Habitacion *> HabitacionController::getHabitaciones() {
+multimap<int,Habitacion *> HabitacionController::getHabitaciones() {
     return Habitaciones;
 }
 
@@ -38,8 +39,11 @@ list<DTHabitacion> HabitacionController::obtenerHabitacionesDisponiblesHostal(st
     return res;
 }
 
-void HabitacionController::seleccionarHabitacion(int NumeroHabitacion) {
-    Habitacion *hab = Habitaciones.find(NumeroHabitacion)->second;
+void HabitacionController::seleccionarHabitacion(string nombreHostal, int NumeroHabitacion) {
+    Habitacion *hab = NULL;
+    for(multimap<int,Habitacion *>::iterator it = Habitaciones.begin(); it != Habitaciones.end(); it++)
+        if(it->second->getNumero() == NumeroHabitacion && it->second->getHostal()->getNombre() == nombreHostal)
+            hab = it->second;
     habitacionSeleccionada = hab;
 }
 
@@ -74,3 +78,9 @@ void HabitacionController::ingresarHostalHabitacion(string nombreHostal){
     hostal = controladorHostales->getHostales().find(nombreHostal)->second;
 }
     
+void HabitacionController::LiberarMemoria(){
+    for(multimap<int,Habitacion *>::iterator it = Habitaciones.begin(); it != Habitaciones.end(); it++)
+        delete it->second;
+    delete instancia;
+    instancia = NULL;
+}

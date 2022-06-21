@@ -45,7 +45,7 @@ class UsuarioController: public IControladorUsuario {
         Hostal* hostal;
     public:
 		static UsuarioController* getInstancia();
-	    ~UsuarioController();
+	    virtual ~UsuarioController();
         map<string,Huesped *> getHuespedes();
         map<string,Empleado *> getEmpleados();
 
@@ -79,5 +79,7 @@ class UsuarioController: public IControladorUsuario {
         void seleccionarCargo(TipoCargo);
         list<DTEmpleado> obtenerEmpleadosNoAsignadosHostal(string);
         void ingresarHostal(string);
+
+        void LiberarMemoria();
 };
 #endif

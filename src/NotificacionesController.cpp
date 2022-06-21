@@ -4,6 +4,7 @@ NotificacionesController::NotificacionesController() {
 }
 
 NotificacionesController::~NotificacionesController() {
+    
 }
 
 NotificacionesController* NotificacionesController::instancia=NULL;
@@ -34,4 +35,11 @@ void NotificacionesController::eliminarNotificaciones() {
 }
 
 void NotificacionesController::eliminarSubscripcion(string EmailEmpleado) {
+}
+
+void NotificacionesController::LiberarMemoria(){
+    for(list<Notificacion *>::iterator it = Notificaciones.begin(); it != Notificaciones.end(); it++)
+        delete *it;
+    delete instancia;
+    instancia = NULL;
 }

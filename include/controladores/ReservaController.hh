@@ -52,7 +52,7 @@ class ReservaController : public IControladorReserva {
         string promo;
     public:
 		static ReservaController* getInstancia();
-	    ~ReservaController();
+	    virtual ~ReservaController();
         map<int,ReservaIndividual*> getReservasIndividuales();
         map<int,ReservaGrupal*> getReservasGrupales();
 
@@ -76,6 +76,8 @@ class ReservaController : public IControladorReserva {
         void seleccionarTipo(TipoReserva);
         void ingresarHuesped(string);
         void ingresarInvitados(list<string>);
+
+        void LiberarMemoria();
 };
 
 #endif

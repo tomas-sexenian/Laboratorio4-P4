@@ -36,7 +36,7 @@ class CalificacionController: public IControladorCalificacion {
         string respuesta;
     public:
 		static CalificacionController* getInstancia();
-	    ~CalificacionController();
+	    virtual ~CalificacionController();
         map<int,Calificacion *> getCalificaciones();
         void setCalificacionRecordada(int,string);
 
@@ -49,5 +49,6 @@ class CalificacionController: public IControladorCalificacion {
 
         void ingresarRespuesta(string);
         void responderCalificacion(int,string,DTFecha);
+        void LiberarMemoria();
 };
 #endif

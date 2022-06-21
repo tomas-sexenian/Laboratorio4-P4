@@ -24,6 +24,7 @@ class IControladorCalificacion {
         virtual void setCalificacionRecordada(int,string) = 0;
         virtual DTCalificacion obtenerDTCalificacionRecordada() = 0;
         virtual list<DTRespuestaEmpleado> obtenerDTRespuestas() = 0;
+        virtual void LiberarMemoria() = 0;
 };
 
 #endif

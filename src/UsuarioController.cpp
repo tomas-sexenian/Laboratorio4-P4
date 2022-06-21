@@ -8,6 +8,7 @@ UsuarioController::UsuarioController() {
 
 
 UsuarioController::~UsuarioController() {
+
 }
 
 UsuarioController * UsuarioController::getInstancia(){
@@ -257,4 +258,13 @@ list<DTEmpleado> UsuarioController::obtenerEmpleadosNoAsignadosHostal(string Nom
 void UsuarioController::ingresarHostal(string nombreHostal) {
     HostalController* controladorHostales = HostalController::getInstancia();
     hostal = controladorHostales->getHostales().find(nombreHostal)->second;
+}
+
+void UsuarioController::LiberarMemoria(){
+    for(map<string,Huesped*>::iterator it = Huespedes.begin(); it != Huespedes.end(); it++)
+        delete it->second;
+    for(map<string,Empleado*>::iterator it = Empleados.begin(); it != Empleados.end(); it++)
+        delete it->second;
+    delete instancia;
+    instancia = NULL;
 }
