@@ -352,6 +352,10 @@ void ReservaController::seleccionarTipo(TipoReserva UnTipo) {
     tipo = UnTipo;
 }
 
+int ReservaController::capacidadHabitacionSeleccionada(){
+    return habitacion->getCapacidad();
+}
+
 void ReservaController::ingresarHuesped(string emailHuesped) {
     UsuarioController* controladorUsuarios = UsuarioController::getInstancia();
     huesped = controladorUsuarios->getHuespedes().find(emailHuesped)->second;

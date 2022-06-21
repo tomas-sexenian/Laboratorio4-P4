@@ -39,6 +39,7 @@ class IControladorReserva {
         virtual void seleccionarHostal(string) = 0;
         virtual void seleccionarHabitacion(int) = 0;
         virtual void seleccionarTipo(TipoReserva) = 0;
+        virtual int capacidadHabitacionSeleccionada() = 0;
         virtual void ingresarHuesped(string) = 0;
         virtual void ingresarInvitados(list<string>) = 0;
 

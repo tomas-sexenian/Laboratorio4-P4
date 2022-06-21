@@ -931,10 +931,16 @@ int realizarReserva(int codigoReserva){
             cout << "Por favor indique sus huespedes invitados\n";
             eleccionEmailInvitadosReserva_CHuesped = {};
             continuarArgegando_CHuesped = true;
+            int cantHuespedes = 1;
             while (continuarArgegando_CHuesped){
+                if(cantHuespedes == controladorReservas->capacidadHabitacionSeleccionada()){
+                    cout << "No se pueden ingresar mas huespedes para esta habitacion" << endl;
+                    break;
+                }
                 cout << "Por favor indique el email del huesped:";
                 getline(cin, eleccionEmailInvitado_CHuesped);
                 eleccionEmailInvitadosReserva_CHuesped.push_back(eleccionEmailInvitado_CHuesped);
+                cantHuespedes++;
                 cout << "Si desea detenerse, ingrese 1 de lo contrario ingrese cualquier numero:";
                 cin >> eleccionSeguiraAgregando_CHuesped;
                 cin.ignore(256, '\n');
