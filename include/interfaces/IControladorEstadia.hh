@@ -27,6 +27,8 @@ class IControladorEstadia {
     virtual void ingresarInvitados(list<string>) = 0;
     virtual void ingresarEntradaEstadia(int,int,int,int,int) = 0;
     virtual void confirmarAltaEstadia() = 0;
+
+    virtual void LiberarMemoria() = 0;
 };
 
 #endif

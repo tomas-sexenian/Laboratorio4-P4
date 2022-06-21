@@ -44,7 +44,7 @@ class EstadiaController : public IControladorEstadia {
         DTFecha entrada, salida;
     public:
 		static EstadiaController* getInstancia();
-	    ~EstadiaController();
+	    virtual ~EstadiaController();
         multimap<int,Estadia*> getEstadias();
 
         void seleccionarEstadia(int,string);
@@ -60,5 +60,7 @@ class EstadiaController : public IControladorEstadia {
         void ingresarInvitados(list<string>);
         void ingresarEntradaEstadia(int,int,int,int,int);
         void confirmarAltaEstadia();
+
+        void LiberarMemoria();
 };
 #endif

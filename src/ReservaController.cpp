@@ -6,6 +6,7 @@ ReservaController::ReservaController() {
 }
 
 ReservaController::~ReservaController() {
+
 }
 
 ReservaController* ReservaController::instancia=NULL;
@@ -312,4 +313,13 @@ void ReservaController::ingresarInvitados(list<string> UnosInvitados) {
                 listaInvitados.push_back(i->second);
         }
     }
+}
+
+void ReservaController::LiberarMemoria(){
+    for(map<int,ReservaIndividual*>::iterator it = ReservasIndividuales.begin(); it != ReservasIndividuales.end(); it++)
+        delete it->second;
+    for(map<int,ReservaGrupal*>::iterator it = ReservasGrupales.begin(); it != ReservasGrupales.end(); it++)
+        delete it->second;   
+    delete instancia;
+    instancia = NULL; 
 }

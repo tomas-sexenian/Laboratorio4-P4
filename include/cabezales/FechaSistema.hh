@@ -14,10 +14,12 @@ class FechaSistema{
         FechaSistema();
     public:
 		static FechaSistema* getInstancia();
+        virtual ~FechaSistema();
         DTFecha getFecha();
         void setFecha(DTFecha);
         void setFecha(int, int, int, int, int);
-	    ~FechaSistema();
+
+        void LiberarMemoria();
 };
 
 

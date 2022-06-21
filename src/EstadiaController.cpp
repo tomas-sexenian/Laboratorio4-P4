@@ -4,6 +4,7 @@ EstadiaController::EstadiaController() {
 }
 
 EstadiaController::~EstadiaController() {
+
 }
 
 EstadiaController* EstadiaController::instancia=NULL;
@@ -120,4 +121,11 @@ void EstadiaController::confirmarAltaEstadia(){
         }
     }
     cout << "La estadia ha sido registrada con exito" << endl;
+}
+
+void EstadiaController::LiberarMemoria(){
+    for(multimap<int,Estadia*>::iterator it = Estadias.begin(); it != Estadias.end(); it++)
+        delete it->second;
+    delete instancia;
+    instancia = NULL;
 }

@@ -1348,4 +1348,12 @@ int main(){
                 break;
         }  
     }
+    controladorUsuarios->LiberarMemoria();
+    controladorReservas->LiberarMemoria();
+    controladorEstadias->LiberarMemoria();
+    controladorHostales->LiberarMemoria();
+    controladorHabitaciones->LiberarMemoria();
+    controladorCalificaciones->LiberarMemoria();
+    controladorNotificaciones->LiberarMemoria();
+    controladorSistema->LiberarMemoria();
 }

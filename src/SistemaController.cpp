@@ -32,3 +32,10 @@ void SistemaController::modificarFecha(int UnDia, int UnMes, int UnAnio, int Una
     FechaSistema* fecha = FechaSistema::getInstancia();
     fecha->setFecha(UnDia, UnMes, UnAnio, UnaHora, UnMinuto);
 }
+
+void SistemaController::LiberarMemoria(){
+    FechaSistema* fecha = FechaSistema::getInstancia();
+    fecha->LiberarMemoria();
+    delete instancia;
+    instancia = NULL;
+}

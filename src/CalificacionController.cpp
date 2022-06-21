@@ -89,5 +89,14 @@ void CalificacionController::responderCalificacion(int codigoReserva, string ema
         c->setRespuesta(nueva);
         RespuestasEmpleados.insert((pair<Calificacion *,RespuestaEmpleado*>(c,nueva)));
         cout << "La respuesta ha sido insertada con exito" << endl;
-    }  
+    }
+}
+
+void CalificacionController::LiberarMemoria(){
+    for(map<int,Calificacion *>::iterator it = Calificaciones.begin(); it != Calificaciones.end(); it++)
+        delete it->second;
+    for(multimap<Calificacion *,RespuestaEmpleado *>::iterator it = RespuestasEmpleados.begin(); it != RespuestasEmpleados.end(); it++)
+        delete it->second;
+    delete instancia;
+    instancia = NULL;
 }

@@ -21,9 +21,11 @@ class SistemaController: public IControladorSistema{
        
     public:
 		static SistemaController* getInstancia();
-	    ~SistemaController();
+	    virtual ~SistemaController();
         
         DTFecha obtenerFechaActual();
         void modificarFecha(int, int, int, int, int);
+
+        void LiberarMemoria();
 };
 #endif

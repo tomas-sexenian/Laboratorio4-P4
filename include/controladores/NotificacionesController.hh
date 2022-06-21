@@ -26,12 +26,14 @@ class NotificacionesController: public IControladorNotificaciones {
         string comentario;
     public:
 		static NotificacionesController* getInstancia();
-	    ~NotificacionesController();
+	    virtual ~NotificacionesController();
         list<Notificacion *> getNotificaciones();
         void setNotificacion();
 
         void subscribirEmpleado(string);
         void eliminarNotificaciones();
         void eliminarSubscripcion(string);
+
+        void LiberarMemoria();
 };
 #endif

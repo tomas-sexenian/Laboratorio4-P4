@@ -32,7 +32,7 @@ class HostalController : public IControladorHostal {
         string telefono;
     public:
 		static HostalController* getInstancia();
-	    ~HostalController();
+	    virtual ~HostalController();
         map<string,Hostal*> getHostales();
         Hostal *hostalSeleccionado;
         
@@ -51,6 +51,8 @@ class HostalController : public IControladorHostal {
         void ingresarDatosHostal(string,string,string);
         void confirmarAltaHostal();
         void cancelarAltaHostal();
+
+        void LiberarMemoria();
 };
 
 #endif

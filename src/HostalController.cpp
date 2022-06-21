@@ -5,6 +5,7 @@ HostalController::HostalController() {
 }
 
 HostalController::~HostalController() {
+
 }
 
 HostalController* HostalController::instancia=NULL;
@@ -229,4 +230,11 @@ void HostalController::cancelarAltaHostal() {
     nombre = "";
     direccion = "";
     telefono = "";
+}
+
+void HostalController::LiberarMemoria(){
+    for(map<string,Hostal*>::iterator it = Hostales.begin(); it != Hostales.end(); it++)
+        delete it->second;
+    delete instancia;
+    instancia = NULL;
 }

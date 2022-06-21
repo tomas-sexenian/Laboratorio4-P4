@@ -24,3 +24,8 @@ FechaSistema * FechaSistema::getInstancia(){
         FechaSistema::instancia = new FechaSistema();
     return FechaSistema::instancia;
 };
+
+void FechaSistema::LiberarMemoria(){
+    delete instancia;
+    instancia = NULL;
+}

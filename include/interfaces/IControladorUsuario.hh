@@ -52,6 +52,7 @@ public:
     virtual list<DTEmpleado> obtenerEmpleadosNoAsignadosHostal(string) = 0;
     virtual void ingresarHostal(string) = 0;
 
+    virtual void LiberarMemoria() = 0;
 };
 
 #endif
