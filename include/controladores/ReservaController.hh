@@ -66,7 +66,7 @@ class ReservaController : public IControladorReserva {
         void ingresarDatosReservaGrupal(int, string, DTFecha, DTFecha, EstadoReserva, TipoReserva, Habitacion*, list<int>);
         void ingresarDatosReserva(int,DTFecha,DTFecha,EstadoReserva);
         void agregarHuespedesReservaGrupal(map<string, Huesped*>);
-        void confirmarReserva();
+        void confirmarReserva(bool);
         void cancelarReserva(int);
         Reserva* obtenerReserva(int);
         list<DTReserva*> obtenerReservasHostal(string);

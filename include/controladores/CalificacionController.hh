@@ -45,10 +45,10 @@ class CalificacionController: public IControladorCalificacion {
         void ingresarComentario(string);
         void ingresarPuntaje(int);
         void ingresarFecha(DTFecha);
-        void confirmarAltaCalificacion(int,string);
+        void confirmarAltaCalificacion(int,string,bool);
 
         void ingresarRespuesta(string);
-        void responderCalificacion(int,string,DTFecha);
+        void responderCalificacion(int,string,DTFecha,bool);
         void LiberarMemoria();
 };
 #endif

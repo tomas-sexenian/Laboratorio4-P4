@@ -23,65 +23,67 @@ IControladorNotificaciones* controladorNotificaciones = Fabrica::getNotificacion
 IControladorReserva* controladorReservas = Fabrica::getReservaController();
 IControladorSistema* controladorSistema = Fabrica::getSistemaController();
 IControladorUsuario* controladorUsuarios = Fabrica::getUsuarioController();
- 
 
 void cargarDatosPrueba() {
     // CARGA DE EMPLEADOS
+    /*  conRetorno implementado!   */
 
     controladorUsuarios->ingresarTipo(empleado);
     controladorUsuarios->ingresarDatosUsuario("Emilia","emilia@mail.com","123");
     controladorUsuarios->ingresarCargo(recepcion);
-    controladorUsuarios->confirmarAltaUsuario();
+    controladorUsuarios->confirmarAltaUsuario(false);
 
     controladorUsuarios->ingresarTipo(empleado);
     controladorUsuarios->ingresarDatosUsuario("Leonardo","leo@mail.com","123");
     controladorUsuarios->ingresarCargo(recepcion);
-    controladorUsuarios->confirmarAltaUsuario(); 
+    controladorUsuarios->confirmarAltaUsuario(false); 
 
     controladorUsuarios->ingresarTipo(empleado);
     controladorUsuarios->ingresarDatosUsuario("Alina","alina@mail.com","123");
     controladorUsuarios->ingresarCargo(administracion);
-    controladorUsuarios->confirmarAltaUsuario();
+    controladorUsuarios->confirmarAltaUsuario(false);
 
     controladorUsuarios->ingresarTipo(empleado);
     controladorUsuarios->ingresarDatosUsuario("Barliman","barli@mail.com","123");
     controladorUsuarios->ingresarCargo(recepcion);
-    controladorUsuarios->confirmarAltaUsuario();
+    controladorUsuarios->confirmarAltaUsuario(false);
 
 
     // CARGA DE HUESPEDES
+    /*  conRetorno implementado!   */
 
     controladorUsuarios->ingresarTipo(huesped);
     controladorUsuarios->ingresarDatosUsuario("Sofia","sofia@mail.com","123");
     controladorUsuarios->ingresarEsFinger(true);
-    controladorUsuarios->confirmarAltaUsuario();
+    controladorUsuarios->confirmarAltaUsuario(false);
     
     controladorUsuarios->ingresarTipo(huesped);
     controladorUsuarios->ingresarDatosUsuario("Frodo","frodo@mail.com","123");
     controladorUsuarios->ingresarEsFinger(true);
-    controladorUsuarios->confirmarAltaUsuario();
+    controladorUsuarios->confirmarAltaUsuario(false);
 
     controladorUsuarios->ingresarTipo(huesped);
     controladorUsuarios->ingresarDatosUsuario("Sam","sam@mail.com","123");
     controladorUsuarios->ingresarEsFinger(false);
-    controladorUsuarios->confirmarAltaUsuario();
+    controladorUsuarios->confirmarAltaUsuario(false);
 
     controladorUsuarios->ingresarTipo(huesped);
     controladorUsuarios->ingresarDatosUsuario("Merry","merry@mail.com","123");
     controladorUsuarios->ingresarEsFinger(false);
-    controladorUsuarios->confirmarAltaUsuario();
+    controladorUsuarios->confirmarAltaUsuario(false);
 
     controladorUsuarios->ingresarTipo(huesped);
     controladorUsuarios->ingresarDatosUsuario("Pippin","pippin@mail.com","123");
     controladorUsuarios->ingresarEsFinger(false);
-    controladorUsuarios->confirmarAltaUsuario();
+    controladorUsuarios->confirmarAltaUsuario(false);
 
     controladorUsuarios->ingresarTipo(huesped);
     controladorUsuarios->ingresarDatosUsuario("Seba","seba@mail.com","123");
     controladorUsuarios->ingresarEsFinger(true);
-    controladorUsuarios->confirmarAltaUsuario();
+    controladorUsuarios->confirmarAltaUsuario(false);
 
     // CARGA DE HOSTALES
+    /*  No necesita conRetorno  */
 
     controladorHostales->ingresarDatosHostal("La posada del finger","Av de la playa 123, Maldonado","099111111");
     controladorHostales->confirmarAltaHostal();
@@ -99,32 +101,34 @@ void cargarDatosPrueba() {
     controladorHostales->confirmarAltaHostal();
 
     // CARGA DE HABITACIONES EN HOSTALES
+    /*  conRetorno implementado!   */
 
     controladorHabitaciones->ingresarDatosHabitacion(1,40,2);
     controladorHabitaciones->ingresarHostalHabitacion("La posada del finger");
-    controladorHabitaciones->confirmarAltaHabitacion();
+    controladorHabitaciones->confirmarAltaHabitacion(false);
 
     controladorHabitaciones->ingresarDatosHabitacion(2,10,7);
     controladorHabitaciones->ingresarHostalHabitacion("La posada del finger");
-    controladorHabitaciones->confirmarAltaHabitacion();
+    controladorHabitaciones->confirmarAltaHabitacion(false);
 
     controladorHabitaciones->ingresarDatosHabitacion(3,30,3);
     controladorHabitaciones->ingresarHostalHabitacion("La posada del finger");
-    controladorHabitaciones->confirmarAltaHabitacion();
+    controladorHabitaciones->confirmarAltaHabitacion(false);
 
     controladorHabitaciones->ingresarDatosHabitacion(4,5,12);
     controladorHabitaciones->ingresarHostalHabitacion("La posada del finger");
-    controladorHabitaciones->confirmarAltaHabitacion();
+    controladorHabitaciones->confirmarAltaHabitacion(false);
 
     controladorHabitaciones->ingresarDatosHabitacion(1,3,2);
     controladorHabitaciones->ingresarHostalHabitacion("Caverna Lujosa");
-    controladorHabitaciones->confirmarAltaHabitacion();
+    controladorHabitaciones->confirmarAltaHabitacion(false);
 
     controladorHabitaciones->ingresarDatosHabitacion(1,9,5);
     controladorHabitaciones->ingresarHostalHabitacion("El Pony Pisador");
-    controladorHabitaciones->confirmarAltaHabitacion();
+    controladorHabitaciones->confirmarAltaHabitacion(false);
 
     // CARGA DE EMPLEADOS EN HOSTALES
+    /*  No necesita conRetorno  */
 
     controladorUsuarios->seleccionarEmpleado("emilia@mail.com");
     controladorUsuarios->seleccionarCargo(recepcion);
@@ -147,6 +151,7 @@ void cargarDatosPrueba() {
     controladorUsuarios->confirmarAsignacionEmpleado();
 
     // CARGA DE RESEVAS DE HUESPEDES EN HOSTALES
+    /*  conRetorno implementado!   */
 
     DTFecha checkIn = DTFecha(1,5,2022,14,0);
     DTFecha checkOut = DTFecha(10,5,2022,10,0);
@@ -155,7 +160,7 @@ void cargarDatosPrueba() {
     controladorReservas->seleccionarHabitacion(1);
     controladorReservas->seleccionarTipo(individual);
     controladorReservas->ingresarHuesped("sofia@mail.com");
-    controladorReservas->confirmarReserva();
+    controladorReservas->confirmarReserva(false);
 
     checkIn = DTFecha(4,1,2001,20,0);
     checkOut = DTFecha(5,1,2001,2,0);
@@ -166,7 +171,7 @@ void cargarDatosPrueba() {
     controladorReservas->ingresarHuesped("frodo@mail.com");
     list<string> invitados = {"sam@mail.com","merry@mail.com","pippin@mail.com"};
     controladorReservas->ingresarInvitados(invitados);
-    controladorReservas->confirmarReserva();
+    controladorReservas->confirmarReserva(false);
 
     checkIn = DTFecha(7,6,2022,14,0);
     checkOut = DTFecha(30,6,2022,11,0);
@@ -175,7 +180,7 @@ void cargarDatosPrueba() {
     controladorReservas->seleccionarHabitacion(3);
     controladorReservas->seleccionarTipo(individual);
     controladorReservas->ingresarHuesped("sofia@mail.com");
-    controladorReservas->confirmarReserva();
+    controladorReservas->confirmarReserva(false);
 
     checkIn = DTFecha(10,6,2022,14,0);
     checkOut = DTFecha(30,6,2022,11,0);
@@ -184,15 +189,16 @@ void cargarDatosPrueba() {
     controladorReservas->seleccionarHabitacion(1);
     controladorReservas->seleccionarTipo(individual);
     controladorReservas->ingresarHuesped("seba@mail.com");
-    controladorReservas->confirmarReserva();
+    controladorReservas->confirmarReserva(false);
 
     // CARGA DE ESTADIAS PARA RESERVAS DE HUESPEDES
+    /*  conRetorno implementado!   */
 
     controladorEstadias->seleccionarTipo(individual);
     controladorEstadias->seleccionarReserva(1);
     controladorEstadias->ingresarHuesped("sofia@mail.com");
     controladorEstadias->ingresarEntradaEstadia(1,5,2022,18,0);
-    controladorEstadias->confirmarAltaEstadia();
+    controladorEstadias->confirmarAltaEstadia(false);
 
     controladorEstadias->seleccionarTipo(grupal);
     controladorEstadias->seleccionarReserva(2);
@@ -200,15 +206,16 @@ void cargarDatosPrueba() {
     invitados = {"sam@mail.com","merry@mail.com","pippin@mail.com"};
     controladorEstadias->ingresarInvitados(invitados);
     controladorEstadias->ingresarEntradaEstadia(4,1,2001,21,0);
-    controladorEstadias->confirmarAltaEstadia();
+    controladorEstadias->confirmarAltaEstadia(false);
 
     controladorEstadias->seleccionarTipo(individual);
     controladorEstadias->seleccionarReserva(4);
     controladorEstadias->ingresarHuesped("seba@mail.com");
     controladorEstadias->ingresarEntradaEstadia(7,6,2022,18,0);
-    controladorEstadias->confirmarAltaEstadia();
+    controladorEstadias->confirmarAltaEstadia(false);
 
     // FINALIZACION DE ESTADIAS
+    /*  No necesita conRetorno  */
 
     Estadia* e;
 
@@ -225,26 +232,28 @@ void cargarDatosPrueba() {
     e->setSalida(DTFecha(15,6,2022,22,0));
 
     // CALIFICACIONES DE ESTADIAS
+    /*  conRetorno implementado!   */
 
     controladorCalificaciones->ingresarComentario("Un poco caro para lo que ofrecen. El famoso gimnasio era una caminadora (que hacia tremendo ruido) y 2 pesas, la piscina parecia el lago del Parque Rodo y el desayuno eran 2 tostadas con mermelada. Internet se pasaba cayendo. No vuelvo");
     controladorCalificaciones->ingresarPuntaje(3);
     controladorCalificaciones->ingresarFecha(DTFecha(11,5,2022,18,0));
-    controladorCalificaciones->confirmarAltaCalificacion(1,"sofia@mail.com");
+    controladorCalificaciones->confirmarAltaCalificacion(1,"sofia@mail.com",false);
 
     controladorCalificaciones->ingresarComentario("Se pone peligroso de noche, no recomiendo. Ademas no hay caja fuerte para guardar los anillos");
     controladorCalificaciones->ingresarPuntaje(2);
     controladorCalificaciones->ingresarFecha(DTFecha(5,1,2001,3,0));
-    controladorCalificaciones->confirmarAltaCalificacion(2,"frodo@mail.com");
+    controladorCalificaciones->confirmarAltaCalificacion(2,"frodo@mail.com",false);
 
     controladorCalificaciones->ingresarComentario("Habia pulgas en la habitacion. Que lugar mas mamarracho!!");
     controladorCalificaciones->ingresarPuntaje(1);
     controladorCalificaciones->ingresarFecha(DTFecha(15,6,2022,11,0));
-    controladorCalificaciones->confirmarAltaCalificacion(4,"seba@mail.com");
+    controladorCalificaciones->confirmarAltaCalificacion(4,"seba@mail.com",false);
 
     // COMENTARIOS A CALIFICACIONES
+    /*  conRetorno implementado!   */
 
     controladorCalificaciones->ingresarRespuesta("Desaparecio y se fue sin pagar");
-    controladorCalificaciones->responderCalificacion(2,"frodo@mail.com",DTFecha(15,6,2022,23,0));
+    controladorCalificaciones->responderCalificacion(2,"frodo@mail.com",DTFecha(15,6,2022,23,0),false);
 }
 
 
@@ -555,7 +564,7 @@ void altaDeUsuario(){
 
     controladorUsuarios->ingresarDatosUsuario(eleccionNombreUsuario_CUsuario,eleccionMailUsuario_CUsuario,eleccionContraseniaUsuario_CUsuario);
 
-    controladorUsuarios->confirmarAltaUsuario();
+    controladorUsuarios->confirmarAltaUsuario(true);
 }
 
 //Alta de hostal
@@ -607,7 +616,7 @@ void altaDeHabitacion(){
     cout << "\n";
 
     controladorHabitaciones->ingresarHostalHabitacion(eleccionNombreHostal_CUsuario);
-    controladorHabitaciones->confirmarAltaHabitacion();
+    controladorHabitaciones->confirmarAltaHabitacion(true);
 }
 //Asignar empleado a hostal
 void asignarEmpleadoAHostal(){
@@ -745,7 +754,7 @@ void registrarEstadia(string eleccionHostalEmpleado_CEmpleado){
 
     //mal, habria que pedir la fecha de la estadia
     controladorEstadias->ingresarEntradaEstadia(fechaSis.getDia(), fechaSis.getMes(), fechaSis.getAnio(), fechaSis.getHora(), fechaSis.getMinuto());
-    controladorEstadias->confirmarAltaEstadia();
+    controladorEstadias->confirmarAltaEstadia(true);
 }
 
 //Finalizar estadia
@@ -793,7 +802,7 @@ void comentarCalificacion(){
     getline(cin, eleccionEmailHuespedEstadia_CEmpleado);
     cout << "\n";
 
-    controladorCalificaciones->responderCalificacion(eleccionCodigoReserva_CEmpleado,eleccionEmailHuespedEstadia_CEmpleado,controladorSistema->obtenerFechaActual());
+    controladorCalificaciones->responderCalificacion(eleccionCodigoReserva_CEmpleado,eleccionEmailHuespedEstadia_CEmpleado,controladorSistema->obtenerFechaActual(),true);
 }
 
 //Suscribirse a notificaciones
@@ -932,7 +941,7 @@ int realizarReserva(int codigoReserva){
             controladorReservas->ingresarInvitados(eleccionEmailInvitadosReserva_CHuesped);
             break;
     }
-    controladorReservas->confirmarReserva();
+    controladorReservas->confirmarReserva(true);
     return codigoReserva + 1;
 }
 //Consultar top 3 hostales
@@ -976,7 +985,7 @@ void calificarEstadia(){
     cout << "\n";
 
     controladorCalificaciones->ingresarFecha(controladorSistema->obtenerFechaActual());
-    controladorCalificaciones->confirmarAltaCalificacion(eleccionCodigoReserva_CEmpleado,eleccionEmailHuespedEstadia_CEmpleado);
+    controladorCalificaciones->confirmarAltaCalificacion(eleccionCodigoReserva_CEmpleado,eleccionEmailHuespedEstadia_CEmpleado,true);
 }
 //Consulta de usuario
 void consultaDeUsuario(){

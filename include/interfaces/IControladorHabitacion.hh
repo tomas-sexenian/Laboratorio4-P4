@@ -18,7 +18,7 @@ class IControladorHabitacion {
         virtual list<DTHabitacion> obtenerHabitacionesDisponiblesHostal(string,DTFecha,DTFecha) = 0;
         //Lo que antes era AltaHabitacion
         virtual void ingresarDatosHabitacion(int,float,int) = 0;
-        virtual void confirmarAltaHabitacion() = 0;
+        virtual void confirmarAltaHabitacion(bool) = 0;
         virtual void cancelarAltaHabitacion() = 0;
         virtual void ingresarHostalHabitacion(string) = 0;
        

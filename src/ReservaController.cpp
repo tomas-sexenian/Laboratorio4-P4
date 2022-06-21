@@ -166,7 +166,7 @@ void ReservaController::agregarHuespedesReservaGrupal(map<string, Huesped*> Unos
     this->invitados = UnosInvitados;
 }
 
-void ReservaController::confirmarReserva() {
+void ReservaController::confirmarReserva(bool conRetorno) {
     if(this->checkIn < this->checkOut){
         if(habitacion->estaDisponible(this->checkIn, this->checkOut)){
         switch(tipo){
@@ -182,7 +182,8 @@ void ReservaController::confirmarReserva() {
                 );
                 ReservasIndividuales.insert(pair<int,ReservaIndividual*>(this->codigo, ins));
                 this->huesped->getReservas().insert(pair<int,ReservaIndividual*>(this->codigo, ins));
-                cout << "La reserva ha sido registrada con exito" << endl;
+                if (conRetorno)
+                    cout << "La reserva ha sido registrada con exito" << endl;
                 break;
             case grupal:
                 int cantInvi = this->invitados.size();
@@ -199,7 +200,8 @@ void ReservaController::confirmarReserva() {
                     );
                     ReservasGrupales.insert(pair<int,ReservaGrupal*>(this->codigo,ins));
                     this->huesped->getReservas().insert(pair<int,ReservaGrupal*>(this->codigo,ins));
-                    cout << "La reserva ha sido registrada con exito" << endl;
+                    if (conRetorno)
+                        cout << "La reserva ha sido registrada con exito" << endl;
                     break;
                 }
                 else

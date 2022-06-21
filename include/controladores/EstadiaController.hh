@@ -59,7 +59,7 @@ class EstadiaController : public IControladorEstadia {
         void ingresarHuesped(string);
         void ingresarInvitados(list<string>);
         void ingresarEntradaEstadia(int,int,int,int,int);
-        void confirmarAltaEstadia();
+        void confirmarAltaEstadia(bool);
 
         void LiberarMemoria();
 };

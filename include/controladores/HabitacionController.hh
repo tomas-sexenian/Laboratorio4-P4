@@ -37,7 +37,7 @@ class HabitacionController: public IControladorHabitacion {
         list<DTHabitacion> obtenerHabitacionesDisponiblesHostal(string,DTFecha,DTFecha);
         //Lo que antes era AltaHabitacion
         void ingresarDatosHabitacion(int,float,int);
-        void confirmarAltaHabitacion();
+        void confirmarAltaHabitacion(bool);
         void cancelarAltaHabitacion();
         void ingresarHostalHabitacion(string);
 

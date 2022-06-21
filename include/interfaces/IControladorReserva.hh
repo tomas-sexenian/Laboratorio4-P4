@@ -31,7 +31,7 @@ class IControladorReserva {
         virtual void ingresarDatosReservaGrupal(int, string, DTFecha, DTFecha, EstadoReserva, TipoReserva, Habitacion*, list<int>) = 0;
         virtual void ingresarDatosReserva(int,DTFecha,DTFecha,EstadoReserva) = 0;
         virtual void agregarHuespedesReservaGrupal(map<string, Huesped*>) = 0;
-        virtual void confirmarReserva() = 0;
+        virtual void confirmarReserva(bool) = 0;
         virtual void cancelarReserva(int) = 0;
         virtual list<DTReserva*> obtenerReservasHostal(string) = 0;
         
