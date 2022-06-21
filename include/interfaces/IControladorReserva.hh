@@ -26,6 +26,7 @@ class IControladorReserva {
         virtual void seleccionarReservaGrupal(int) = 0;
         virtual Reserva* obtenerReserva(int) = 0;
         virtual list<DTReserva*> getListaReservasNoCanceladasHuesped(string) = 0;
+        virtual list<DTReserva*> getListaReservasNoCanceladasHostal(string) = 0;
         virtual void confirmarConsulta() = 0;
         virtual void ingresarDatosReservaIndividual(int, string, DTFecha, DTFecha, EstadoReserva, TipoReserva, Habitacion*) = 0;
         virtual void ingresarDatosReservaGrupal(int, string, DTFecha, DTFecha, EstadoReserva, TipoReserva, Habitacion*, list<int>) = 0;

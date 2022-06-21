@@ -85,6 +85,57 @@ DTReservaGrupal ReservaController::obtenerReservaGrupal() { //Obtiene un DTReser
     
 }
 
+list<DTReserva*> ReservaController::getListaReservasNoCanceladasHostal(string nombreHostal) {
+    list<DTReserva*> res;
+
+    auto itrInd = ReservasIndividuales.begin();
+    while(itrInd != ReservasIndividuales.end()){ //Iterar map
+        ReservaIndividual *r = itrInd->second;
+        
+        if((r->getHabitacion()->getHostal()->getNombre() == nombreHostal) && (r->getEstadoReserva() != cancelada)){
+            DTReservaIndividual *dt = new DTReservaIndividual(
+                        r->getCodigo(), 
+                        r->getHabitacion()->getHostal()->getNombre(), 
+                        r->getCheckIn(),
+                        r->getCheckOut(),
+                        r->getEstadoReserva(),
+                        r->calcularCosto(),
+                        r->getHabitacion()->getNumero()
+                    );
+            res.push_back(dt);
+        }
+        itrInd++;
+    }
+
+    auto itrGrup = ReservasGrupales.begin();
+    while(itrGrup != ReservasGrupales.end()){ //Iterar map
+        ReservaGrupal *r = itrGrup->second;
+        if((r->getHabitacion()->getHostal()->getNombre() == nombreHostal) && (r->getEstadoReserva() != cancelada)){
+            list<DTHuesped> lstInvitados = {};
+            map<string,Huesped*> invitados = r->getInvitados();
+            for(map<string,Huesped*>::iterator it = invitados.begin(); it != invitados.end(); it++){
+                DTHuesped invitado_i = DTHuesped(it->second->getNombre(),it->second->getEmail(),it->second->getContrasenia(),it->second->getEsFinger());
+                lstInvitados.push_back(invitado_i);
+            }
+            DTReservaGrupal *dt = new DTReservaGrupal(
+                        r->getCodigo(), 
+                        r->getHabitacion()->getHostal()->getNombre(), 
+                        r->getCheckIn(),
+                        r->getCheckOut(),
+                        r->getEstadoReserva(),
+                        r->calcularCosto(),
+                        r->getHabitacion()->getNumero(),
+                        lstInvitados
+                    );
+            res.push_back(dt);
+        }
+        itrGrup++;
+    }
+
+    return res;
+}
+
+
 list<DTReserva*> ReservaController::getListaReservasNoCanceladasHuesped(string UnEmail) {
     list<DTReserva*> res;
 
