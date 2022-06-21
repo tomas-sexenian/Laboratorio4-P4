@@ -377,7 +377,7 @@ void imprimirTodasReservas(string nombreHostal){
 
 void imprimirTodasReservasNoCanceladas(string nombreHostal){
     std::cout << "TODAS LAS RESERVAS NO CANCELADAS DEL HOSTAL: " << nombreHostal << endl;
-    list<DTReserva*> reservas = controladorReservas->getListaReservasNoCanceladasHuesped(nombreHostal);
+    list<DTReserva*> reservas = controladorReservas->getListaReservasNoCanceladasHostal(nombreHostal);
     for (std::list<DTReserva*>::iterator it = reservas.begin(); it != reservas.end(); ++it){
         if(dynamic_cast<DTReservaIndividual*>(*it)){
             DTReservaIndividual* res_individual = dynamic_cast<DTReservaIndividual*>(*it);
@@ -476,7 +476,10 @@ void imprimirDetalleEstadia(string nombreHostal,string emailHuesped, int codigo)
             std::cout << "Huesped: " << (*it)->getEmailHuesped() << endl;
             std::cout << "Habitacion: " << (*it)->getHabitacion() << endl;
             std::cout << "Entrada: " << (*it)->getEntrada().getDia() << "/" << (*it)->getEntrada().getMes() << "/" << (*it)->getEntrada().getAnio() << endl;
-            std::cout << "Salida: " << (*it)->getSalida().getDia() << "/" << (*it)->getSalida().getMes() << "/" << (*it)->getSalida().getAnio() << endl;
+            if((*it)->getSalida().getDia() == 1 && (*it)->getSalida().getMes() == 1 && (*it)->getSalida().getAnio() == 1901)
+                std::cout << "Salida: No finalizada" << endl;
+            else
+                std::cout << "Salida: " << (*it)->getSalida().getDia() << "/" << (*it)->getSalida().getMes() << "/" << (*it)->getSalida().getAnio() << endl;
         }
     }
 }
@@ -1230,6 +1233,7 @@ int main(){
                 //FIN CASOS DE USO ADMINISTRADOR
                 break;
             case 2:
+                cin.ignore(256, '\n');
                 imprimirTodosNombreHostal();
                 cout << "Indique el nombre del hostal en el cual trabaja\n";
                 getline(cin, eleccionHostalEmpleado_CEmpleado);
