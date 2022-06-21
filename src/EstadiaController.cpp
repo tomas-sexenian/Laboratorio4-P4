@@ -108,7 +108,7 @@ void EstadiaController::ingresarEntradaEstadia(int UnDia, int UnMes, int UnAnio,
 }
 
 
-void EstadiaController::confirmarAltaEstadia(){
+void EstadiaController::confirmarAltaEstadia(bool conRetorno){
     if (tipoReserva == individual){
         Estadias.insert(pair<int,Estadia*>(reservaSeleccionada->getCodigo(), new Estadia(entrada,DTFecha(),"",reservaSeleccionada,reservaSeleccionada->getHabitacion()->getHostal(),NULL,huesped)));
     } else {
@@ -120,7 +120,8 @@ void EstadiaController::confirmarAltaEstadia(){
             i->setEstadia(est);
         }
     }
-    cout << "La estadia ha sido registrada con exito" << endl;
+    if (conRetorno)
+        cout << "La estadia ha sido registrada con exito" << endl;
 }
 
 void EstadiaController::LiberarMemoria(){

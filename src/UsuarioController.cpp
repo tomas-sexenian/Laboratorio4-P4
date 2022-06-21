@@ -61,7 +61,7 @@ void UsuarioController::ingresarEsFinger(bool finger) {
     this->esFinger = finger;
 }
 
-void UsuarioController::confirmarAltaUsuario() {
+void UsuarioController::confirmarAltaUsuario(bool conRetorno) {
     if((Empleados.find(this->email) == Empleados.end()) && (Huespedes.find(this->email) == Huespedes.end())){
         switch(tipo){
             case empleado:
@@ -90,7 +90,8 @@ void UsuarioController::confirmarAltaUsuario() {
                     )));
                 break;
         }
-        cout << "El usuario ha sido registrado con exito" << endl;
+        if (conRetorno)
+            cout << "El usuario ha sido registrado con exito" << endl;
     }
     else
         throw std::invalid_argument( "Ya existe un usuario registrado con ese correo");

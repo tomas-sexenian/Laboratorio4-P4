@@ -17,10 +17,10 @@ class IControladorCalificacion {
         virtual void ingresarComentario(string) = 0;
         virtual void ingresarPuntaje(int) = 0;
         virtual void ingresarFecha(DTFecha) = 0;
-        virtual void confirmarAltaCalificacion(int,string) = 0;
+        virtual void confirmarAltaCalificacion(int,string,bool) = 0;
 
         virtual void ingresarRespuesta(string) = 0;
-        virtual void responderCalificacion(int,string,DTFecha) = 0;
+        virtual void responderCalificacion(int,string,DTFecha,bool) = 0;
         virtual void setCalificacionRecordada(int,string) = 0;
         virtual DTCalificacion obtenerDTCalificacionRecordada() = 0;
         virtual list<DTRespuestaEmpleado> obtenerDTRespuestas() = 0;

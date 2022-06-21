@@ -59,7 +59,7 @@ class UsuarioController: public IControladorUsuario {
         void ingresarNuevoEmail(string);
         void ingresarEsFinger(bool);
         void ingresarCargo(TipoCargo);
-        void confirmarAltaUsuario();
+        void confirmarAltaUsuario(bool);
         void cancelarAltaUsuario(); //Esto tampoco tiene sentido tenerlo aca, iria en el menu
         
         //Lo que antes era Huespedcontroller

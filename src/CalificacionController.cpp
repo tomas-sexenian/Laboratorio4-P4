@@ -61,7 +61,7 @@ void CalificacionController::ingresarFecha(DTFecha UnaFecha) {
     fecha = UnaFecha;
 }
 
-void CalificacionController::confirmarAltaCalificacion(int codigoReserva, string emailHuesped) {
+void CalificacionController::confirmarAltaCalificacion(int codigoReserva, string emailHuesped, bool conRetorno) {
     EstadiaController* est = EstadiaController::getInstancia();
     Estadia *e = est->obtenerEstadia(codigoReserva, emailHuesped);
 
@@ -70,14 +70,15 @@ void CalificacionController::confirmarAltaCalificacion(int codigoReserva, string
     Calificaciones.insert((pair<int,Calificacion*>(codigoReserva,nueva)));
     e->setCalificacion(nueva);
 
-    cout << "La calificacion ha sido registrada con exito" << endl;
+    if (conRetorno)
+        cout << "La calificacion ha sido registrada con exito" << endl;
 }
 
 void CalificacionController::ingresarRespuesta(string UnaRespuesta) {
     respuesta = UnaRespuesta;
 }
 
-void CalificacionController::responderCalificacion(int codigoReserva, string emailHuesped,DTFecha UnaFecha) {
+void CalificacionController::responderCalificacion(int codigoReserva, string emailHuesped,DTFecha UnaFecha,bool conRetorno) {
     Calificacion* c = NULL;
     for(map<int,Calificacion*>::iterator it = this->Calificaciones.begin(); it != this->Calificaciones.end(); it++){
         if (it->second->getEstadia()->getReserva()->getCodigo() == codigoReserva && it->second->getEstadia()->getHuesped()->getEmail() == emailHuesped)
@@ -88,7 +89,8 @@ void CalificacionController::responderCalificacion(int codigoReserva, string ema
         RespuestaEmpleado* nueva = new RespuestaEmpleado(respuesta,UnaFecha,c);
         c->setRespuesta(nueva);
         RespuestasEmpleados.insert((pair<Calificacion *,RespuestaEmpleado*>(c,nueva)));
-        cout << "La respuesta ha sido insertada con exito" << endl;
+        if (conRetorno)
+            cout << "La respuesta ha sido insertada con exito" << endl;
     }
 }
 

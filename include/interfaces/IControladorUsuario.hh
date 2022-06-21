@@ -31,7 +31,7 @@ public:
     virtual void ingresarNuevoEmail(string) = 0;
     virtual void ingresarEsFinger(bool) = 0;
     virtual void ingresarCargo(TipoCargo) = 0;
-    virtual void confirmarAltaUsuario() = 0;
+    virtual void confirmarAltaUsuario(bool) = 0;
     virtual void cancelarAltaUsuario() = 0; 
         
     //Lo que antes era Huespedcontroller
