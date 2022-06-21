@@ -26,7 +26,6 @@ IControladorUsuario* controladorUsuarios = Fabrica::getUsuarioController();
  
 
 void cargarDatosPrueba() {
-
     // CARGA DE EMPLEADOS
 
     controladorUsuarios->ingresarTipo(empleado);
@@ -227,7 +226,7 @@ void cargarDatosPrueba() {
 
     // CALIFICACIONES DE ESTADIAS
 
-    controladorCalificaciones->ingresarComentario("Un poco caro para lo que ofrecen. El famoso gimnasio era una caminadora (que hacia tremendo ruido) y 2 pesas, la piscina parecia el lago del Parque Rodo y el desayuno eran 2 tostadas con mermelada. Internet se pasaba cayendo. No vuevlo");
+    controladorCalificaciones->ingresarComentario("Un poco caro para lo que ofrecen. El famoso gimnasio era una caminadora (que hacia tremendo ruido) y 2 pesas, la piscina parecia el lago del Parque Rodo y el desayuno eran 2 tostadas con mermelada. Internet se pasaba cayendo. No vuelvo");
     controladorCalificaciones->ingresarPuntaje(3);
     controladorCalificaciones->ingresarFecha(DTFecha(11,5,2022,18,0));
     controladorCalificaciones->confirmarAltaCalificacion(1,"sofia@mail.com");
@@ -335,6 +334,46 @@ void imprimirTodasReservas(string nombreHostal){
         if(dynamic_cast<DTReservaIndividual*>(*it)){
             DTReservaIndividual* res_individual = dynamic_cast<DTReservaIndividual*>(*it);
             std::cout << "Tipo Reserva: Individual" << endl;
+            switch(res_individual->getEstado()){
+                case abierta:
+                    std::cout << "Estado: Abierta" << endl;
+                    break;
+                case cerrada:
+                    std::cout << "Estado: Cerrada" << endl;
+                    break;
+                case cancelada:
+                    std::cout << "Estado: Cancelada" << endl;
+                    break;
+            }
+            std::cout << "Codigo Reserva: " << res_individual->getCodigo() << endl;
+        }
+        if (dynamic_cast<DTReservaGrupal*>(*it)){
+            DTReservaGrupal* res_grupal = dynamic_cast<DTReservaGrupal*>(*it);
+            std::cout << "Tipo Reserva: Grupal" << endl;
+            switch(res_grupal->getEstado()){
+                case abierta:
+                    std::cout << "Estado: Abierta" << endl;
+                    break;
+                case cerrada:
+                    std::cout << "Estado: Cerrada" << endl;
+                    break;
+                case cancelada:
+                    std::cout << "Estado: Cancelada" << endl;
+                    break;
+            }
+            std::cout << "Codigo Reserva: " << res_grupal->getCodigo() << endl;
+        }
+    }
+}
+
+void imprimirTodasReservasNoCanceladas(string nombreHostal){
+    std::cout << "TODAS LAS RESERVAS NO CANCELADAS DEL HOSTAL: " << nombreHostal << endl;
+    list<DTReserva*> reservas = controladorReservas->getListaReservasNoCanceladasHuesped(nombreHostal);
+    for (std::list<DTReserva*>::iterator it = reservas.begin(); it != reservas.end(); ++it){
+        if(dynamic_cast<DTReservaIndividual*>(*it)){
+            DTReservaIndividual* res_individual = dynamic_cast<DTReservaIndividual*>(*it);
+            std::cout << "Tipo Reserva: Individual" << endl;
+
             std::cout << "Codigo Reserva: " << res_individual->getCodigo() << endl;
         }
         if (dynamic_cast<DTReservaGrupal*>(*it)){
@@ -432,6 +471,7 @@ void imprimirDetalleEstadia(string nombreHostal,string emailHuesped, int codigo)
         }
     }
 }
+
 
 void imprimirTop3Hostales(){
     std::cout << "TOP 3 HOSTALES DEL SISTEMA SEGUN SUS CALIFICACIONES" << endl;
@@ -644,7 +684,7 @@ void modificarFechaDelSistema(){
     cin.ignore(256, '\n');
     cout << "\n";
 
-    controladorSistema->modificarFecha(DTFecha(DiaSistema,MesSistema,AnioSistema,HoraSistema,MinutoSistema));
+    controladorSistema->modificarFecha(DiaSistema,MesSistema,AnioSistema,HoraSistema,MinutoSistema);
 
 }
 
@@ -661,7 +701,7 @@ void registrarEstadia(string eleccionHostalEmpleado_CEmpleado){
     cin.ignore(256, '\n');
     cout << "\n";
                                 
-    imprimirTodasReservas(eleccionHostalEmpleado_CEmpleado);
+    imprimirTodasReservasNoCanceladas(eleccionHostalEmpleado_CEmpleado);
 
     cout << "Indique el codigo de la reserva asociada a la estadia\n";
     cin >> eleccionCodigoReserva_CEmpleado;
@@ -712,19 +752,8 @@ void registrarEstadia(string eleccionHostalEmpleado_CEmpleado){
 void finalizarEstadia(){
     // PARA FINALIZAR ESTADIA
     cin.ignore(256, '\n');
-    string eleccionComentarioEstadia_CEmpleado,eleccionEmailHuespedEstadia_CEmpleado;
-    int eleccionPuntajeEstadia_CEmpleado,eleccionCodigoReserva_CEmpleado;
-
-    cout << "Indique el comentario asociado a la estadia\n";
-    getline(cin, eleccionComentarioEstadia_CEmpleado);
-    cout << "\n";
-    controladorCalificaciones->ingresarComentario(eleccionComentarioEstadia_CEmpleado);
-
-    cout << "Indique el puntaje asociado a la estadia\n";
-    cin >> eleccionPuntajeEstadia_CEmpleado;
-    cin.ignore(256, '\n');
-    cout << "\n";
-    controladorCalificaciones->ingresarPuntaje(eleccionPuntajeEstadia_CEmpleado);
+    string eleccionEmailHuespedEstadia_CEmpleado;
+    int eleccionCodigoReserva_CEmpleado;
 
     controladorCalificaciones->ingresarFecha(controladorSistema->obtenerFechaActual());
 
@@ -763,7 +792,6 @@ void comentarCalificacion(){
     cout << "Indique el email del huesped asociado a la estadia\n";
     getline(cin, eleccionEmailHuespedEstadia_CEmpleado);
     cout << "\n";
-    controladorReservas->ingresarHuesped(eleccionEmailHuespedEstadia_CEmpleado);
 
     controladorCalificaciones->responderCalificacion(eleccionCodigoReserva_CEmpleado,eleccionEmailHuespedEstadia_CEmpleado,controladorSistema->obtenerFechaActual());
 }
@@ -913,7 +941,7 @@ void consultarTop3Hostales(){
 
     string eleccionHostal_CHuesped;
 
-    void imprimirTop3Hostales();
+    imprimirTop3Hostales();
     cout << "Si desea ver detalles sobre algun hostal en particular, ingrese su nombre" << endl;
     getline(cin, eleccionHostal_CHuesped);
     cout << "\n";
@@ -946,6 +974,8 @@ void calificarEstadia(){
     cout << "Por favor indique su email\n";
     getline(cin, eleccionEmailHuespedEstadia_CEmpleado);
     cout << "\n";
+
+    controladorCalificaciones->ingresarFecha(controladorSistema->obtenerFechaActual());
     controladorCalificaciones->confirmarAltaCalificacion(eleccionCodigoReserva_CEmpleado,eleccionEmailHuespedEstadia_CEmpleado);
 }
 //Consulta de usuario
@@ -996,8 +1026,9 @@ void consultaDeHostal(){
         cout << "Calificacion numero " << cantCalificaciones_CHuesped << endl;
         cout << "Comentario: " << it->getComentario() << endl;
         cout << "Puntaje: " << it->getPuntaje() << endl;
-        cout << "Fecha: " << it->getFecha().getDia() << it->getFecha().getMes() << it->getFecha().getAnio()  << endl;
+        cout << "Fecha: " << it->getFecha().getDia() << "/" << it->getFecha().getMes() << "/" << it->getFecha().getAnio()  << endl;
         cout << "" << endl;
+        cantCalificaciones_CHuesped++;
     }
 }
 //Consulta de reserva
@@ -1022,7 +1053,7 @@ void consultaDeEstadia(){
     cin.ignore(256, '\n');
 
     string eleccionHuesped_CHuesped,eleccionHostal_CHuesped;
-    int eleccionCodigo_CHuesped;
+    int eleccionCodigo_CHuesped, eleccionVerCalificacion_CHuesped;
     imprimirTodosNombreHostal();
     cout << "Ingrese el nombre del hostal en el que se realizo la estadia" << endl;
     getline(cin, eleccionHostal_CHuesped);
@@ -1036,6 +1067,24 @@ void consultaDeEstadia(){
     cin.ignore(256, '\n');
     cout << "\n";
     imprimirDetalleEstadia(eleccionHostal_CHuesped,eleccionHuesped_CHuesped, eleccionCodigo_CHuesped);
+    cout << "Si desea ver la calificacion y las respuestas, ingrese 1, de lo contrario 0" << endl;
+    cin >> eleccionVerCalificacion_CHuesped;
+    cin.ignore(256, '\n');
+    if(eleccionVerCalificacion_CHuesped == 1){
+        controladorCalificaciones->setCalificacionRecordada(eleccionCodigo_CHuesped, eleccionHuesped_CHuesped);
+        DTCalificacion c = controladorCalificaciones->obtenerDTCalificacionRecordada();
+        cout << "Comentario: " << c.getComentario() << endl;
+        cout << "Puntaje: " << c.getPuntaje() << endl;
+        cout << "Fecha: " << c.getFecha().getDia() << "/" << c.getFecha().getMes() << "/" << c.getFecha().getAnio()  << endl;
+        cout << "" << endl;
+        cout << "RESPUESTAS DE LOS EMPLEADOS: " << endl;
+        list<DTRespuestaEmpleado> resp = controladorCalificaciones->obtenerDTRespuestas();
+        for (std::list<DTRespuestaEmpleado>::iterator it = resp.begin(); it != resp.end(); ++it){
+            cout << "Respuesta: " << it->getComentario() << endl;
+            cout << "Fecha: " << it->getFecha().getDia() << "/" << it->getFecha().getMes() << "/" << it->getFecha().getAnio()  << endl;
+        }   
+        cout << "" << endl;
+    }
 }
 
 //Baja de reserva
@@ -1068,6 +1117,7 @@ void bajaDeReserva(){
 // ----------------------------------------------------------------- //
 
 int main(){
+
     cargarDatosPrueba();
     int autoNumberCodigoReserva = 5;
     int AnioMain, MesMain, DiaMain, HoraMain, MinutoMain;
@@ -1094,9 +1144,8 @@ int main(){
     cin >> MinutoMain;
     cin.ignore(256, '\n');
 
-
-    controladorSistema->modificarFecha(DTFecha(DiaMain,MesMain,AnioMain,HoraMain,MinutoMain));
-
+    controladorSistema->modificarFecha(DiaMain,MesMain,AnioMain,HoraMain,MinutoMain);
+    
     bool elegirOpcionUsuario = true;
     int opcionUsuario;
     bool elegirOpcionHuesped;

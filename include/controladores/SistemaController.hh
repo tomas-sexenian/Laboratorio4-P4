@@ -24,6 +24,6 @@ class SistemaController: public IControladorSistema{
 	    ~SistemaController();
         
         DTFecha obtenerFechaActual();
-        void modificarFecha(DTFecha);
+        void modificarFecha(int, int, int, int, int);
 };
 #endif

@@ -1,8 +1,5 @@
 #include "../include/cabezales/DTRespuestaEmpleado.hh"
 
-string DTRespuestaEmpleado::getEmailEmpleado() {
-	return emailEmpleado;
-}
 
 string DTRespuestaEmpleado::getComentario() {
 	return comentario;
@@ -13,14 +10,12 @@ DTFecha DTRespuestaEmpleado::getFecha() {
 }
 	
 DTRespuestaEmpleado::DTRespuestaEmpleado() {
-    emailEmpleado = "";
     comentario = "";
     fecha = DTFecha();
 }
 
-DTRespuestaEmpleado::DTRespuestaEmpleado(string UnEmail, string UnComentario, DTFecha UnaFecha) {
+DTRespuestaEmpleado::DTRespuestaEmpleado(string UnComentario, DTFecha UnaFecha) {
     comentario = UnComentario;
-    emailEmpleado = UnEmail;
     fecha= UnaFecha;
 }
 

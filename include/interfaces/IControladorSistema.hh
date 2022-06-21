@@ -12,7 +12,7 @@ using namespace std;
 class IControladorSistema {
     public:
         virtual DTFecha obtenerFechaActual() = 0;
-        virtual void modificarFecha(DTFecha) = 0;
+        virtual void modificarFecha(int, int, int, int, int) = 0;
 };
 
 #endif

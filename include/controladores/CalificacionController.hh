@@ -4,6 +4,7 @@
 #include <list>
 #include <map>
 #include <iostream>
+#include <stdexcept>
 
 //VAN A TENER QUE HACER INCLUDE DE TODAS LAS DEPENDENCIAS DEL CONTROLADOR
 //YO SOLO INCLUI LO QUE ALMACENA CADA CONTROLADOR Y LAS NECESARIAS PARA DECLARAR
@@ -13,11 +14,13 @@
 #include "../interfaces/IControladorCalificacion.hh"
 #include "../cabezales/calificacion.hh"
 #include "../cabezales/DTCalificacion.hh"
+#include "../cabezales/DTRespuestaEmpleado.hh"
 #include "../cabezales/RespuestaEmpleado.hh"
 #include "../controladores/SistemaController.hh"
 #include "../controladores/EstadiaController.hh"
 
 using namespace std;
+
 
 class CalificacionController: public IControladorCalificacion {
     private:
@@ -35,9 +38,10 @@ class CalificacionController: public IControladorCalificacion {
 		static CalificacionController* getInstancia();
 	    ~CalificacionController();
         map<int,Calificacion *> getCalificaciones();
-        Calificacion * getCalificacionRecordada();
         void setCalificacionRecordada(int,string);
 
+        DTCalificacion obtenerDTCalificacionRecordada();
+        list<DTRespuestaEmpleado> obtenerDTRespuestas();
         void ingresarComentario(string);
         void ingresarPuntaje(int);
         void ingresarFecha(DTFecha);

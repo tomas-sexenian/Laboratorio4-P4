@@ -119,17 +119,17 @@ list<DTHuesped> UsuarioController::obtenerTodosHuespedes(){
     return res;
 }
 
-list<DTEstadia> UsuarioController::obtenerEstadiasFinalizadasHuesped() {
+list<DTEstadia*> UsuarioController::obtenerEstadiasFinalizadasHuesped() {
     SistemaController* sis = SistemaController::getInstancia();
     DTFecha fechaSis = sis->obtenerFechaActual();
 
-    list<DTEstadia> res;
+    list<DTEstadia*> res;
     list<Estadia*> estadiasHuesped = huespedSeleccionado->getEstadias();
 
     for (auto const& itr : estadiasHuesped) { //Iterar list
         Estadia *e = itr;
         if(e->getSalida() < fechaSis){
-            DTEstadia dt(
+            DTEstadia *dt = new DTEstadia(
                         e->getReserva()->getCodigo(),
                         huespedSeleccionado->getEmail(), 
                         huespedSeleccionado->getNombre(), 

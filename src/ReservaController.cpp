@@ -84,15 +84,15 @@ DTReservaGrupal ReservaController::obtenerReservaGrupal() { //Obtiene un DTReser
     
 }
 
-list<DTReserva> ReservaController::getListaReservasNoCanceladasHuesped(string UnEmail) {
-    list<DTReserva> res;
+list<DTReserva*> ReservaController::getListaReservasNoCanceladasHuesped(string UnEmail) {
+    list<DTReserva*> res;
 
     auto itrInd = ReservasIndividuales.begin();
     while(itrInd != ReservasIndividuales.end()){ //Iterar map
         ReservaIndividual *r = itrInd->second;
         
         if((r->getTitular()->getEmail() == UnEmail) && (r->getEstadoReserva() != cancelada)){
-            DTReservaIndividual dt(
+            DTReservaIndividual *dt = new DTReservaIndividual(
                         r->getCodigo(), 
                         r->getHabitacion()->getHostal()->getNombre(), 
                         r->getCheckIn(),
@@ -116,7 +116,7 @@ list<DTReserva> ReservaController::getListaReservasNoCanceladasHuesped(string Un
                 DTHuesped invitado_i = DTHuesped(it->second->getNombre(),it->second->getEmail(),it->second->getContrasenia(),it->second->getEsFinger());
                 lstInvitados.push_back(invitado_i);
             }
-            DTReservaGrupal dt(
+            DTReservaGrupal *dt = new DTReservaGrupal(
                         r->getCodigo(), 
                         r->getHabitacion()->getHostal()->getNombre(), 
                         r->getCheckIn(),
@@ -215,17 +215,11 @@ void ReservaController::confirmarReserva() {
 
 void ReservaController::cancelarReserva(int UnCodigoReserva) {
     if(ReservasIndividuales.find(UnCodigoReserva) != ReservasIndividuales.end()){
-        delete ReservasIndividuales.find(UnCodigoReserva)->second;
-        ReservasIndividuales.erase(UnCodigoReserva);
-        ReservasIndividuales.find(UnCodigoReserva)->second->getTitular()->getReservas().erase(UnCodigoReserva);
-
+        ReservasIndividuales.find(UnCodigoReserva)->second->setEstadoReserva(cancelada);
         cout << "La reserva ha sido cancelada con exito" << endl;
     }
     else if(ReservasGrupales.find(UnCodigoReserva) != ReservasGrupales.end()){
-        delete ReservasGrupales.find(UnCodigoReserva)->second;
-        ReservasGrupales.erase(UnCodigoReserva);
-        ReservasGrupales.find(UnCodigoReserva)->second->getTitular()->getReservas().erase(UnCodigoReserva);
-
+        ReservasGrupales.find(UnCodigoReserva)->second->setEstadoReserva(cancelada);
         cout << "La reserva ha sido cancelada con exito" << endl;
     }
     else

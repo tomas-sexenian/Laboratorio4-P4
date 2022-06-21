@@ -3,9 +3,13 @@
 DTFecha FechaSistema::getFecha() {
 	return fecha;
 } 
-
 void FechaSistema::setFecha(DTFecha UnaFecha) {
 	fecha = UnaFecha;
+} 
+
+void FechaSistema::setFecha(int UnDia, int UnMes, int UnAnio, int UnaHora, int UnMinuto) {
+	DTFecha ins(UnDia, UnMes, UnAnio, UnaHora, UnMinuto);
+    fecha = ins;
 } 
 
 FechaSistema::FechaSistema() {
