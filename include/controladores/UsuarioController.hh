@@ -65,7 +65,7 @@ class UsuarioController: public IControladorUsuario {
         //Lo que antes era Huespedcontroller
         bool obtenerEsFinger();
         list<DTHuesped> obtenerTodosHuespedes();
-        list<DTEstadia> obtenerEstadiasFinalizadasHuesped();
+        list<DTEstadia*> obtenerEstadiasFinalizadasHuesped();
 
         //Lo que antes era UsuarioController
         void agregarComentario(string);

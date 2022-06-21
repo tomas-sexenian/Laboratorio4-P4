@@ -42,6 +42,7 @@ list<DTHostal> HostalController::obtenerTop3Hostales() {
 
     for(map<string,Hostal*>::iterator itr = Hostales.begin(); itr != Hostales.end(); itr++){
         Hostal *h = itr->second;
+        seleccionarHostal(h->getNombre());
         float calificacionH = obtenerPromedioCalificaciones();
 
         if(calificacionH > calificacionPrimero){

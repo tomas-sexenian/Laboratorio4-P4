@@ -37,7 +37,7 @@ public:
     //Lo que antes era Huespedcontroller
     virtual bool obtenerEsFinger() = 0;
     virtual list<DTHuesped> obtenerTodosHuespedes() = 0;
-    virtual list<DTEstadia> obtenerEstadiasFinalizadasHuesped() = 0;
+    virtual list<DTEstadia*> obtenerEstadiasFinalizadasHuesped() = 0;
 
     //Lo que antes era UsuarioController
     virtual void agregarComentario(string) = 0;

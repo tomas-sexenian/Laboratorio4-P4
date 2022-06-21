@@ -109,10 +109,9 @@ void EstadiaController::ingresarEntradaEstadia(int UnDia, int UnMes, int UnAnio,
 
 void EstadiaController::confirmarAltaEstadia(){
     if (tipoReserva == individual){
-        list<string> listaVacia;
-        Estadias.insert(pair<int,Estadia*>(reservaSeleccionada->getCodigo(), new Estadia(entrada,DTFecha(),"",reservaSeleccionada,reservaSeleccionada->getHabitacion()->getHostal(),NULL,huesped, listaVacia)));
+        Estadias.insert(pair<int,Estadia*>(reservaSeleccionada->getCodigo(), new Estadia(entrada,DTFecha(),"",reservaSeleccionada,reservaSeleccionada->getHabitacion()->getHostal(),NULL,huesped)));
     } else {
-        Estadia *est = new Estadia(entrada,DTFecha(),"",reservaSeleccionada,reservaSeleccionada->getHabitacion()->getHostal(),NULL,huesped, invitados);
+        Estadia *est = new Estadia(entrada,DTFecha(),"",reservaSeleccionada,reservaSeleccionada->getHabitacion()->getHostal(),NULL,huesped);
         Estadias.insert(pair<int,Estadia*>(reservaSeleccionada->getCodigo(), est));
         UsuarioController* controladorUsuarios = UsuarioController::getInstancia();
         for (std::list<string>::iterator it = invitados.begin(); it != invitados.end(); ++it){

@@ -20,10 +20,6 @@ map<int,Calificacion *> CalificacionController::getCalificaciones() {
 }
 
 
-Calificacion* CalificacionController::getCalificacionRecordada() {
-    return calificacionRecordada;
-}
-
 void CalificacionController::setCalificacionRecordada(int codigoReserva, string emailHuesped) {
     Calificacion* res = NULL;
     for(map<int,Calificacion*>::iterator it = this->Calificaciones.begin(); it != this->Calificaciones.end(); it++){
@@ -35,6 +31,23 @@ void CalificacionController::setCalificacionRecordada(int codigoReserva, string 
 
 
 // DE ACA HACIA ABAJO IMPLEMENTAN LAS OPERACIONES
+
+//Obtiene una lista de DTCalificacion de la calificacion recordada
+DTCalificacion CalificacionController::obtenerDTCalificacionRecordada() {
+    DTCalificacion res(calificacionRecordada->getPuntaje(), calificacionRecordada->getComentario(), calificacionRecordada->getFecha());
+    return res;
+}
+
+//Obtiene una lista de DTRespuestaEmpleado de la calificacion recordada
+list<DTRespuestaEmpleado> CalificacionController::obtenerDTRespuestas(){
+    list<DTRespuestaEmpleado> res;
+    list<RespuestaEmpleado*> respuestas = calificacionRecordada->getRespuestas();
+    for(list<RespuestaEmpleado*>::iterator it = respuestas.begin(); it != respuestas.end(); it++){
+        DTRespuestaEmpleado ins((*it)->getComentario(), (*it)->getFecha());
+        res.push_back(ins);
+    }
+    return res;
+}
 
 void CalificacionController::ingresarComentario(string UnComentario) {
     comentario = UnComentario;
@@ -49,15 +62,10 @@ void CalificacionController::ingresarFecha(DTFecha UnaFecha) {
 }
 
 void CalificacionController::confirmarAltaCalificacion(int codigoReserva, string emailHuesped) {
-    SistemaController* sist = SistemaController::getInstancia();
     EstadiaController* est = EstadiaController::getInstancia();
     Estadia *e = est->obtenerEstadia(codigoReserva, emailHuesped);
 
-    Calificacion* nueva = new Calificacion();
-    nueva->setComentario(comentario);
-    nueva->setPuntaje(puntaje);
-    nueva->setFecha(sist->obtenerFechaActual());
-    nueva->setEstadia(e);
+    Calificacion* nueva = new Calificacion(puntaje, comentario, fecha, e, {});
 
     Calificaciones.insert((pair<int,Calificacion*>(codigoReserva,nueva)));
     e->setCalificacion(nueva);
@@ -70,12 +78,16 @@ void CalificacionController::ingresarRespuesta(string UnaRespuesta) {
 }
 
 void CalificacionController::responderCalificacion(int codigoReserva, string emailHuesped,DTFecha UnaFecha) {
-    EstadiaController* est = EstadiaController::getInstancia();
-    Estadia *e = est->obtenerEstadia(codigoReserva, emailHuesped);
-    Calificacion *c = e->getCalificacion();
-
-    RespuestaEmpleado* nueva = new RespuestaEmpleado(respuesta,UnaFecha,c);
-    c->setRespuesta(nueva);
-    RespuestasEmpleados.insert((pair<Calificacion *,RespuestaEmpleado*>(c,nueva)));
-    
+    Calificacion* c = NULL;
+    for(map<int,Calificacion*>::iterator it = this->Calificaciones.begin(); it != this->Calificaciones.end(); it++){
+        if (it->second->getEstadia()->getReserva()->getCodigo() == codigoReserva && it->second->getEstadia()->getHuesped()->getEmail() == emailHuesped)
+            c =  it->second;
+    }
+    if(c == NULL) throw invalid_argument("No se puede responder a una calificacion que no existe");
+    else{
+        RespuestaEmpleado* nueva = new RespuestaEmpleado(respuesta,UnaFecha,c);
+        c->setRespuesta(nueva);
+        RespuestasEmpleados.insert((pair<Calificacion *,RespuestaEmpleado*>(c,nueva)));
+        cout << "La respuesta ha sido insertada con exito" << endl;
+    }  
 }

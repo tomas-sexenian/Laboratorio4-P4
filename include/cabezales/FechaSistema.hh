@@ -16,6 +16,7 @@ class FechaSistema{
 		static FechaSistema* getInstancia();
         DTFecha getFecha();
         void setFecha(DTFecha);
+        void setFecha(int, int, int, int, int);
 	    ~FechaSistema();
 };
 

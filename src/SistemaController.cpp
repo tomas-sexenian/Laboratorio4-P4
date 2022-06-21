@@ -28,7 +28,7 @@ DTFecha SistemaController::obtenerFechaActual(){
     return fecha->getFecha();
 }
 
-void SistemaController::modificarFecha(DTFecha UnaFecha) {
+void SistemaController::modificarFecha(int UnDia, int UnMes, int UnAnio, int UnaHora, int UnMinuto) {
     FechaSistema* fecha = FechaSistema::getInstancia();
-    fecha->setFecha(UnaFecha);
+    fecha->setFecha(UnDia, UnMes, UnAnio, UnaHora, UnMinuto);
 }

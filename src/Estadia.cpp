@@ -56,13 +56,6 @@ void Estadia :: setHuesped(Huesped* UnHuesped) {
 	huesped = UnHuesped;
 }
 
-list<string> Estadia :: getInvitados() {
-	return invitados;
-}
-
-void Estadia :: setInvitados(list<string> UnosInvitados) {
-	invitados = UnosInvitados;
-}
 
 Estadia::Estadia() {
 	entrada = DTFecha();
@@ -73,14 +66,13 @@ Estadia::Estadia() {
 	huesped = NULL;
 }
 
-Estadia::Estadia(DTFecha UnaEntrada, DTFecha UnaSalida, string UnaPromo,Reserva* UnaReserva, Hostal* UnHostal, Calificacion* UnaCalificacion, Huesped* UnHuesped, list<string> UnosInvitados) {
+Estadia::Estadia(DTFecha UnaEntrada, DTFecha UnaSalida, string UnaPromo,Reserva* UnaReserva, Hostal* UnHostal, Calificacion* UnaCalificacion, Huesped* UnHuesped) {
 	entrada = UnaEntrada;
 	salida = UnaSalida;
 	reserva = UnaReserva;
 	hostal = UnHostal;
 	calificacion = UnaCalificacion;
 	huesped = UnHuesped;
-	invitados = UnosInvitados;
 }
 
 Estadia::~Estadia() {

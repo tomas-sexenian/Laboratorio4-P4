@@ -60,7 +60,7 @@ class ReservaController : public IControladorReserva {
         DTReservaGrupal obtenerReservaGrupal();
         void seleccionarReservaIndividual(int);
         void seleccionarReservaGrupal(int);
-        list<DTReserva> getListaReservasNoCanceladasHuesped(string);
+        list<DTReserva*> getListaReservasNoCanceladasHuesped(string);
         void confirmarConsulta();
         void ingresarDatosReservaIndividual(int, string, DTFecha, DTFecha, EstadoReserva, TipoReserva, Habitacion*);
         void ingresarDatosReservaGrupal(int, string, DTFecha, DTFecha, EstadoReserva, TipoReserva, Habitacion*, list<int>);

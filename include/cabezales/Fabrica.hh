@@ -13,6 +13,7 @@
 class IControladorEstadia;
 class IControladorReserva;
 class IControladorUsuario;
+class IControladorCalificacion;
 
 class Fabrica {
     public:
