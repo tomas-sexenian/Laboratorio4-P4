@@ -6,6 +6,7 @@
 #include "./Hostal.hh"
 #include "./RespuestaEmpleado.hh"
 #include "../../include/TipoCargo.hh"
+#include "../interfaces/IObserver.hh"
 #include <string>
 #include <list>
 
@@ -15,7 +16,7 @@ class RespuestaEmpleado;
 
 using namespace std;
 
-class Empleado: public Usuario {
+class Empleado: public Usuario, public IObserver {
     private:
         TipoCargo cargo;
         list<Notificacion*> notificaciones;
@@ -31,11 +32,19 @@ class Empleado: public Usuario {
         list<RespuestaEmpleado*> getRespuestas();
         void setRespuesta(RespuestaEmpleado*);
 
-        void notificar();
+        void notificar(Notificacion*);
 
         Empleado();
         Empleado(string,string,string,TipoCargo,list<Notificacion*>,Hostal*,list<RespuestaEmpleado*>);
         ~Empleado();
+
+       
 };
+
+    
+    
+
+
+
 
 #endif

@@ -4,13 +4,19 @@
 #include <list>
 #include <string>
 
+
 /*  Nota: Revisar que estén todos los includes, y que ninguno de los presentes sobren. */
 
 #include "../cabezales/DTFecha.hh"
 #include "../cabezales/DTCalificacion.hh"
+#include "../cabezales/DTNotificacion.hh"
 #include "../cabezales/DTRespuestaEmpleado.hh"
+#include "./IObserver.hh"
+
 
 using namespace std;
+
+class DTNotificacion;
 
 class IControladorCalificacion {
     public:
@@ -25,6 +31,10 @@ class IControladorCalificacion {
         virtual DTCalificacion obtenerDTCalificacionRecordada() = 0;
         virtual list<DTRespuestaEmpleado> obtenerDTRespuestas() = 0;
         virtual void LiberarMemoria() = 0;
+
+        virtual list<IObserver*> getObservadores() = 0;
+        virtual void agregarObservador(string) = 0;
+        virtual void eliminarObservador(string) = 0;
 };
 
 #endif

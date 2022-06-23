@@ -269,3 +269,8 @@ void UsuarioController::LiberarMemoria(){
     delete instancia;
     instancia = NULL;
 }
+
+Empleado* UsuarioController::obtenerEmpleado(string EmailEmpleado) {
+    Empleado* e = Empleados.find(EmailEmpleado)->second;
+    return e;
+}

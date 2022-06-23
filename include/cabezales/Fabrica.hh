@@ -14,6 +14,7 @@ class IControladorEstadia;
 class IControladorReserva;
 class IControladorUsuario;
 class IControladorCalificacion;
+class IControladorNotificaciones;
 
 class Fabrica {
     public:

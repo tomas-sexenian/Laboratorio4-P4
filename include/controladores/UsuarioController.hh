@@ -10,7 +10,6 @@
 //YO SOLO INCLUI LO QUE ALMACENA CADA CONTROLADOR Y LAS NECESARIAS PARA DECLARAR
 //LAS OPERCIONES
 
-
 #include "../interfaces/IControladorUsuario.hh"
 #include "../cabezales/Fabrica.hh"
 #include "../cabezales/Usuario.hh"
@@ -79,6 +78,8 @@ class UsuarioController: public IControladorUsuario {
         void seleccionarCargo(TipoCargo);
         list<DTEmpleado> obtenerEmpleadosNoAsignadosHostal(string);
         void ingresarHostal(string);
+
+        Empleado* obtenerEmpleado(string);
 
         void LiberarMemoria();
 };

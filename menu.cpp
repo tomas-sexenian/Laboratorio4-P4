@@ -14,6 +14,8 @@
 #include "include/interfaces/IControladorReserva.hh"
 #include "include/interfaces/IControladorSistema.hh"
 #include "include/interfaces/IControladorUsuario.hh"
+#include "include/interfaces/IObserver.hh"
+
 
 IControladorCalificacion* controladorCalificaciones = Fabrica::getCalificacionController();
 IControladorEstadia* controladorEstadias = Fabrica::getEstadiaController();
@@ -808,21 +810,58 @@ void comentarCalificacion(){
     controladorCalificaciones->responderCalificacion(eleccionCodigoReserva_CEmpleado,eleccionEmailHuespedEstadia_CEmpleado,controladorSistema->obtenerFechaActual(),true);
 }
 
+
 //Suscribirse a notificaciones
 void suscribirseANotificaciones(){
+    string eleccionEmailEmpleado_CEmpleado;
     cin.ignore(256, '\n');
+    imprimirTodosEmailEmpleados();
+
+    cout << "Indique email del empleado que desea suscribir" << endl;
+    getline(cin, eleccionEmailEmpleado_CEmpleado);
+    cout << "\n";
+    controladorCalificaciones->agregarObservador(eleccionEmailEmpleado_CEmpleado);
+ 
+    cout << "El empleado ha sido subscrito con exito\n";
+
 
 }
+
+//Eliminar suscripcion
+void eliminarSuscripcion(){
+    string eleccionEmailEmpleado_CEmpleado;
+    cin.ignore(256, '\n');
+    imprimirTodosEmailEmpleados();
+
+    cout << "Indique email del empleado que desea desuscribir" << endl;
+    getline(cin, eleccionEmailEmpleado_CEmpleado);
+    cout << "\n";
+    controladorCalificaciones->eliminarObservador(eleccionEmailEmpleado_CEmpleado);
+ 
+    cout << "El empleado ha sido desubscribido con exito\n";
+
+ 
+}
+
+
 //Consulta de notificaciones
 void consultaDeNotificaciones(){
     cin.ignore(256, '\n');
+     string eleccionEmailEmpleado_CEmpleado;
+    imprimirTodosEmailEmpleados();
+    cout << "Indique email del empleado que desea ver sus notificaciones" << endl;
+    getline(cin, eleccionEmailEmpleado_CEmpleado);
+    cout << "\n";
+    list<DTNotificacion> notificaciones = controladorNotificaciones->ObtenerNotificacionesEmpleado(eleccionEmailEmpleado_CEmpleado);
+    for (list<DTNotificacion>::iterator it = notificaciones.begin(); it != notificaciones.end(); ++it) {
+        cout << "Puntaje: " << it->getPuntaje() <<endl;
+        cout << "Comentario: " << it->getComentario() <<endl;
+        cout << "Autor: " << it->getAutor() <<endl;
+    }
+    controladorNotificaciones->eliminarNotificaciones(eleccionEmailEmpleado_CEmpleado);
+} 
 
-}
-//Eliminar suscripcion
-void eliminarSUscripcion(){
-    cin.ignore(256, '\n');
 
-}
 
 //Realizar reserva
 int realizarReserva(int codigoReserva){
@@ -1257,8 +1296,8 @@ int main(){
                         cout << "2: Finalizar estadia\n";
                         cout << "3: Comentar calificacion\n";
                         cout << "4: Suscribirse a notificaciones\n";
-                        cout << "5: Consulta de notificaciones\n";
-                        cout << "6: Eliminar suscripcion\n";
+                        cout << "5: Eliminar suscripcion\n";
+                        cout << "6: Consulta de notificaciones\n";
                         cout << "7: Salir\n";
                         cout << "Ingrese una opcion: ";
                         cin >> opcionEmpleado;
@@ -1282,13 +1321,15 @@ int main(){
                                 //Comentar calificacion
                                 comentarCalificacion();
                                 break;
-                            case 4:
-                                cout << "Lamentamos informarle que esta funcionalidad todavia no se encuentra disponible\n";
+                           case 4:
+                                suscribirseANotificaciones();
                                 break;
                             case 5:
-                                cout << "Lamentamos informarle que esta funcionalidad todavia no se encuentra disponible\n";
+                                eliminarSuscripcion();
+                                break;
                             case 6:
-                                cout << "Lamentamos informarle que esta funcionalidad todavia no se encuentra disponible\n";
+                                consultaDeNotificaciones();
+                                break;
                             case 7:
                                 elegirOpcionEmpleado = false;
                                 break;

@@ -27,6 +27,11 @@ void Notificacion::setPuntaje(int UnPuntaje) {
 }
 Notificacion::Notificacion(){};
     
-Notificacion::Notificacion(string,int,string){};
+Notificacion::Notificacion(string UnAutor,int UnPuntaje,string UnComentario){
+	puntaje= UnPuntaje;
+	comentario = UnComentario;
+	autor=UnAutor;
+
+};
       
 Notificacion::~Notificacion(){}; 

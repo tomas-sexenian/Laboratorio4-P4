@@ -61,22 +61,7 @@ void CalificacionController::ingresarFecha(DTFecha UnaFecha) {
     fecha = UnaFecha;
 }
 
-void CalificacionController::confirmarAltaCalificacion(int codigoReserva, string emailHuesped, bool conRetorno) {
-    EstadiaController* est = EstadiaController::getInstancia();
-    Estadia *e = est->obtenerEstadia(codigoReserva, emailHuesped);
 
-    Calificacion* nueva = new Calificacion(puntaje, comentario, fecha, e, {});
-
-    Calificaciones.insert((pair<int,Calificacion*>(codigoReserva,nueva)));
-    e->setCalificacion(nueva);
-
-    if (conRetorno)
-        cout << "La calificacion ha sido registrada con exito" << endl;
-}
-
-void CalificacionController::ingresarRespuesta(string UnaRespuesta) {
-    respuesta = UnaRespuesta;
-}
 
 void CalificacionController::responderCalificacion(int codigoReserva, string emailHuesped,DTFecha UnaFecha,bool conRetorno) {
     Calificacion* c = NULL;
@@ -94,11 +79,66 @@ void CalificacionController::responderCalificacion(int codigoReserva, string ema
     }
 }
 
+
+list<IObserver*> CalificacionController::getObservadores(){
+    return observadores;
+}
+
+void CalificacionController::ingresarRespuesta(string UnaRespuesta) {
+    respuesta = UnaRespuesta;
+}
+
+void CalificacionController::confirmarAltaCalificacion(int codigoReserva, string emailHuesped, bool conRetorno) {
+    EstadiaController* est = EstadiaController::getInstancia();
+    Estadia *e = est->obtenerEstadia(codigoReserva, emailHuesped);
+
+    Calificacion* nueva = new Calificacion(puntaje, comentario, fecha, e, {});
+    Calificaciones.insert((pair<int,Calificacion*>(codigoReserva,nueva)));
+    e->setCalificacion(nueva);
+
+    NotificacionesController* notifController = NotificacionesController::getInstancia();
+    Notificacion *n = notifController->confirmarNotificacion(codigoReserva, emailHuesped, e->getCalificacion());
+    for(list<IObserver*>::iterator it = observadores.begin(); it != observadores.end(); it++){
+        Empleado* i = dynamic_cast<Empleado*>(*it);
+        if(i->getHostal() == e->getHostal())
+            i->notificar(n);
+    }
+
+    if (conRetorno)
+        cout << "La calificacion ha sido registrada con exito" << endl;
+}
+
+
+void CalificacionController::agregarObservador(string email){
+    UsuarioController* controladorEmpleado = UsuarioController::getInstancia();
+    Empleado* empleado = controladorEmpleado->obtenerEmpleado(email);
+    IObserver *i = empleado;
+    observadores.push_back(i);
+}
+
+
+
+
+void CalificacionController::eliminarObservador(string email) {
+    auto o = observadores.begin();
+    Empleado *i = dynamic_cast<Empleado*>(*o);
+    while(o != observadores.end() && email != i->getEmail()) {
+        i = dynamic_cast<Empleado*>(*o);
+        o++;
+    }
+    if(o != observadores.end()) observadores.remove(i);
+    else throw invalid_argument("No se desuscribir un empleado que no existe");
+}
+
+
+
 void CalificacionController::LiberarMemoria(){
     for(map<int,Calificacion *>::iterator it = Calificaciones.begin(); it != Calificaciones.end(); it++)
         delete it->second;
     for(multimap<Calificacion *,RespuestaEmpleado *>::iterator it = RespuestasEmpleados.begin(); it != RespuestasEmpleados.end(); it++)
         delete it->second;
+    for(list<IObserver*>::iterator it = observadores.begin(); it != observadores.end(); it++)
+        delete *it;
     delete instancia;
     instancia = NULL;
 }

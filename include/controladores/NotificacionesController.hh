@@ -10,8 +10,11 @@
 
 
 #include "../interfaces/IControladorNotificaciones.hh"
+#include "../controladores/CalificacionController.hh"
+#include "../controladores/UsuarioController.hh"
 #include "../cabezales/notificacion.hh"
 #include "../cabezales/DTNotificacion.hh"
+#include "../cabezales/calificacion.hh"
 
 using namespace std;
 
@@ -30,10 +33,10 @@ class NotificacionesController: public IControladorNotificaciones {
         list<Notificacion *> getNotificaciones();
         void setNotificacion();
 
-        void subscribirEmpleado(string);
-        void eliminarNotificaciones();
-        void eliminarSubscripcion(string);
-
         void LiberarMemoria();
+
+        list<DTNotificacion> ObtenerNotificacionesEmpleado(string );
+        void eliminarNotificaciones(string);
+        Notificacion* confirmarNotificacion(int,string, Calificacion*);
 };
 #endif

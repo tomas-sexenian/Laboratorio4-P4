@@ -36,10 +36,6 @@ Empleado::~Empleado(){
     //HAY QUE IMPLEMENTAR EL DESTRUCTOR DE EMPLEADO
 };
 
-void Empleado::notificar(){
-    //HAY QUE IMPLEMENTAR 
-};
-
 
 list<Notificacion*> Empleado::getNotificaciones(){
     return notificaciones;
@@ -65,5 +61,7 @@ void Empleado::setRespuesta(RespuestaEmpleado* r){
     respuestas.push_back(r);
 };
 
-
+void Empleado::notificar(Notificacion* n) {
+    notificaciones.push_back(n);
+}
 

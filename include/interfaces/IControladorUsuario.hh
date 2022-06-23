@@ -5,6 +5,8 @@
 #include "../cabezales/DTHuesped.hh"
 #include "../cabezales/DTEstadia.hh"
 #include "../cabezales/DTEmpleado.hh"
+
+#include "../cabezales/Empleado.hh"
 #include "../cabezales/DTInfoEmpleado.hh"
 #include "../cabezales/DTInfoHostal.hh"
 #include "../cabezales/DTNotificacion.hh"
@@ -16,6 +18,7 @@
 #include <utility>
   
 class DTInfoEmpleado;
+class Empleado;
 
 using namespace std; 
 
@@ -51,6 +54,11 @@ public:
     virtual void seleccionarCargo(TipoCargo) = 0;
     virtual list<DTEmpleado> obtenerEmpleadosNoAsignadosHostal(string) = 0;
     virtual void ingresarHostal(string) = 0;
+
+
+
+    virtual Empleado* obtenerEmpleado(string) = 0;
+
 
     virtual void LiberarMemoria() = 0;
 };

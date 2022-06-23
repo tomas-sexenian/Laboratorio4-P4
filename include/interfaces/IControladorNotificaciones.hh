@@ -7,16 +7,20 @@
 
 
 #include "../cabezales/DTNotificacion.hh"
+#include "../cabezales/notificacion.hh"
+#include "../cabezales/calificacion.hh"
 
+ class Calificacion;
+ 
 using namespace std;
 
 class IControladorNotificaciones {
     public:
-        virtual void subscribirEmpleado(string) = 0;
-        virtual void eliminarNotificaciones() = 0;
-        virtual void eliminarSubscripcion(string) = 0;
-
+        virtual Notificacion* confirmarNotificacion(int,string, Calificacion*) = 0;
         virtual void LiberarMemoria() = 0;
+        virtual list<DTNotificacion> ObtenerNotificacionesEmpleado(string) = 0;
+        virtual void eliminarNotificaciones(string) = 0;
 };
+
 
 #endif
